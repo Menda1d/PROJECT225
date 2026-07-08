@@ -1,4 +1,3 @@
-
 <html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -743,7 +742,7 @@
                     <a href="#about-block">About</a>
                 </nav>
                 <button class="cart-btn" onclick="toggleCart()">
-                    Cart <span class="cart-badge" id="cartBadge">1</span>
+                    Cart <span class="cart-badge" id="cartBadge">0</span>
                 </button>
             </div>
         </header>
@@ -1358,24 +1357,11 @@
             <h2>Your cart</h2>
             <button class="close-cart" onclick="toggleCart()">×</button>
         </div>
-        <div class="cart-items" id="cartItemsContainer">
-                    <div class="cart-item">
-                        <img src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&amp;fit=crop&amp;q=80&amp;w=400" alt="Midnight Musk Body Spray" class="cart-item-img">
-                        <div class="cart-item-details">
-                            <h4 class="cart-item-title">Midnight Musk Body Spray</h4>
-                            <span class="cart-item-price">₦24,000.00</span>
-                            <div style="color:var(--text-muted); font-size:0.85rem; margin-top:6px;">Volume: 200ml</div>
-                            <div class="cart-item-qty">
-                                <button class="qty-btn" onclick="changeQty('2-200ml', -1)">-</button>
-                                <span>1</span>
-                                <button class="qty-btn" onclick="changeQty('2-200ml', 1)">+</button>
-                            </div>
-                        </div>
-                    </div></div>
+        <div class="cart-items" id="cartItemsContainer"></div>
         <div class="cart-footer">
             <div class="cart-total-row">
                 <span>Total</span>
-                <span id="cartTotalText">₦24,000.00</span>
+                <span id="cartTotalText">₦0.00</span>
             </div>
             <a href="#" class="checkout-btn" onclick="checkoutToWhatsApp(event)">Confirm order on WhatsApp</a>
             <button class="clear-cart-btn" onclick="clearCart()">Clear cart</button>
@@ -1566,6 +1552,7 @@
 
         function renderStorefrontCatalog(dataset = products) {
             const grid = document.getElementById('productGrid');
+            if(!grid) return;
             grid.innerHTML = '';
 
             dataset.forEach(p => {
@@ -1909,6 +1896,79 @@
             document.getElementById('cartDrawer').classList.add('open'); document.getElementById('cartOverlay').classList.add('open');
         }
 
+        function updateCart() {
+            const container = document.getElementById('cartItemsContainer');
+            const badge = document.getElementById('cartBadge');
+            const totalText = document.getElementById('cartTotalText');
+            if(!container) return;
+
+            container.innerHTML = '';
+            let total = 0;
+            let count = 0;
+
+            cart.forEach(item => {
+                total += item.price * item.qty;
+                count += item.qty;
+                const img = (item.imgs && item.imgs.length > 0) ? item.imgs[0] : 'https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&q=80&w=400';
+
+                container.innerHTML += `
+                    <div class="cart-item">
+                        <img src="${img}" alt="${item.title}" class="cart-item-img">
+                        <div class="cart-item-details">
+                            <h4 class="cart-item-title">${item.title}</h4>
+                            <span class="cart-item-price">₦${formatCurrency(item.price)}</span>
+                            <div style="color:var(--text-muted); font-size:0.85rem; margin-top:6px;">Volume: ${item.vol}</div>
+                            <div class="cart-item-qty">
+                                <button class="qty-btn" onclick="changeQty('${item.id}', -1)">-</button>
+                                <span>${item.qty}</span>
+                                <button class="qty-btn" onclick="changeQty('${item.id}', 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            badge.innerText = count;
+            totalText.innerText = `₦${formatCurrency(total)}`;
+        }
+
+        function changeQty(itemId, delta) {
+            const idx = cart.findIndex(i => i.id === itemId);
+            if(idx === -1) return;
+            cart[idx].qty += delta;
+            if(cart[idx].qty <= 0) {
+                cart.splice(idx, 1);
+            }
+            updateCart();
+        }
+
+        function clearCart() {
+            cart = [];
+            updateCart();
+        }
+
+        function toggleCart() {
+            document.getElementById('cartDrawer').classList.toggle('open');
+            document.getElementById('cartOverlay').classList.toggle('open');
+        }
+
+        function checkoutToWhatsApp(e) {
+            e.preventDefault();
+            if(cart.length === 0) return alert("Your cart is empty!");
+
+            let msg = "Hello SIYAJZH, I'd like to place an order:\n\n";
+            let grandTotal = 0;
+
+            cart.forEach((item, idx) => {
+                const sub = item.price * item.qty;
+                grandTotal += sub;
+                msg += `${idx + 1}. ${item.title} (${item.vol}) x${item.qty} — ₦${formatCurrency(sub)}\n`;
+            });
+
+            msg += `\nTotal Amount: ₦${formatCurrency(grandTotal)}`;
+            window.open(`https://wa.me/2348000000000?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
         // Featured products renderer: top 3 by clicks or random 3
         function renderFeaturedProducts() {
             const container = document.getElementById('featuredProductsGrid');
@@ -1919,7 +1979,6 @@
                 picks.sort((a,b) => (b.clicks || 0) - (a.clicks || 0));
                 picks = picks.slice(0,3);
             } else {
-                // random 3
                 picks = picks.sort(() => 0.5 - Math.random()).slice(0,3);
             }
 
@@ -1955,7 +2014,7 @@
 
             if (cat === 'perfume' || cat === 'oil_perfume') { minCap = 5; maxCap = 200; }
             else if (cat === 'body_spray') { minCap = 100; maxCap = 3000; }
-            else if (cat === 'air_freshener') { minCap = 5; maxCap = 500; } // Universal range safe default 
+            else if (cat === 'air_freshener') { minCap = 5; maxCap = 500; } 
 
             universalVolumeStepsList.forEach(v => {
                 if (v >= minCap && v <= maxCap) {
@@ -2025,69 +2084,58 @@
 
         // --- Lightbox Functions ---
         function openLightboxOverlay() {
-            if(!activeViewingProduct) return;
-            const images = activeViewingProduct.imgs || [];
-            const currentImgSrc = images[activeSliderIndex] || 'https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&q=80&w=400';
-            
-            const lb = document.getElementById('globalLightbox');
-            const lbImg = document.getElementById('lightboxTargetImage');
-            lbImg.src = currentImgSrc;
-            lbImg.classList.remove('zoomed'); 
-            lb.classList.add('open');
-        }
-
-        function closeLightboxOverlay() { document.getElementById('globalLightbox').classList.remove('open'); }
-
-        function toggleLightboxZoom(event) {
-            const img = document.getElementById('lightboxTargetImage');
-            if(event.target.id === 'globalLightbox' || event.target.className === 'lightbox-close') {
-                closeLightboxOverlay();
-                return;
-            }
-            if(event.target.id === 'lightboxTargetImage') {
-                img.classList.toggle('zoomed');
-            }
-        }
-
-        function handleLightboxKeyboard(event) {
+            if(!activeViewingProduct || !activeViewingProduct.imgs) return;
             const lightbox = document.getElementById('globalLightbox');
-            if (!lightbox.classList.contains('open')) return;
-            if (['Escape', 'ArrowRight', 'ArrowLeft'].includes(event.key)) {
-                event.preventDefault();
-            }
-            if (event.key === 'Escape') {
+            const lightboxImg = document.getElementById('lightboxTargetImage');
+            lightboxImg.src = activeViewingProduct.imgs[activeSliderIndex];
+            lightboxImg.classList.remove('zoomed');
+            lightbox.classList.add('open');
+        }
+        function closeLightboxOverlay() {
+            document.getElementById('globalLightbox').classList.remove('open');
+        }
+        function toggleLightboxZoom(e) {
+            if(e.target.classList.contains('lightbox-close')) return;
+            const img = document.getElementById('lightboxTargetImage');
+            if(e.target === img) {
+                img.classList.toggle('zoomed');
+            } else {
                 closeLightboxOverlay();
-                return;
-            }
-            if (event.key === 'ArrowRight') {
-                shiftSliderImage(1);
-                return;
-            }
-            if (event.key === 'ArrowLeft') {
-                shiftSliderImage(-1);
-                return;
             }
         }
 
-        window.addEventListener('keydown', handleLightboxKeyboard);
+        // --- ADMIN LAYER ENGINE ---
+        function showLogin() {
+            document.getElementById('adminLoginView').style.display = 'flex';
+        }
+        function exitAdmin() {
+            document.getElementById('adminLoginView').style.display = 'none';
+            document.getElementById('adminPanelView').style.display = 'none';
+        }
+        function handleLogin(e) {
+            e.preventDefault();
+            // simple default dummy implementation 
+            document.getElementById('adminLoginView').style.display = 'none';
+            document.getElementById('adminPanelView').style.display = 'block';
+            renderAdminPanelInventory();
+        }
 
-        // --- Admin Controls Data Mapping Operations ---
-        function renderAdminManagementWorkspace(dataset = products) {
-            const secondaryZone = document.getElementById('adminSecondaryCatalogZone');
-            secondaryZone.innerHTML = '';
-            const defaultGrid = document.createElement('div');
-            defaultGrid.className = 'grid';
+        function renderAdminPanelInventory() {
+            const container = document.getElementById('adminSecondaryCatalogZone');
+            if(!container) return;
+            container.innerHTML = '<div class="grid"></div>';
+            const grid = container.querySelector('.grid');
 
-            dataset.forEach(p => {
-                const primaryImage = (p.imgs && p.imgs.length > 0) ? p.imgs[0] : 'https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&q=80&w=400';
-                defaultGrid.innerHTML += `
+            products.forEach(p => {
+                const img = (p.imgs && p.imgs.length > 0) ? p.imgs[0] : '';
+                grid.innerHTML += `
                     <div class="product-card">
                         <div class="admin-actions-overlay">
                             <button class="admin-action-btn btn-edit" onclick="startEditProductMode(${p.id})">Edit</button>
                             <button class="admin-action-btn btn-danger" onclick="deleteProductDataRecord(${p.id})">Remove</button>
                         </div>
                         <div class="product-img-wrapper">
-                            <img src="${primaryImage}" alt="${p.title}" class="product-img">
+                            <img src="${img}" alt="${p.title}" class="product-img">
                         </div>
                         <div class="product-info">
                             <span class="product-category">${p.type}</span>
@@ -2099,181 +2147,125 @@
                     </div>
                 `;
             });
-            secondaryZone.appendChild(defaultGrid);
         }
 
         function startEditProductMode(id) {
-            const prod = products.find(p => p.id === id);
-            if(!prod) return;
+            const p = products.find(prod => prod.id === id);
+            if(!p) return;
+
             currentEditingProductId = id;
-            document.getElementById('editProductId').value = prod.id;
-            document.getElementById('prodName').value = prod.title;
-            document.getElementById('prodDesc').value = prod.desc || '';
-            document.getElementById('prodType').value = prod.type;
-            // populate numeric volume (strip non-digits)
-            document.getElementById('prodVol').value = prod.vol ? String(prod.vol).replace(/\D/g, '') : '';
-            document.getElementById('prodPrice').value = prod.price;
-            document.getElementById('prodTopNotes').value = prod.topNotes || '';
-            document.getElementById('prodHeartNotes').value = prod.heartNotes || '';
-            document.getElementById('prodBaseNotes').value = prod.baseNotes || '';
-            document.getElementById('prodImgLinks').value = (prod.imgs || []).join(', ');
-            document.getElementById('formModeTitle').scrollIntoView({ behavior: 'smooth' });
-        }
+            document.getElementById('editProductId').value = id;
+            document.getElementById('formModeTitle').innerText = "Edit Product";
+            document.getElementById('formSubmitBtn').innerText = "Save Product Structural Details";
+            document.getElementById('cancelEditBtn').style.display = 'inline-block';
 
-        function saveProductForm() {
-            const editId = document.getElementById('editProductId').value;
-            const name = document.getElementById('prodName').value.trim();
-            const desc = document.getElementById('prodDesc').value.trim();
-            const type = document.getElementById('prodType').value;
-            let vol = (document.getElementById('prodVol').value || '').toString().trim();
-            // ensure only digits for stored volume, append 'ml' if provided
-            vol = vol ? vol.replace(/\D/g, '') : '';
-            const volWithUnit = vol ? `${vol}ml` : '';
-            const price = parseFloat(document.getElementById('prodPrice').value || 0);
-
-            if(!name || !price) return alert('Product Name and Price parameters are mandatory.');
-
-            let imageArray = (document.getElementById('prodImgLinks').value.trim()).split(',').map(url => url.trim()).filter(url => url.length > 0);
-            if(imageArray.length === 0) imageArray.push('https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&q=80&w=400');
-
-            const payload = {
-                id: editId ? parseInt(editId) : Date.now(),
-                type, title: name, price, vol: volWithUnit, desc, imgs: imageArray.slice(0,5),
-                topNotes: document.getElementById('prodTopNotes').value.trim() || undefined,
-                heartNotes: document.getElementById('prodHeartNotes').value.trim() || undefined,
-                baseNotes: document.getElementById('prodBaseNotes').value.trim() || undefined,
-                clicks: 0
-            };
-
-            if(editId) {
-                const idx = products.findIndex(p => p.id == editId);
-                if(idx !== -1) {
-                    // preserve clicks if present
-                    payload.clicks = products[idx].clicks || 0;
-                    products[idx] = payload;
-                }
-            } else {
-                products.push(payload);
-            }
-
-            const toast = document.getElementById('successToast');
-            toast.style.display = 'block';
-            setTimeout(() => { toast.style.display = 'none'; resetProductForm(); renderAdminManagementWorkspace(); renderFeaturedProducts(); handleStoreSearchFilter(); }, 1000);
+            document.getElementById('prodName').value = p.title || '';
+            document.getElementById('prodDesc').value = p.desc || '';
+            document.getElementById('prodType').value = p.type || 'Perfume (EDP)';
+            document.getElementById('prodVol').value = parseInt(p.vol) || '';
+            document.getElementById('prodPrice').value = p.price || '';
+            document.getElementById('prodTopNotes').value = p.topNotes || '';
+            document.getElementById('prodHeartNotes').value = p.heartNotes || '';
+            document.getElementById('prodBaseNotes').value = p.baseNotes || '';
+            document.getElementById('prodImgLinks').value = p.imgs ? p.imgs.join(', ') : '';
         }
 
         function resetProductForm() {
             currentEditingProductId = null;
             document.getElementById('editProductId').value = '';
+            document.getElementById('formModeTitle').innerText = "Add New Product";
+            document.getElementById('formSubmitBtn').innerText = "Incorporate Product";
+            document.getElementById('cancelEditBtn').style.display = 'none';
+
             document.getElementById('prodName').value = '';
             document.getElementById('prodDesc').value = '';
-            document.getElementById('prodVol').value = '';
             document.getElementById('prodPrice').value = '';
+            document.getElementById('prodVol').value = '';
             document.getElementById('prodTopNotes').value = '';
             document.getElementById('prodHeartNotes').value = '';
             document.getElementById('prodBaseNotes').value = '';
             document.getElementById('prodImgLinks').value = '';
         }
 
-        function deleteProductDataRecord(id) {
-            if(!confirm("Remove this entry?")) return;
-            const idx = products.findIndex(p => p.id === id);
-            if(idx !== -1) { products.splice(idx, 1); renderAdminManagementWorkspace(); }
+        function saveProductForm() {
+            const title = document.getElementById('prodName').value.trim();
+            const desc = document.getElementById('prodDesc').value.trim();
+            const type = document.getElementById('prodType').value;
+            const volNum = document.getElementById('prodVol').value.trim();
+            const price = parseFloat(document.getElementById('prodPrice').value) || 0;
+            const topNotes = document.getElementById('prodTopNotes').value.trim();
+            const heartNotes = document.getElementById('prodHeartNotes').value.trim();
+            const baseNotes = document.getElementById('prodBaseNotes').value.trim();
+            const imgsRaw = document.getElementById('prodImgLinks').value.trim();
+
+            if(!title || !price) return alert("Product Name and Price are critical fields variables required!");
+
+            const imgs = imgsRaw ? imgsRaw.split(',').map(s => s.trim()).filter(s => s.length > 0) : [];
+            const vol = volNum ? `${volNum}ml` : '100ml';
+
+            if (currentEditingProductId) {
+                const match = products.find(p => p.id === currentEditingProductId);
+                if (match) {
+                    match.title = title; match.desc = desc; match.type = type; match.vol = vol; match.price = price;
+                    match.topNotes = topNotes; match.heartNotes = heartNotes; match.baseNotes = baseNotes; match.imgs = imgs;
+                }
+            } else {
+                products.push({
+                    id: Date.now(), title, desc, type, vol, price, topNotes, heartNotes, baseNotes, imgs, clicks: 0
+                });
+            }
+
+            showToastNotification();
+            resetProductForm();
+            renderAdminPanelInventory();
         }
 
+        function deleteProductDataRecord(id) {
+            if(!confirm("Are you sure you want to permanently delete this product?")) return;
+            const idx = products.findIndex(p => p.id === id);
+            if(idx !== -1) products.splice(idx,1);
+            renderAdminPanelInventory();
+        }
+
+        function showToastNotification() {
+            const toast = document.getElementById('successToast');
+            if(!toast) return;
+            toast.style.display = 'block';
+            setTimeout(() => { toast.style.display = 'none'; }, 2500);
+        }
+
+        // --- MATH RECURSIVE HTML WRITER SERIALIZATION PIPELINE ---
         function downloadUpdatedHTML() {
-            // Force administrative structural panels to hide visual indicators inside DOM state before string packaging
+            // ALWAYS RESET CART ARRAYS AND CART RENDERS STATE TO PREVENT RETENTION ON DOWNLOAD
+            cart = [];
+            updateCart();
+            
+            // Re-sync standard client layout structures blocks components instances elements explicitly
+            handleStoreSearchFilter();
+
+            const scriptElement = document.getElementById('catalogData');
+            if(scriptElement) {
+                scriptElement.textContent = `\n        const products = ${JSON.stringify(products, null, 4)};\n    `;
+            }
+
+            // Clean template injection states out of volatile storage drawers containers safely
             document.getElementById('adminLoginView').style.display = 'none';
             document.getElementById('adminPanelView').style.display = 'none';
-            document.getElementById('storefrontView').style.display = 'block';
-            // Ensure catalog is visible and product detail is hidden so saved file opens on homepage
-            const catalogView = document.getElementById('catalogContainerView');
-            const detailView = document.getElementById('productDetailContainerView');
-            if (catalogView) catalogView.style.display = 'block';
-            if (detailView) detailView.style.display = 'none';
-            // Close cart/overlay to avoid saved-open UI
-            document.getElementById('cartDrawer').classList.remove('open');
-            document.getElementById('cartOverlay').classList.remove('open');
+
+            const rawOutputHTMLTextContentStream = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+            const blob = new Blob([rawOutputHTMLTextContentStream], { type: 'text/html;charset=utf-8;' });
+            const link = document.createElement("a");
             
-            let activeHTML = document.documentElement.outerHTML;
-            // Inject updated product data
-            activeHTML = activeHTML.replace(/<script id="catalogData">[\s\S]*?<\/script>/, `<script id="catalogData">\n        const products = ${JSON.stringify(products, null, 4)};\n    <\/script>`);
-            // Ensure the saved page loads the catalog view on open
-            activeHTML = activeHTML.replace(/<body([^>]*)>/, '<body$1 onload="navigateToCatalog()">');
-            const blob = new Blob([activeHTML], { type: 'text/html' });
-            const link = document.createElement('a');
-            link.href = URL.createObjectURL(blob); link.download = 'index.html'; link.click();
-            exitAdmin();
+            link.href = URL.createObjectURL(blob);
+            link.setAttribute("download", "index.html");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
 
-        function showLogin() { 
-            document.getElementById('loginEmail').value = ''; 
-            document.getElementById('loginPassword').value = ''; 
-            document.getElementById('loginError').style.display = 'none';
-            document.getElementById('adminLoginView').style.display = 'block'; 
-        }
-        
-        function exitAdmin() { 
-            document.getElementById('loginEmail').value = ''; 
-            document.getElementById('loginPassword').value = ''; 
-            document.getElementById('adminLoginView').style.display = 'none'; 
-            document.getElementById('adminPanelView').style.display = 'none'; 
-            document.getElementById('storefrontView').style.display = 'block'; 
-            navigateToCatalog(); 
-        }
-        
-        function handleLogin(event) {
-            if (event) event.preventDefault();
-            if(document.getElementById('loginEmail').value === 'admin@siyajzh.com' && document.getElementById('loginPassword').value === '123456') {
-                document.getElementById('adminLoginView').style.display = 'none'; document.getElementById('storefrontView').style.display = 'none'; document.getElementById('adminPanelView').style.display = 'block'; renderAdminManagementWorkspace();
-            } else { document.getElementById('loginError').style.display = 'block'; }
-        }
-
-        // --- Cart Controls ---
-        function toggleCart() { document.getElementById('cartDrawer').classList.toggle('open'); document.getElementById('cartOverlay').classList.toggle('open'); }
-        function clearCart() { cart = []; updateCart(); }
-        function changeQty(id, delta) {
-            const item = cart.find(i => i.id === id);
-            if (item) { item.qty += delta; if (item.qty <= 0) cart = cart.filter(i => i.id !== id); updateCart(); }
-        }
-
-        function updateCart() {
-            const container = document.getElementById('cartItemsContainer');
-            const totalCount = cart.reduce((acc, curr) => acc + curr.qty, 0);
-            const totalPrice = cart.reduce((acc, curr) => acc + (curr.price * curr.qty), 0);
-            document.getElementById('cartBadge').innerText = totalCount;
-            document.getElementById('cartTotalText').innerText = `₦${formatCurrency(totalPrice)}`;
-            container.innerHTML = cart.length === 0 ? '<p style="color:var(--text-muted); text-align:center; margin-top:40px;">Your cart is empty.</p>' : '';
-            cart.forEach(item => {
-                const img = (item.imgs && item.imgs.length > 0) ? item.imgs[0] : 'https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&q=80&w=400';
-                container.innerHTML += `
-                    <div class="cart-item">
-                        <img src="${img}" alt="${item.title}" class="cart-item-img">
-                        <div class="cart-item-details">
-                            <h4 class="cart-item-title">${item.title}</h4>
-                            <span class="cart-item-price">₦${formatCurrency(item.price)}</span>
-                            <div style="color:var(--text-muted); font-size:0.85rem; margin-top:6px;">Volume: ${item.vol || 'N/A'}</div>
-                            <div class="cart-item-qty">
-                                <button class="qty-btn" onclick="changeQty('${item.id}', -1)">-</button>
-                                <span>${item.qty}</span>
-                                <button class="qty-btn" onclick="changeQty('${item.id}', 1)">+</button>
-                            </div>
-                        </div>
-                    </div>`;
-            });
-        }
-
-        function checkoutToWhatsApp(e) {
-            e.preventDefault(); if (cart.length === 0) return alert('Your cart is empty!');
-            let message = "Hello SIYAJZH, I would like to place an order:\n\n";
-            cart.forEach(item => { message += `- ${item.title} (${item.vol || 'N/A'}) x${item.qty} - ₦${formatCurrency(item.price * item.qty)}\n`; });
-            const totalOrder = cart.reduce((acc, curr) => acc + (curr.price * curr.qty), 0);
-            message += `\n*Total Order Value:* ₦${formatCurrency(totalOrder)}`;
-            window.open(`https://wa.me/2347062022875?text=${encodeURIComponent(message)}`, '_blank');
-        }
-
-        // --- Init Pipeline Execution ---
-        handleStoreSearchFilter();
-        renderFeaturedProducts();
+        // Start initialization sequence
+        window.addEventListener('DOMContentLoaded', () => {
+            handleStoreSearchFilter();
+        });
     </script>
-
 </body></html>
