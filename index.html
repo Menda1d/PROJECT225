@@ -1,3 +1,4 @@
+
 <html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -297,7 +298,7 @@
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 30px;
-            margin-bottom: 80px;
+            margin-bottom: 40px;
         }
 
         .product-card {
@@ -381,97 +382,188 @@
 
         .add-btn:hover { background-color: var(--gold); color: #000; }
 
-        /* Selection Configuration Forms Block Overlay styling rules */
-        .integrated-form-container {
-            background-color: var(--surface-accent);
-            border: 1px solid rgba(223, 183, 108, 0.2);
-            padding: 30px;
-            border-radius: 8px;
-            margin-top: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        /* Modified Integrated Reviews Vertical Slider Suite Style */
+        .review-box-slider-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            height: 440px; /* Accommodates 3 boxes with gaps comfortably */
         }
 
-        .integrated-form-container h3 {
-            color: var(--gold);
-            font-family: 'Cinzel', serif;
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            font-weight: 400;
+        .review-box-slider-track {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        .integrated-form-group {
-            margin-bottom: 20px;
-        }
-
-        .integrated-form-group label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--text-muted);
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            font-weight: 500;
-        }
-
-        .integrated-select {
-            width: 100%;
-            padding: 12px;
+        .review-vertical-item-box {
             background-color: var(--surface-color);
             border: 1px solid var(--border);
-            color: var(--text-main);
-            border-radius: 4px;
-            font-size: 0.95rem;
-            font-family: inherit;
-            transition: border-color 0.3s ease;
-            cursor: pointer;
+            border-radius: 8px;
+            padding: 25px 35px;
+            min-height: 135px;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: border-color 0.3s;
         }
 
-        .integrated-select:focus {
-            outline: none;
+        .review-vertical-item-box:hover {
             border-color: var(--gold);
         }
 
-        /* Admin UI System Operations Layer */
-        .admin-actions-overlay {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            display: flex;
-            gap: 5px;
-            z-index: 20;
-        }
-
-        .admin-action-btn {
-            color: white;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-        .btn-danger { background: rgba(255, 74, 74, 0.95); }
-        .btn-edit { background: rgba(223, 183, 108, 0.95); color: #000; }
-
-        .collapsed-admin-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 20px;
-        }
-        .collapsed-admin-item {
+        /* Brand Marquee Trust Banner Slider Configuration */
+        .brands-marquee-container {
             background-color: var(--surface-color);
-            border: 1px solid var(--border);
-            padding: 16px 20px;
-            border-radius: 6px;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 35px 0;
+            overflow: hidden;
+            position: relative;
+        }
+        .brands-marquee-track {
+            display: flex;
+            gap: 70px;
+            width: max-content;
+            animation: marqueeScroll 45s linear infinite; /* Adjusted for slow graceful movement */
+            align-items: center;
+        }
+        .brand-pane-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-family: 'Cinzel', serif;
+            font-size: 1.15rem;
+            letter-spacing: 2px;
+            color: var(--text-main);
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+        .brand-logo-emulation-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+            background: rgba(223, 183, 108, 0.05);
+            color: var(--gold);
+            font-family: 'Cinzel', serif;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+        @keyframes marqueeScroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Modified Collapsible Accordion Intake Review Style */
+        .accordion-trigger-button {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            width: 100%;
+            max-width: 650px;
+            margin: 0 auto;
+            background-color: var(--surface-color);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 18px 30px;
+            border-radius: 8px;
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            cursor: pointer;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
         }
 
-        /* Box Toast Indicator Alert */
+        .accordion-trigger-button:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .accordion-trigger-button .chevron-icon {
+            transition: transform 0.3s ease;
+            font-size: 1.4rem;
+            color: var(--gold);
+        }
+
+        .accordion-trigger-button.active .chevron-icon {
+            transform: rotate(180deg);
+        }
+
+        .review-form-card {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border);
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            padding: 40px;
+            max-width: 650px;
+            margin: -4px auto 0;
+            display: none; /* Controlled dynamically via JavaScript */
+        }
+
+        /* Adjusted Floating WhatsApp Action Link up away from bottom elements */
+        .whatsapp-floating-btn {
+            position: fixed;
+            bottom: 90px; /* Adjusted up from 30px to prevent overlap */
+            left: 30px;
+            background-color: #25d366;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            z-index: 999;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        .whatsapp-floating-btn:hover {
+            transform: scale(1.05);
+            background-color: #20ba5a;
+        }
+
+        /* Shop Pagination Control Dashboard Rules */
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin: 40px 0 80px;
+        }
+        .pagination-btn {
+            background-color: var(--surface-color);
+            border: 1px solid var(--border);
+            color: var(--text-main);
+            padding: 8px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+        .pagination-btn:hover:not(:disabled) {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+        .pagination-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+        .pagination-info {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        /* Success Toast Indicator Alert */
         .success-toast {
             position: fixed;
             top: 20px;
@@ -586,40 +678,6 @@
             width: 120px;
         }
 
-        /* Lightbox Overlay Structural Styling Rules */
-        .lightbox {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.95);
-            z-index: 1500;
-            display: none;
-            align-items: center;
-            justify-content: center;
-        }
-        .lightbox.open { display: flex; }
-        .lightbox-img {
-            max-width: 90%;
-            max-height: 90%;
-            object-fit: contain;
-            transition: transform 0.3s ease;
-            cursor: zoom-out;
-        }
-        .lightbox-img.zoomed {
-            transform: scale(1.5);
-        }
-        .lightbox-close {
-            position: absolute;
-            top: 25px;
-            right: 30px;
-            color: white;
-            font-size: 2.5rem;
-            cursor: pointer;
-            user-select: none;
-        }
-
         /* Craft Section */
         .craft-section {
             background-color: var(--surface-color);
@@ -726,20 +784,49 @@
 
         .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); z-index: 150; display: none; }
         .overlay.open { display: block; }
+
+        /* Review Authorization Table Panel */
+        .admin-review-item {
+            background-color: var(--surface-accent);
+            border: 1px solid var(--border);
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+        .admin-review-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--gold);
+            margin-bottom: 5px;
+        }
+        .admin-review-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
     </style>
 </head>
-<body onload="navigateToCatalog()">
+<body onload="initializeStorefrontApp()">
 
     <div id="successToast" class="success-toast" style="display: none;">SUCCESS</div>
+
+    <!-- Dynamic WhatsApp Floating Interactive Action Link -->
+    <a href="https://wa.me/2348000000000?text=Hello%20SIYAJZH%2C%20I'd%20like%20to%20inquire%20about%20your%20luxury%20fragrances." target="_blank" class="whatsapp-floating-btn" id="whatsappFloatingAnchor">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.457L0 24zm6.59-4.846c1.6.95 3.498 1.451 5.411 1.453 5.487 0 9.954-4.466 9.957-9.953.002-2.657-1.02-5.155-2.877-7.015C17.28 1.78 14.785.755 12.01.755c-5.49 0-9.953 4.467-9.955 9.956-.001 1.924.501 3.804 1.454 5.407l-.979 3.575 3.667-.962zm10.742-7.143c-.29-.145-1.716-.848-1.983-.946-.266-.097-.459-.145-.653.145-.193.291-.748.946-.917 1.138-.17.193-.341.218-.632.073-.29-.145-1.229-.453-2.34-1.445-.864-.772-1.447-1.725-1.617-2.016-.17-.29-.018-.447.127-.592.13-.13.29-.34.436-.509.145-.17.193-.291.291-.485.097-.194.049-.364-.025-.509-.073-.145-.653-1.573-.894-2.155-.236-.57-.475-.492-.653-.501-.17-.008-.364-.01-.557-.01-.193 0-.509.073-.776.364-.266.291-1.018.994-1.018 2.423 0 1.43 1.042 2.809 1.187 3.003.145.194 2.051 3.132 4.969 4.39.694.3 1.236.479 1.659.614.698.221 1.334.19 1.838.115.561-.083 1.716-.702 1.958-1.381.242-.679.242-1.261.17-1.381-.073-.119-.266-.218-.557-.363z"/></svg>
+        Chat with us
+    </a>
 
     <!-- Storefront Parent Portal Viewport Link -->
     <div id="storefrontView" style="display: block;">
         <header>
             <div class="container nav-container">
-                <a class="logo" onclick="navigateToCatalog()">SIYAJZH</a>
+                <a class="logo" onclick="navigateToCatalogRoot()">SIYAJZH</a>
                 <nav>
-                    <a href="#" onclick="navigateToCatalog()">Shop</a>
+                    <a href="#shop" onclick="navigateToCatalogRoot()">Shop</a>
                     <a href="#about-block">About</a>
+                    <a href="#brands-block">Brands</a>
+                    <a href="#contact-block">Contact us</a>
                 </nav>
                 <button class="cart-btn" onclick="toggleCart()">
                     Cart <span class="cart-badge" id="cartBadge">0</span>
@@ -755,7 +842,7 @@
                     <h1>Wear your essence in liquid gold.</h1>
                     <p>Perfumes, body sprays and oud crafted for the bold. Build your cart and confirm your order in seconds — straight to our WhatsApp.</p>
                     <div class="cta-group">
-                        <a href="#shop" class="btn btn-primary">Shop the collection</a>
+                        <a href="#shop" class="btn btn-primary" onclick="navigateToCatalogRoot()">Shop the collection</a>
                     </div>
                 </div>
             </section>
@@ -765,82 +852,95 @@
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
                     <div>
                         <span class="section-tag">Featured</span>
-                        <h2 class="section-title" style="font-size:1.6rem;">Featured products</h2>
+                        <h2 class="section-title" style="font-size:1.6rem; margin-bottom:0; text-align:left;">Featured products</h2>
                     </div>
                     <div>
-                        <a href="#shop" onclick="navigateToCatalog()" class="btn btn-secondary" style="padding:8px 14px;">See all</a>
+                        <a href="#shop" onclick="navigateToCatalogRoot()" class="btn btn-secondary" style="padding:8px 14px;">See all</a>
                     </div>
                 </div>
                 <div id="featuredProductsGrid" class="grid">
-                    <div class="product-card">
-                        <div class="product-img-wrapper" onclick="viewProductDetails(1783428169962)">
-                            <img src="https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/badee%20al%20oud%20sublime2.jpg" alt="BADEE AL OUD (SUBLIME)" class="product-img">
-                        </div>
-                        <div class="product-info">
-                            <span class="product-category">Perfume (EDP)</span>
-                            <h3 class="product-title" onclick="viewProductDetails(1783428169962)" style="cursor:pointer;">BADEE AL OUD (SUBLIME)</h3>
-                            <div style="color:var(--text-muted); font-size:0.9rem; margin-bottom:8px;">100ml</div>
-                            <div class="product-footer" style="margin-top:8px;">
-                                <span class="product-price">₦30,000.00</span>
-                                <button class="add-btn" onclick="event.stopPropagation(); addToCart(1783428169962,1)">+</button>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="product-card">
-                        <div class="product-img-wrapper" onclick="viewProductDetails(1783426887741)">
-                            <img src="https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/9PM%20REBEL.jpg" alt="9PM REBEL" class="product-img">
-                        </div>
-                        <div class="product-info">
-                            <span class="product-category">Perfume (EDP)</span>
-                            <h3 class="product-title" onclick="viewProductDetails(1783426887741)" style="cursor:pointer;">9PM REBEL</h3>
-                            <div style="color:var(--text-muted); font-size:0.9rem; margin-bottom:8px;">100ml</div>
-                            <div class="product-footer" style="margin-top:8px;">
-                                <span class="product-price">₦47,000.00</span>
-                                <button class="add-btn" onclick="event.stopPropagation(); addToCart(1783426887741,1)">+</button>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="product-card">
-                        <div class="product-img-wrapper" onclick="viewProductDetails(1783430080283)">
-                            <img src="https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/lattafa_qaed_al_fursan_edp_100ml_perfume.jpg" alt="QAED AL FURSAN (BLACK)" class="product-img">
-                        </div>
-                        <div class="product-info">
-                            <span class="product-category">Perfume (EDP)</span>
-                            <h3 class="product-title" onclick="viewProductDetails(1783430080283)" style="cursor:pointer;">QAED AL FURSAN (BLACK)</h3>
-                            <div style="color:var(--text-muted); font-size:0.9rem; margin-bottom:8px;">100ml</div>
-                            <div class="product-footer" style="margin-top:8px;">
-                                <span class="product-price">₦32,000.00</span>
-                                <button class="add-btn" onclick="event.stopPropagation(); addToCart(1783430080283,1)">+</button>
+                    <!-- Loaded dynamically via JavaScript -->
+                </div>
+            </section>
+
+            <!-- About Block Section -->
+            <section class="craft-section" id="about-block">
+                <div class="container">
+                    <span class="section-tag">Our Craft</span>
+                    <h2>Fragrance that <em>lingers</em>.</h2>
+                    <p style="margin-bottom: 30px;">SIYAJZH curates rich, long-lasting scents — from opulent oud to fresh everyday body sprays. Every order is personal: pick your favourites, confirm on WhatsApp, and we handle the rest.</p>
+                    
+                    <!-- Modified Customer Reviews Vertical Slider Area Module -->
+                    <div style="margin-top:50px;">
+                        <span class="section-tag">Testimonials</span>
+                        <h3 style="font-family:'Cinzel',serif; font-weight:400; font-size:1.4rem; margin-bottom:30px;">Recent Customer Reviews</h3>
+                        <div class="review-box-slider-container">
+                            <div class="review-box-slider-track" id="reviewActiveSliderStage">
+                                <!-- Populated dynamically with 3 vertical blocks transitioning continuously -->
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
+            <!-- Refactored Brand Trust Banner Marquee Section -->
+            <section class="brands-marquee-container" id="brands-block">
+                <div class="container" style="margin-bottom:15px;"><span class="section-tag">Partnerships</span></div>
+                <div class="brands-marquee-track">
+                    <div class="brand-pane-item"><div class="brand-logo-emulation-icon">LT</div>Lattafa</div>
+                    <div class="brand-pane-item"><div class="brand-logo-emulation-icon">AZ</div>Ard Al Zaafaran</div>
+                    <div class="brand-pane-item"><div class="brand-logo-emulation-icon">EM</div>Emper</div>
+                    <div class="brand-pane-item"><div class="brand-logo-emulation-icon">AF</div>Afnan</div>
+                    <div class="brand-pane-item"><div class="brand-logo-emulation-icon">AD</div>Adyan</div>
+                    <div class="brand-pane-item"><div class="brand-logo-emulation-icon">CM</div>Camara</div>
+                    <div class="brand-pane-item"><div class="brand-logo-emulation-icon">AF</div>Al Fares</div>
+                    <div class="brand-pane-item"><div class="brand-logo-emulation-icon">LC</div>Le Chameau</div>
+                    <div class="brand-pane-item"><div class="brand-logo-emulation-icon">AL</div>Afnan London</div>
+                    <div class="brand-pane-item"><div class="brand-logo-emulation-icon">RS</div>Rasasi</div>
+                    <div class="brand-pane-item"><div class="brand-logo-emulation-icon">FW</div>Fragrance World</div>
+                    <div class="brand-pane-item"><div class="brand-logo-emulation-icon">SC</div>Smart Collection</div>
+                    <div class="brand-pane-item"><div class="brand-logo-emulation-icon">NG</div>Nouvelle Parfumerie Gandour</div>
+                    <div class="brand-pane-item"><div class="brand-logo-emulation-icon">RD</div>Rodis</div>
+                    <div class="brand-pane-item"><div class="brand-logo-emulation-icon">CP</div>Copaci</div>
+                    <!-- Identical duplicate instance set tracking loop to guarantee uninterrupted linear scrolling execution -->
+                    <div class="brand-pane-item"><div class="brand-logo-emulation-icon">LT</div>Lattafa</div>
+                    <div class="brand-pane-item"><div class="brand-logo-emulation-icon">AZ</div>Ard Al Zaafaran</div>
+                    <div class="brand-pane-item"><div class="brand-logo-emulation-icon">EM</div>Emper</div>
+                    <div class="brand-pane-item"><div class="brand-logo-emulation-icon">AF</div>Afnan</div>
+                    <div class="brand-pane-item"><div class="brand-logo-emulation-icon">AD</div>Adyan</div>
+                    <div class="brand-pane-item"><div class="brand-logo-emulation-icon">CM</div>Camara</div>
+                    <div class="brand-pane-item"><div class="brand-logo-emulation-icon">AF</div>Al Fares</div>
+                    <div class="brand-pane-item"><div class="brand-logo-emulation-icon">LC</div>Le Chameau</div>
+                    <div class="brand-pane-item"><div class="brand-logo-emulation-icon">AL</div>Afnan London</div>
+                    <div class="brand-pane-item"><div class="brand-logo-emulation-icon">RS</div>Rasasi</div>
+                    <div class="brand-pane-item"><div class="brand-logo-emulation-icon">FW</div>Fragrance World</div>
+                    <div class="brand-pane-item"><div class="brand-logo-emulation-icon">SC</div>Smart Collection</div>
+                    <div class="brand-pane-item"><div class="brand-logo-emulation-icon">NG</div>Nouvelle Parfumerie Gandour</div>
+                    <div class="brand-pane-item"><div class="brand-logo-emulation-icon">RD</div>Rodis</div>
+                    <div class="brand-pane-item"><div class="brand-logo-emulation-icon">CP</div>Copaci</div>
+                </div>
+            </section>
+
+            <!-- Full Shop Catalog Grid Section -->
             <main class="container" style="padding-top: 60px;" id="shop">
                 <span class="section-tag">Full Collection</span>
                 <h2 class="section-title">Shop all fragrances</h2>
 
                 <!-- ADVANCED HIERARCHICAL CASCADING FILTERS BAR -->
                 <div class="search-sort-bar">
-                    <!-- Updated search wrapper containing input field and search submission action button -->
                     <div class="search-wrapper">
-                        <input type="text" id="storeSearchInput" class="search-input" placeholder="Search by name, scent profile keywords..." onkeydown="if(event.key === 'Enter') handleStoreSearchFilter()">
-                        <button type="button" class="search-action-btn" onclick="handleStoreSearchFilter()">Search</button>
+                        <input type="text" id="storeSearchInput" class="search-input" placeholder="Search by name, scent profile keywords..." onkeydown="if(event.key === 'Enter') { currentShopPage=1; handleStoreSearchFilter(); }">
+                        <button type="button" class="search-action-btn" onclick="currentShopPage=1; handleStoreSearchFilter()">Search</button>
                     </div>
                     
                     <div class="cascading-dropdown-container">
-                        <!-- Primary Sorting Engine Select Dropdown -->
-                        <select id="storeSortSelect" class="sort-select" onchange="evaluateStoreCascadingVisibilityRules()">
+                        <select id="storeSortSelect" class="sort-select" onchange="currentShopPage=1; evaluateStoreCascadingVisibilityRules()">
                             <option value="default">Sort by Default</option>
                             <option value="type">Sort by Type</option>
                             <option value="volume_only">Sort by Volume</option>
                         </select>
 
-                        <!-- Level 2: Core Classification Types -->
-                        <select id="storeTypeFilter" class="sort-select" style="display: none;" onchange="evaluateStoreCascadingVisibilityRules()">
+                        <select id="storeTypeFilter" class="sort-select" style="display: none;" onchange="currentShopPage=1; evaluateStoreCascadingVisibilityRules()">
                             <option value="" disabled="" selected="">Select Type...</option>
                             <option value="Perfume">Perfume</option>
                             <option value="Body Spray">Body Spray</option>
@@ -848,227 +948,96 @@
                             <option value="Air Freshener">Air Freshener</option>
                         </select>
 
-                        <!-- Level 3A: Perfume Concentrations Select -->
-                        <select id="storePerfumeConcFilter" class="sort-select" style="display: none;" onchange="evaluateStoreCascadingVisibilityRules()">
+                        <select id="storePerfumeConcFilter" class="sort-select" style="display: none;" onchange="currentShopPage=1; evaluateStoreCascadingVisibilityRules()">
                             <option value="all">All Concentrations</option>
                             <option value="EDT">EDT (Eau de Toilet)</option>
                             <option value="EDP">EDP (Eau de Parfum)</option>
                             <option value="Extrait">Extrait de Parfum</option>
                         </select>
 
-                        <!-- Level 3B: Air Freshener Environment Type Location -->
-                        <select id="storeAirFreshLocationFilter" class="sort-select" style="display: none;" onchange="evaluateStoreCascadingVisibilityRules()">
+                        <select id="storeAirFreshLocationFilter" class="sort-select" style="display: none;" onchange="currentShopPage=1; evaluateStoreCascadingVisibilityRules()">
                             <option value="all">Any Type</option>
                             <option value="Home">Home use</option>
                             <option value="Automobile">Automobile</option>
                         </select>
 
-                        <!-- Level 4: Air Freshener Home Use Mechanics Options Select -->
-                        <select id="storeAirFreshHomeTypeFilter" class="sort-select" style="display: none;" onchange="evaluateStoreCascadingVisibilityRules()">
+                        <select id="storeAirFreshHomeTypeFilter" class="sort-select" style="display: none;" onchange="currentShopPage=1; evaluateStoreCascadingVisibilityRules()">
                             <option value="all">Any Type</option>
                             <option value="Targeted Spray">Targeted Spray</option>
                             <option value="Reed Diffuser">Reed Diffuser</option>
                         </select>
 
-                        <!-- Level 5: Dynamic Volumetric Capacity Matching Engine -->
-                        <select id="storeVolumeFilter" class="sort-select" style="display: none;" onchange="handleStoreSearchFilter()">
-                            <!-- Programmatically Injected Options Strings Content Areas Target -->
+                        <select id="storeVolumeFilter" class="sort-select" style="display: none;" onchange="currentShopPage=1; handleStoreSearchFilter()">
+                            <!-- Managed via script execution -->
                         </select>
                     </div>
                 </div>
 
                 <div class="filters">
-                    <button class="filter-btn active" onclick="filterCategory('All')">All</button>
-                    <button class="filter-btn" onclick="filterCategory('Perfume')">Perfume</button>
-                    <button class="filter-btn" onclick="filterCategory('Body Spray')">Body Spray</button>
-                    <button class="filter-btn" onclick="filterCategory('Oil Perfume')">Oil Perfume</button>
-                    <button class="filter-btn" onclick="filterCategory('Air Freshener')">Air Freshener</button>
+                    <button class="filter-btn active" onclick="currentShopPage=1; filterCategory('All')">All</button>
+                    <button class="filter-btn" onclick="currentShopPage=1; filterCategory('Perfume')">Perfume</button>
+                    <button class="filter-btn" onclick="currentShopPage=1; filterCategory('Body Spray')">Body Spray</button>
+                    <button class="filter-btn" onclick="currentShopPage=1; filterCategory('Oil Perfume')">Oil Perfume</button>
+                    <button class="filter-btn" onclick="currentShopPage=1; filterCategory('Air Freshener')">Air Freshener</button>
                 </div>
 
+                <!-- Paginated Shop Product Grid -->
                 <div class="grid" id="productGrid">
-                    <div class="product-card">
-                        <div class="product-img-wrapper" onclick="viewProductDetails(1783426887741)">
-                            <img src="https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/9PM%20REBEL.jpg" alt="9PM REBEL" class="product-img">
-                        </div>
-                        <div class="product-info">
-                            <span class="product-category">Perfume (EDP)</span>
-                            <h3 class="product-title" onclick="viewProductDetails(1783426887741)" style="cursor:pointer;">9PM REBEL</h3>
-                            <div style="color:var(--text-muted); font-size:0.9rem; margin-bottom:8px;">100ml</div>
-                            <div class="product-footer" style="margin-top:8px;">
-                                <span class="product-price">₦47,000.00</span>
-                                <button class="add-btn" onclick="event.stopPropagation(); addToCart(1783426887741, 1)">+</button>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="product-card">
-                        <div class="product-img-wrapper" onclick="viewProductDetails(1783428169962)">
-                            <img src="https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/badee%20al%20oud%20sublime2.jpg" alt="BADEE AL OUD (SUBLIME)" class="product-img">
-                        </div>
-                        <div class="product-info">
-                            <span class="product-category">Perfume (EDP)</span>
-                            <h3 class="product-title" onclick="viewProductDetails(1783428169962)" style="cursor:pointer;">BADEE AL OUD (SUBLIME)</h3>
-                            <div style="color:var(--text-muted); font-size:0.9rem; margin-bottom:8px;">100ml</div>
-                            <div class="product-footer" style="margin-top:8px;">
-                                <span class="product-price">₦30,000.00</span>
-                                <button class="add-btn" onclick="event.stopPropagation(); addToCart(1783428169962, 1)">+</button>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="product-card">
-                        <div class="product-img-wrapper" onclick="viewProductDetails(1783428674004)">
-                            <img src="https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/lattafa_khamrah_edp_100ml_1.jpg" alt="KHAMRAH" class="product-img">
-                        </div>
-                        <div class="product-info">
-                            <span class="product-category">Perfume (EDP)</span>
-                            <h3 class="product-title" onclick="viewProductDetails(1783428674004)" style="cursor:pointer;">KHAMRAH</h3>
-                            <div style="color:var(--text-muted); font-size:0.9rem; margin-bottom:8px;">100ml</div>
-                            <div class="product-footer" style="margin-top:8px;">
-                                <span class="product-price">₦45,000.00</span>
-                                <button class="add-btn" onclick="event.stopPropagation(); addToCart(1783428674004, 1)">+</button>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="product-card">
-                        <div class="product-img-wrapper" onclick="viewProductDetails(1783429088728)">
-                            <img src="https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/smoky%20wood%20Anfar%20London2.jpg" alt="SMOKY WOOD" class="product-img">
-                        </div>
-                        <div class="product-info">
-                            <span class="product-category">Perfume (Extrait)</span>
-                            <h3 class="product-title" onclick="viewProductDetails(1783429088728)" style="cursor:pointer;">SMOKY WOOD</h3>
-                            <div style="color:var(--text-muted); font-size:0.9rem; margin-bottom:8px;">100ml</div>
-                            <div class="product-footer" style="margin-top:8px;">
-                                <span class="product-price">₦42,000.00</span>
-                                <button class="add-btn" onclick="event.stopPropagation(); addToCart(1783429088728, 1)">+</button>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="product-card">
-                        <div class="product-img-wrapper" onclick="viewProductDetails(1783429290754)">
-                            <img src="https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/sudfa2.jpg" alt="SUDFA" class="product-img">
-                        </div>
-                        <div class="product-info">
-                            <span class="product-category">Perfume (EDP)</span>
-                            <h3 class="product-title" onclick="viewProductDetails(1783429290754)" style="cursor:pointer;">SUDFA</h3>
-                            <div style="color:var(--text-muted); font-size:0.9rem; margin-bottom:8px;">100ml</div>
-                            <div class="product-footer" style="margin-top:8px;">
-                                <span class="product-price">₦33,000.00</span>
-                                <button class="add-btn" onclick="event.stopPropagation(); addToCart(1783429290754, 1)">+</button>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="product-card">
-                        <div class="product-img-wrapper" onclick="viewProductDetails(1783430080283)">
-                            <img src="https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/lattafa_qaed_al_fursan_edp_100ml_perfume.jpg" alt="QAED AL FURSAN (BLACK)" class="product-img">
-                        </div>
-                        <div class="product-info">
-                            <span class="product-category">Perfume (EDP)</span>
-                            <h3 class="product-title" onclick="viewProductDetails(1783430080283)" style="cursor:pointer;">QAED AL FURSAN (BLACK)</h3>
-                            <div style="color:var(--text-muted); font-size:0.9rem; margin-bottom:8px;">100ml</div>
-                            <div class="product-footer" style="margin-top:8px;">
-                                <span class="product-price">₦32,000.00</span>
-                                <button class="add-btn" onclick="event.stopPropagation(); addToCart(1783430080283, 1)">+</button>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="product-card">
-                        <div class="product-img-wrapper" onclick="viewProductDetails(1783430325275)">
-                            <img src="https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/ASAD12.jpg" alt="ASAD" class="product-img">
-                        </div>
-                        <div class="product-info">
-                            <span class="product-category">Perfume (EDP)</span>
-                            <h3 class="product-title" onclick="viewProductDetails(1783430325275)" style="cursor:pointer;">ASAD</h3>
-                            <div style="color:var(--text-muted); font-size:0.9rem; margin-bottom:8px;">100ml</div>
-                            <div class="product-footer" style="margin-top:8px;">
-                                <span class="product-price">₦35,000.00</span>
-                                <button class="add-btn" onclick="event.stopPropagation(); addToCart(1783430325275, 1)">+</button>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="product-card">
-                        <div class="product-img-wrapper" onclick="viewProductDetails(1783431174749)">
-                            <img src="https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/51/7905914/1.jpg?1658" alt="PLATINUM SHADE (POUR HOMME)" class="product-img">
-                        </div>
-                        <div class="product-info">
-                            <span class="product-category">Perfume (EDP)</span>
-                            <h3 class="product-title" onclick="viewProductDetails(1783431174749)" style="cursor:pointer;">PLATINUM SHADE (POUR HOMME)</h3>
-                            <div style="color:var(--text-muted); font-size:0.9rem; margin-bottom:8px;">100ml</div>
-                            <div class="product-footer" style="margin-top:8px;">
-                                <span class="product-price">₦39,500.00</span>
-                                <button class="add-btn" onclick="event.stopPropagation(); addToCart(1783431174749, 1)">+</button>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="product-card">
-                        <div class="product-img-wrapper" onclick="viewProductDetails(1783431571292)">
-                            <img src="https://munacosmetics.com/image/cache/catalog/ArchitectDeMuna/ard-al-zaafaran-saheb-edp-500x500.jpg" alt="SAHEB" class="product-img">
-                        </div>
-                        <div class="product-info">
-                            <span class="product-category">Perfume (EDP)</span>
-                            <h3 class="product-title" onclick="viewProductDetails(1783431571292)" style="cursor:pointer;">SAHEB</h3>
-                            <div style="color:var(--text-muted); font-size:0.9rem; margin-bottom:8px;">70ml</div>
-                            <div class="product-footer" style="margin-top:8px;">
-                                <span class="product-price">₦27,000.00</span>
-                                <button class="add-btn" onclick="event.stopPropagation(); addToCart(1783431571292, 1)">+</button>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Populated dynamically via JS -->
+                </div>
+
+                <!-- Pagination Control Deck -->
+                <div class="pagination-container" id="shopPaginationDeck">
+                    <button class="pagination-btn" id="prevPageBtn" onclick="changeShopGridPage(-1)">Previous</button>
+                    <span class="pagination-info" id="paginationSummaryLabel">Page 1 of 1</span>
+                    <button class="pagination-btn" id="nextPageBtn" onclick="changeShopGridPage(1)">Next</button>
                 </div>
             </main>
+
+            <!-- TELL US WHAT YOU THINK: Reconfigured Drop-Down Customer Feedback Intake Container Section -->
+            <section class="container" id="contact-block" style="padding: 40px 0 80px;">
+                <span class="section-tag">Feedback Loop</span>
+                <div style="text-align: center; margin-bottom: 25px;">
+                    <h2 class="section-title" style="margin-bottom:10px;">Tell Us What You Think</h2>
+                    <p style="color:var(--text-muted); max-width:500px; margin:0 auto;">Your experiences matter to us. Toggle the form below to share your perspective with our review team.</p>
+                </div>
+                
+                <!-- Accordion Toggle Node Frame -->
+                <button type="button" class="accordion-trigger-button" onclick="toggleReviewFormDropdown()" id="reviewDropdownTriggerBtn">
+                    <span>Submit a Customer Review</span>
+                    <span class="chevron-icon">▾</span>
+                </button>
+
+                <div class="review-form-card" id="collapsibleReviewFormCard">
+                    <form id="customerReviewSubmissionForm" onsubmit="handleCustomerReviewPublishRequest(event)">
+                        <div class="form-group">
+                            <label>Full Name(s)</label>
+                            <input type="text" id="revName" class="form-control" required="" placeholder="e.g. Chidi Okechukwu">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Email Address</label>
+                                <input type="email" id="revEmail" class="form-control" required="" placeholder="name@domain.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="tel" id="revPhone" class="form-control" required="" placeholder="e.g. 08031234567">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Comments / Review Message</label>
+                            <textarea id="revComments" class="form-control" rows="4" required="" placeholder="Share your experience regarding our delivery timeline, fragrance authenticity, or platform usage..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width:100%; padding:14px;">Submit Review</button>
+                    </form>
+                </div>
+            </section>
         </div>
 
         <!-- Dynamic Product Context Detail Screen -->
         <div id="productDetailContainerView" class="container" style="display: none; padding-top: 40px;">
-                <button class="btn btn-secondary" style="margin-bottom:30px; gap:8px;" onclick="navigateToCatalog()">
-                    ← Back to Shop
-                </button>
-                <div class="detail-view-container">
-                    <div class="slider-container">
-                        <img id="detailMainSliderImg" src="https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&amp;fit=crop&amp;q=80&amp;w=400" alt="Midnight Musk Body Spray" class="slider-main-img" onclick="openLightboxOverlay()">
-                        
-                    </div>
-                    <div class="product-info" style="padding:0;">
-                        <span class="product-category" style="font-size:0.9rem;">Body Spray</span>
-                        <h1 style="font-family:'Cinzel', serif; font-size:2.5rem; font-weight:400; margin:10px 0 20px;">Midnight Musk Body Spray</h1>
-                        <span class="product-price" style="font-size:2rem; color:var(--gold); display:block; margin-bottom:20px;">₦24,000.00</span>
-                        <p class="product-desc" style="font-size:1.05rem; line-height:1.8; color:var(--text-muted);">A fresh yet deep daily body spray with musk, bergamot and cedar. Effortless everyday elegance.</p>
-                        
-                        
-                    <div class="scent-profile-box">
-                        <h4 style="font-family:'Cinzel', serif; font-size:1.1rem; margin-bottom:15px; letter-spacing:1px; border-bottom:1px solid var(--border); padding-bottom:5px;">Olfactive Profile</h4>
-                        <div class="scent-note-row"><span class="scent-note-label">Top Notes:</span><span>Bergamot</span></div>
-                        <div class="scent-note-row"><span class="scent-note-label">Heart Notes:</span><span>Musk Accord</span></div>
-                        <div class="scent-note-row"><span class="scent-note-label">Base Notes:</span><span>Cedarwood</span></div>
-                    </div>
-                
-
-                        <!-- Simplified Add to Cart with quantity controls -->
-                        <div style="margin-top:20px; display:flex; gap:12px; align-items:center;">
-                            <div style="display:flex; align-items:center; gap:8px;">
-                                <button class="qty-btn" style="width:36px; height:36px;" onclick="changeDetailQty(-1)">-</button>
-                                <div id="detailQtyDisplay" style="min-width:30px; text-align:center; font-weight:700;">1</div>
-                                <button class="qty-btn" style="width:36px; height:36px;" onclick="changeDetailQty(1)">+</button>
-                            </div>
-                            <button class="btn btn-primary" style="padding:12px 18px;" onclick="addToCart(2, parseInt(document.getElementById('detailQtyDisplay').innerText || '1'))">Add to cart</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        <section class="craft-section" id="about-block">
-            <div class="container">
-                <span class="section-tag">Our Craft</span>
-                <h2>Fragrance that <em>lingers</em>.</h2>
-                <p>SIYAJZH curates rich, long-lasting scents — from opulent oud to fresh everyday body sprays. Every order is personal: pick your favourites, confirm on WhatsApp, and we handle the rest.</p>
-            </div>
-        </section>
+            <!-- Rendered dynamically -->
+        </div>
 
         <footer>
             <div class="container footer-container">
@@ -1116,235 +1085,91 @@
             </div>
 
             <div style="display: grid; grid-template-columns: 1fr 1.3fr; gap: 40px; align-items: start;">
-                <!-- Product Generation Engine Parameters Data Inputs form panel layout -->
-                <div class="admin-card" style="margin: 0; padding: 30px;">
-                    <h3 id="formModeTitle" style="font-family:'Cinzel', serif; margin-bottom:20px; font-weight:400; color:var(--gold);">Add New Product</h3>
-                    <input type="hidden" id="editProductId" value="">
+                <!-- Product Form Configuration Grid -->
+                <div>
+                    <div class="admin-card" style="margin: 0 0 30px; padding: 30px; max-width:100%;">
+                        <h3 id="formModeTitle" style="font-family:'Cinzel', serif; margin-bottom:20px; font-weight:400; color:var(--gold);">Add New Product</h3>
+                        <input type="hidden" id="editProductId" value="">
 
-                    <div class="form-group">
-                        <label>Product Name</label>
-                        <input type="text" id="prodName" class="form-control">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Description</label>
-                        <textarea id="prodDesc" class="form-control" rows="2"></textarea>
-                    </div>
-
-                    <div class="form-row">
                         <div class="form-group">
-                            <label>Scents Classification Type</label>
-                            <select id="prodType" class="form-control">
-                                <option value="Perfume (EDP)">Perfume (EDP)</option>
-                                <option value="Perfume (EDT)">Perfume (EDT)</option>
-                                <option value="Perfume (Extrait)">Perfume (Extrait)</option>
-                                <option value="Body Spray">Body Spray</option>
-                                <option value="Oil Perfume">Oil Perfume</option>
-                                <option value="Air Freshener (Home Spray)">Air Freshener (Home Spray)</option>
-                                <option value="Air Freshener (Home Reed Diffuser)">Air Freshener (Home Reed Diffuser)</option>
-                                <option value="Air Freshener (Automotive Diffuser)">Air Freshener (Automotive Diffuser)</option>
-                            </select>
+                            <label>Product Name</label>
+                            <input type="text" id="prodName" class="form-control">
                         </div>
+
                         <div class="form-group">
-                            <label>Volume Size (ml)</label>
-                            <input type="number" id="prodVol" class="form-control" placeholder="e.g. 100" min="1" step="1">
+                            <label>Description</label>
+                            <textarea id="prodDesc" class="form-control" rows="2"></textarea>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        <label>Price (₦)</label>
-                        <input type="number" id="prodPrice" class="form-control">
-                    </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Scents Classification Type</label>
+                                <select id="prodType" class="form-control">
+                                    <option value="Perfume (EDP)">Perfume (EDP)</option>
+                                    <option value="Perfume (EDT)">Perfume (EDT)</option>
+                                    <option value="Perfume (Extrait)">Perfume (Extrait)</option>
+                                    <option value="Body Spray">Body Spray</option>
+                                    <option value="Oil Perfume">Oil Perfume</option>
+                                    <option value="Air Freshener (Home Spray)">Air Freshener (Home Spray)</option>
+                                    <option value="Air Freshener (Home Reed Diffuser)">Air Freshener (Home Reed Diffuser)</option>
+                                    <option value="Air Freshener (Automotive Diffuser)">Air Freshener (Automotive Diffuser)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Volume Size (ml)</label>
+                                <input type="number" id="prodVol" class="form-control" placeholder="e.g. 100" min="1" step="1">
+                            </div>
+                        </div>
 
-                    <!-- Profile Notes Form Fields Container Box -->
-                    <div style="border: 1px solid var(--border); padding: 15px; border-radius: 4px; margin-bottom: 20px; background-color: var(--surface-accent);">
-                        <span style="font-size:0.75rem; color:var(--gold); font-weight:600; text-transform:uppercase; letter-spacing:1px; display:block; margin-bottom:10px;">Scent Profile Structure (Optional)</span>
-                        <div class="form-group" style="margin-bottom:10px;">
-                            <label style="font-size:0.75rem;">Top Notes</label>
-                            <input type="text" id="prodTopNotes" class="form-control" placeholder="e.g. Bergamot, Mint">
-                        </div>
-                        <div class="form-group" style="margin-bottom:10px;">
-                            <label style="font-size:0.75rem;">Heart Notes</label>
-                            <input type="text" id="prodHeartNotes" class="form-control" placeholder="e.g. Lavender, Jasmine">
-                        </div>
-                        <div class="form-group" style="margin-bottom:0;">
-                            <label style="font-size:0.75rem;">Base Notes</label>
-                            <input type="text" id="prodBaseNotes" class="form-control" placeholder="e.g. Patchouli, Vanilla">
-                        </div>
-                    </div>
-
-                    <div style="border: 1px solid var(--border); padding: 15px; border-radius: 4px; margin-bottom: 20px;">
-                        <span style="font-size:0.75rem; color:var(--gold); font-weight:600; text-transform:uppercase; letter-spacing:1px; display:block; margin-bottom:10px;">Product Images (Maximum 5 Items)</span>
                         <div class="form-group">
-                            <label>Image Links URLs (Separate with commas if multiple)</label>
-                            <textarea id="prodImgLinks" class="form-control" rows="2" placeholder="https://link1.com, https://link2.com"></textarea>
+                            <label>Price (₦)</label>
+                            <input type="number" id="prodPrice" class="form-control">
                         </div>
-                    </div>
 
-                    <div style="display:flex; gap:10px;">
-                        <button id="formSubmitBtn" class="btn btn-primary" style="flex:1;" onclick="saveProductForm()">Incorporate Product</button>
-                        <button id="cancelEditBtn" class="btn btn-secondary" style="display:none;" onclick="resetProductForm()">Cancel</button>
+                        <div style="border: 1px solid var(--border); padding: 15px; border-radius: 4px; margin-bottom: 20px; background-color: var(--surface-accent);">
+                            <span style="font-size:0.75rem; color:var(--gold); font-weight:600; text-transform:uppercase; letter-spacing:1px; display:block; margin-bottom:10px;">Scent Profile Structure</span>
+                            <div class="form-group" style="margin-bottom:10px;">
+                                <label style="font-size:0.75rem;">Top Notes</label>
+                                <input type="text" id="prodTopNotes" class="form-control">
+                            </div>
+                            <div class="form-group" style="margin-bottom:10px;">
+                                <label style="font-size:0.75rem;">Heart Notes</label>
+                                <input type="text" id="prodHeartNotes" class="form-control">
+                            </div>
+                            <div class="form-group" style="margin-bottom:0;">
+                                <label style="font-size:0.75rem;">Base Notes</label>
+                                <input type="text" id="prodBaseNotes" class="form-control">
+                            </div>
+                        </div>
+
+                        <div style="border: 1px solid var(--border); padding: 15px; border-radius: 4px; margin-bottom: 20px;">
+                            <span style="font-size:0.75rem; color:var(--gold); font-weight:600; text-transform:uppercase; letter-spacing:1px; display:block; margin-bottom:10px;">Product Images</span>
+                            <div class="form-group">
+                                <label>Image Links URLs (Separate with commas if multiple)</label>
+                                <textarea id="prodImgLinks" class="form-control" rows="2" placeholder="https://link1.com, https://link2.com"></textarea>
+                            </div>
+                        </div>
+
+                        <div style="display:flex; gap:10px;">
+                            <button id="formSubmitBtn" type="button" class="btn btn-primary" style="flex:1;" onclick="saveProductForm()">Incorporate Product</button>
+                            <button id="cancelEditBtn" type="button" class="btn btn-secondary" style="display:none;" onclick="resetProductForm()">Cancel</button>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Admin Live Inventory Stream Board Layout Context views tracking -->
+                <!-- Admin Dynamic Real-Time Customer Reviews Moderation Board Panel -->
                 <div>
+                    <div style="background-color: var(--surface-color); border:1px solid var(--border); padding:25px; border-radius:8px; margin-bottom:30px;">
+                        <h3 style="font-family:'Cinzel', serif; margin-bottom:20px; font-weight:400; color:var(--gold);">Review Moderation Queue</h3>
+                        <div id="adminReviewControlQueueStage">
+                            <!-- Realtime reviews listed here -->
+                        </div>
+                    </div>
+
                     <h3 style="font-family:'Cinzel', serif; margin-bottom:20px; font-weight:400;">Current Inventory Status</h3>
-                    <div id="adminFocusedWorkspaceZone"></div>
-                    <div id="adminSecondaryCatalogZone"><div class="grid">
-                    <div class="product-card">
-                        <div class="admin-actions-overlay">
-                            <button class="admin-action-btn btn-edit" onclick="startEditProductMode(1783426887741)">Edit</button>
-                            <button class="admin-action-btn btn-danger" onclick="deleteProductDataRecord(1783426887741)">Remove</button>
-                        </div>
-                        <div class="product-img-wrapper">
-                            <img src="https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/9PM%20REBEL.jpg" alt="9PM REBEL" class="product-img">
-                        </div>
-                        <div class="product-info">
-                            <span class="product-category">Perfume (EDP)</span>
-                            <h3 class="product-title">9PM REBEL</h3>
-                            <div class="product-footer" style="margin-top:15px;">
-                                <span class="product-price">₦47,000.00</span>
-                            </div>
-                        </div>
+                    <div id="adminSecondaryCatalogZone">
+                        <!-- Populated dynamic catalog elements -->
                     </div>
-                
-                    <div class="product-card">
-                        <div class="admin-actions-overlay">
-                            <button class="admin-action-btn btn-edit" onclick="startEditProductMode(1783428169962)">Edit</button>
-                            <button class="admin-action-btn btn-danger" onclick="deleteProductDataRecord(1783428169962)">Remove</button>
-                        </div>
-                        <div class="product-img-wrapper">
-                            <img src="https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/badee%20al%20oud%20sublime2.jpg" alt="BADEE AL OUD (SUBLIME)" class="product-img">
-                        </div>
-                        <div class="product-info">
-                            <span class="product-category">Perfume (EDP)</span>
-                            <h3 class="product-title">BADEE AL OUD (SUBLIME)</h3>
-                            <div class="product-footer" style="margin-top:15px;">
-                                <span class="product-price">₦30,000.00</span>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="product-card">
-                        <div class="admin-actions-overlay">
-                            <button class="admin-action-btn btn-edit" onclick="startEditProductMode(1783428674004)">Edit</button>
-                            <button class="admin-action-btn btn-danger" onclick="deleteProductDataRecord(1783428674004)">Remove</button>
-                        </div>
-                        <div class="product-img-wrapper">
-                            <img src="https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/lattafa_khamrah_edp_100ml_1.jpg" alt="KHAMRAH" class="product-img">
-                        </div>
-                        <div class="product-info">
-                            <span class="product-category">Perfume (EDP)</span>
-                            <h3 class="product-title">KHAMRAH</h3>
-                            <div class="product-footer" style="margin-top:15px;">
-                                <span class="product-price">₦45,000.00</span>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="product-card">
-                        <div class="admin-actions-overlay">
-                            <button class="admin-action-btn btn-edit" onclick="startEditProductMode(1783429088728)">Edit</button>
-                            <button class="admin-action-btn btn-danger" onclick="deleteProductDataRecord(1783429088728)">Remove</button>
-                        </div>
-                        <div class="product-img-wrapper">
-                            <img src="https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/smoky%20wood%20Anfar%20London2.jpg" alt="SMOKY WOOD" class="product-img">
-                        </div>
-                        <div class="product-info">
-                            <span class="product-category">Perfume (Extrait)</span>
-                            <h3 class="product-title">SMOKY WOOD</h3>
-                            <div class="product-footer" style="margin-top:15px;">
-                                <span class="product-price">₦42,000.00</span>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="product-card">
-                        <div class="admin-actions-overlay">
-                            <button class="admin-action-btn btn-edit" onclick="startEditProductMode(1783429290754)">Edit</button>
-                            <button class="admin-action-btn btn-danger" onclick="deleteProductDataRecord(1783429290754)">Remove</button>
-                        </div>
-                        <div class="product-img-wrapper">
-                            <img src="https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/sudfa2.jpg" alt="SUDFA" class="product-img">
-                        </div>
-                        <div class="product-info">
-                            <span class="product-category">Perfume (EDP)</span>
-                            <h3 class="product-title">SUDFA</h3>
-                            <div class="product-footer" style="margin-top:15px;">
-                                <span class="product-price">₦33,000.00</span>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="product-card">
-                        <div class="admin-actions-overlay">
-                            <button class="admin-action-btn btn-edit" onclick="startEditProductMode(1783430080283)">Edit</button>
-                            <button class="admin-action-btn btn-danger" onclick="deleteProductDataRecord(1783430080283)">Remove</button>
-                        </div>
-                        <div class="product-img-wrapper">
-                            <img src="https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/lattafa_qaed_al_fursan_edp_100ml_perfume.jpg" alt="QAED AL FURSAN (BLACK)" class="product-img">
-                        </div>
-                        <div class="product-info">
-                            <span class="product-category">Perfume (EDP)</span>
-                            <h3 class="product-title">QAED AL FURSAN (BLACK)</h3>
-                            <div class="product-footer" style="margin-top:15px;">
-                                <span class="product-price">₦32,000.00</span>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="product-card">
-                        <div class="admin-actions-overlay">
-                            <button class="admin-action-btn btn-edit" onclick="startEditProductMode(1783430325275)">Edit</button>
-                            <button class="admin-action-btn btn-danger" onclick="deleteProductDataRecord(1783430325275)">Remove</button>
-                        </div>
-                        <div class="product-img-wrapper">
-                            <img src="https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/ASAD12.jpg" alt="ASAD" class="product-img">
-                        </div>
-                        <div class="product-info">
-                            <span class="product-category">Perfume (EDP)</span>
-                            <h3 class="product-title">ASAD</h3>
-                            <div class="product-footer" style="margin-top:15px;">
-                                <span class="product-price">₦35,000.00</span>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="product-card">
-                        <div class="admin-actions-overlay">
-                            <button class="admin-action-btn btn-edit" onclick="startEditProductMode(1783431174749)">Edit</button>
-                            <button class="admin-action-btn btn-danger" onclick="deleteProductDataRecord(1783431174749)">Remove</button>
-                        </div>
-                        <div class="product-img-wrapper">
-                            <img src="https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/51/7905914/1.jpg?1658" alt="PLATINUM SHADE (POUR HOMME)" class="product-img">
-                        </div>
-                        <div class="product-info">
-                            <span class="product-category">Perfume (EDP)</span>
-                            <h3 class="product-title">PLATINUM SHADE (POUR HOMME)</h3>
-                            <div class="product-footer" style="margin-top:15px;">
-                                <span class="product-price">₦39,500.00</span>
-                            </div>
-                        </div>
-                    </div>
-                
-                    <div class="product-card">
-                        <div class="admin-actions-overlay">
-                            <button class="admin-action-btn btn-edit" onclick="startEditProductMode(1783431571292)">Edit</button>
-                            <button class="admin-action-btn btn-danger" onclick="deleteProductDataRecord(1783431571292)">Remove</button>
-                        </div>
-                        <div class="product-img-wrapper">
-                            <img src="https://munacosmetics.com/image/cache/catalog/ArchitectDeMuna/ard-al-zaafaran-saheb-edp-500x500.jpg" alt="SAHEB" class="product-img">
-                        </div>
-                        <div class="product-info">
-                            <span class="product-category">Perfume (EDP)</span>
-                            <h3 class="product-title">SAHEB</h3>
-                            <div class="product-footer" style="margin-top:15px;">
-                                <span class="product-price">₦27,000.00</span>
-                            </div>
-                        </div>
-                    </div>
-                </div></div>
                 </div>
             </div>
         </div>
@@ -1368,213 +1193,487 @@
         </div>
     </div>
 
-    <!-- Zoom Display Portal Overlay Elements -->
-    <div id="globalLightbox" class="lightbox" onclick="toggleLightboxZoom(event)">
-        <span class="lightbox-close" onclick="closeLightboxOverlay()">×</span>
-        <img id="lightboxTargetImage" src="" alt="Enlarged Product View" class="lightbox-img">
-    </div>
-
-    <!-- DATA ARRAYS ARTIFACT STORE ENGINE BACKUP BASELINE CONTEXT DATA -->
+    <!-- Global Dataset Engine Block -->
     <script id="catalogData">
         const products = [
-    {
-        "id": 1783426887741,
-        "type": "Perfume (EDP)",
-        "title": "9PM REBEL",
-        "price": 47000,
-        "vol": "100ml",
-        "desc": "Afnan's 9PM Rebel is a vibrant, aromatic-fruity unisex Eau de Parfum launched in 2024. It blends a fresh, juicy opening with a rich, sweet, and woody base, widely praised for its versatility and long-lasting performance.",
-        "imgs": [
-            "https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/9PM%20REBEL.jpg",
-            "https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/9PM%20REBEL1.jpg"
-        ],
-        "topNotes": "Pineapple, Mandarin, and Granny Smith Apple",
-        "heartNotes": "Oakmoss, Cedarwood, and Vanilla",
-        "baseNotes": "Caramel, Dry Wood, Ambergris, and Musk",
-        "clicks": 0
-    },
-    {
-        "id": 1783428169962,
-        "type": "Perfume (EDP)",
-        "title": "BADEE AL OUD (SUBLIME)",
-        "price": 30000,
-        "vol": "100ml",
-        "desc": "Bade'e Al Oud Sublime by Lattafa Perfumes is a luxurious woody-aromatic unisex fragrance launched in 2023. It is famous for its bright, fruity-floral opening and a creamy, deep vanilla-moss base. Fragrance lovers frequently describe it as a sweeter, more mature alternative to Kayali's Juicy Apple.",
-        "imgs": [
-            "https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/badee%20al%20oud%20sublime2.jpg",
-            "https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/badee%20al%20oud%20sublime1.jpg",
-            "https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/badee%20al%20oud%20sublime.jpg"
-        ],
-        "topNotes": "Juicy Apple, exotic Litchi, and fresh Rose",
-        "heartNotes": "Sweet Plum and elegant Jasmine",
-        "baseNotes": "Creamy Vanilla, earthy Moss, and Patchouli",
-        "clicks": 0
-    },
-    {
-        "id": 1783428674004,
-        "type": "Perfume (EDP)",
-        "title": "KHAMRAH",
-        "price": 45000,
-        "vol": "100ml",
-        "desc": "Khamrah by Lattafa, is a highly popular, rich, and luxurious amber-spicy unisex fragrance launched by the UAE-based luxury brand Lattafa Perfumes. Known as an incredibly rich and sweet gourmand, it blends warm spices, velvety vanilla, and rare fruit notes, drawing comparisons to high-end scents like Killian's Angel Share.",
-        "imgs": [
-            "https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/lattafa_khamrah_edp_100ml_1.jpg",
-            "https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/khamrah1.jpg",
-            "https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/khamrah.jpg"
-        ],
-        "topNotes": "Citrus, Bergamot, Cinnamon, and Nutmeg",
-        "heartNotes": "Dates, Praline, Tuberose, and Mahonia",
-        "baseNotes": "Vanilla, Roasted Tonka Bean, Myrrh, Benzoin, Amberwood, and Akigalawood",
-        "clicks": 0
-    },
-    {
-        "id": 1783429088728,
-        "type": "Perfume (Extrait)",
-        "title": "SMOKY WOOD",
-        "price": 42000,
-        "vol": "100ml",
-        "desc": "Smoky Wood by ANFAR LONDON, produced under licence by Oudh Al Anfar Perfumes, is a refined, masculine woody-aromatic fragrance known for balancing sweet warmth with rich, earthy depth. Designed as part of The Wood Series, this Middle Eastern extrait de parfum is perfect for evening wear, cooler days, and formal occasions.",
-        "imgs": [
-            "https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/smoky%20wood%20Anfar%20London2.jpg",
-            "https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/smoky%20wood%20Anfar%20London1.jpg",
-            "https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/smoky%20wood%20Anfar%20London4.jpg"
-        ],
-        "topNotes": "A vibrant, fresh opening featuring aromatic notes blended with sweet, buttery caramel.",
-        "heartNotes": "A rich heart that contrasts delicate florals with the deep, resinous power of oud.",
-        "baseNotes": "A smooth, earthy foundation comprising dry woods, amber, musk, and moss.",
-        "clicks": 0
-    },
-    {
-        "id": 1783429290754,
-        "type": "Perfume (EDP)",
-        "title": "SUDFA",
-        "price": 33000,
-        "vol": "100ml",
-        "desc": "Sudfa (by Ard Al Zaafaran) is a luxurious, unisex Arabian fragrance loved for its rich, creamy, and gourmand profile. Widely known as a \"cozy coffee\" scent, it smells like a delicious caramel macchiato or vanilla latte.",
-        "imgs": [
-            "https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/sudfa2.jpg",
-            "https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/sudfa1.jpg",
-            "https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/sudfa.jpg"
-        ],
-        "topNotes": "Warm almond with a subtle, uplifting hint of zesty fruits.",
-        "heartNotes": "Powdery heliotrope mixed with cool, dewy lily of the valley.",
-        "baseNotes": "A rich, roasted cappuccino accord perfectly blended with silky vanilla cream, amber, and sandalwood.",
-        "clicks": 0
-    },
-    {
-        "id": 1783430080283,
-        "type": "Perfume (EDP)",
-        "title": "QAED AL FURSAN (BLACK)",
-        "price": 32000,
-        "vol": "100ml",
-        "desc": "Qaed Al Fursan by Lattafa Perfumes is a bold, oriental woody fragrance for both women and men. Famous for its juicy, smoky, and long-lasting profile, this popular unisex scent masterfully balances vibrant tropical fruit with deep, sophisticated woody undertones.",
-        "imgs": [
-            "https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/lattafa_qaed_al_fursan_edp_100ml_perfume.jpg",
-            "https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/Lattafa-Qaed-Al-Fursan-Black-1.jpg",
-            "https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/lattafa_qaed_al_fursan_edp_100ml_perfume.jpg"
-        ],
-        "topNotes": "Saffron, Pineapple",
-        "heartNotes": "Jasmine, Balsam Fir",
-        "baseNotes": "Oud Wood, Cedarwood, Amber",
-        "clicks": 0
-    },
-    {
-        "id": 1783430325275,
-        "type": "Perfume (EDP)",
-        "title": "ASAD",
-        "price": 35000,
-        "vol": "100ml",
-        "desc": "Lattafa Asad is a wildly popular, highly praised amber-spicy fragrance for men known for its warm, bold, and sophisticated scent profile. It offers incredible longevity (often lasting 8–10+ hours on clothes) and is a well-known alternative to high-end designer fragrances.",
-        "imgs": [
-            "https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/ASAD12.jpg",
-            "https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/ASAD13.jpg",
-            "https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/ASAD.jpg"
-        ],
-        "topNotes": "Black pepper, pineapple, and tobacco.",
-        "heartNotes": "Coffee, patchouli, and iris.",
-        "baseNotes": "Vanilla, amber, dry woods, benzoin, and labdanum",
-        "clicks": 0
-    },
-    {
-        "id": 1783431174749,
-        "type": "Perfume (EDP)",
-        "title": "PLATINUM SHADE (POUR HOMME)",
-        "price": 39500,
-        "vol": "100ml",
-        "desc": "Platinum Shade Pour Homme by Anfar London is a popular, bold, and luxurious oriental Eau de Parfum (EDP) crafted in the UAE. Designed as an Arabian fragrance with a Western twist, it balances fruity, floral, and woody accords to create a velvety and modern signature scent.",
-        "imgs": [
-            "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/51/7905914/1.jpg?1658",
-            "https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/platinu%20shade.jpg",
-            "https://fimgs.net/mdimg/perfume-thumbs/375x500.106557.jpg"
-        ],
-        "topNotes": "An intoxicating and vibrant burst of red berries, dark berries, blackcurrant, and raspberry.",
-        "heartNotes": "A velvety, sweet floral combination of blueberry and violet.",
-        "baseNotes": "A warm, sensual, and grounded finish of dry amber and musk.",
-        "clicks": 0
-    },
-    {
-        "id": 1783431571292,
-        "type": "Perfume (EDP)",
-        "title": "SAHEB",
-        "price": 27000,
-        "vol": "70ml",
-        "desc": "Saheb by Ard Al Zaafaran is a popular, luxurious unisex Arabian fragrance known for its bold, woody, and spicy profile. It leans toward a wealthy, mature scent and is frequently chosen for both daytime wear and evening events.",
-        "imgs": [
-            "https://munacosmetics.com/image/cache/catalog/ArchitectDeMuna/ard-al-zaafaran-saheb-edp-500x500.jpg",
-            "https://m.media-amazon.com/images/I/41Vij7mBL9L._AC_UF1000",
-            "1000_QL80_.jpg",
-            "https://scontent.fiba2-3.fna.fbcdn.net/v/t39.30808-6/646034746_1211661864466768_444300668133870624_n.jpg?stp=dst-jpg_tt6&cstp=mx1152x1440&ctp=s640x640&_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_ohc=PMMfFg8Bs3IQ7kNvwFrhwH1&_nc_oc=AdrcVc0muWv2BSl-woDQvcU6dlsWPizeq5fcEuQgBxl-Zn6Z1dVGgpnHadb85P8Fg8U&_nc_zt=23&_nc_ht=scontent.fiba2-3.fna&_nc_gid=-YdCMoyd9NUy6AEc5C2gmw&_nc_ss=7b289&oh=00_AQBQvosYEmCe22Y8DJ7e_kBZBm0hNIMjKYvXHImadHvq2A&oe=6A52E488"
-        ],
-        "topNotes": "Saheb by Ard Al Zaafaran is a popular, luxurious unisex Arabian fragrance known for its bold, woody, and spicy profile. It leans toward a wealthy, mature scent and is frequently chosen for both daytime wear and evening events.",
-        "heartNotes": "Violet, Ambergris, and Patchouli",
-        "baseNotes": "Oud Wood, Musk, and Vanilla",
-        "clicks": 0
-    }
-];
+            {
+                "id": 1783426887741,
+                "type": "Perfume (EDP)",
+                "title": "9PM REBEL",
+                "price": 47000,
+                "vol": "100ml",
+                "desc": "Afnan's 9PM Rebel is a vibrant, aromatic-fruity unisex Eau de Parfum launched in 2024. It blends a fresh, juicy opening with a rich, sweet, and woody base, widely praised for its versatility and long-lasting performance.",
+                "imgs": ["https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/9PM%20REBEL.jpg", "https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/9PM%20REBEL1.jpg"],
+                "topNotes": "Pineapple, Mandarin, and Granny Smith Apple",
+                "heartNotes": "Oakmoss, Cedarwood, and Vanilla",
+                "baseNotes": "Caramel, Dry Wood, Ambergris, and Musk",
+                "clicks": 0
+            },
+            {
+                "id": 1783428169962,
+                "type": "Perfume (EDP)",
+                "title": "BADEE AL OUD (SUBLIME)",
+                "price": 30000,
+                "vol": "100ml",
+                "desc": "Bade'e Al Oud Sublime by Lattafa Perfumes is a luxurious woody-aromatic unisex fragrance launched in 2023. It is famous for its bright, fruity-floral opening and a creamy, deep vanilla-moss base.",
+                "imgs": ["https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/badee%20al%20oud%20sublime2.jpg", "https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/badee%20al%20oud%20sublime1.jpg"],
+                "topNotes": "Juicy Apple, exotic Litchi, and fresh Rose",
+                "heartNotes": "Sweet Plum and elegant Jasmine",
+                "baseNotes": "Creamy Vanilla, earthy Moss, and Patchouli",
+                "clicks": 0
+            },
+            {
+                "id": 1783428674004,
+                "type": "Perfume (EDP)",
+                "title": "KHAMRAH",
+                "price": 45000,
+                "vol": "100ml",
+                "desc": "Khamrah by Lattafa is a highly popular, rich, and luxurious amber-spicy unisex fragrance. Known as an incredibly rich and sweet gourmand, it blends warm spices, vanilla, and rare fruit notes.",
+                "imgs": ["https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/lattafa_khamrah_edp_100ml_1.jpg"],
+                "topNotes": "Citrus, Bergamot, Cinnamon, and Nutmeg",
+                "heartNotes": "Dates, Praline, Tuberose, and Mahonia",
+                "baseNotes": "Vanilla, Roasted Tonka Bean, Myrrh, Benzoin, Amberwood, and Akigalawood",
+                "clicks": 0
+            },
+            {
+                "id": 1783429088728,
+                "type": "Perfume (Extrait)",
+                "title": "SMOKY WOOD",
+                "price": 42000,
+                "vol": "100ml",
+                "desc": "Smoky Wood by ANFAR LONDON is a refined, masculine woody-aromatic fragrance known for balancing sweet warmth with rich, earthy depth. Perfect for evening wear and formal occasions.",
+                "imgs": ["https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/smoky%20wood%20Anfar%20London2.jpg"],
+                "topNotes": "A vibrant, fresh opening featuring aromatic notes blended with sweet, buttery caramel.",
+                "heartNotes": "A rich heart that contrasts delicate florals with the deep, resinous power of oud.",
+                "baseNotes": "A smooth, earthy foundation comprising dry woods, amber, musk, and moss.",
+                "clicks": 0
+            },
+            {
+                "id": 1783429290754,
+                "type": "Perfume (EDP)",
+                "title": "SUDFA",
+                "price": 33000,
+                "vol": "100ml",
+                "desc": "Sudfa by Ard Al Zaafaran is a luxurious gourmand profile. Widely known as a cozy coffee scent, it smells like a delicious caramel macchiato or vanilla latte.",
+                "imgs": ["https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/sudfa2.jpg"],
+                "topNotes": "Warm almond with a subtle, uplifting hint of zesty fruits.",
+                "heartNotes": "Powdery heliotrope mixed with cool, dewy lily of the valley.",
+                "baseNotes": "A rich, roasted cappuccino accord perfectly blended with silky vanilla cream.",
+                "clicks": 0
+            },
+            {
+                "id": 1783430080283,
+                "type": "Perfume (EDP)",
+                "title": "QAED AL FURSAN (BLACK)",
+                "price": 32000,
+                "vol": "100ml",
+                "desc": "Qaed Al Fursan by Lattafa Perfumes is a bold, oriental woody fragrance for both women and men. Famous for its juicy, smoky, and long-lasting profile.",
+                "imgs": ["https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/lattafa_qaed_al_fursan_edp_100ml_perfume.jpg"],
+                "topNotes": "Saffron, Pineapple",
+                "heartNotes": "Jasmine, Balsam Fir",
+                "baseNotes": "Oud Wood, Cedarwood, Amber",
+                "clicks": 0
+            },
+            {
+                "id": 1783430325275,
+                "type": "Perfume (EDP)",
+                "title": "ASAD",
+                "price": 35000,
+                "vol": "100ml",
+                "desc": "Lattafa Asad is a wildly popular, highly praised amber-spicy fragrance for men known for its warm, bold, and sophisticated scent profile with excellent longevity.",
+                "imgs": ["https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/ASAD12.jpg"],
+                "topNotes": "Black pepper, pineapple, and tobacco.",
+                "heartNotes": "Coffee, patchouli, and iris.",
+                "baseNotes": "Vanilla, amber, dry woods, benzoin, and labdanum",
+                "clicks": 0
+            },
+            {
+                "id": 1783431174749,
+                "type": "Perfume (EDP)",
+                "title": "PLATINUM SHADE (POUR HOMME)",
+                "price": 39500,
+                "vol": "100ml",
+                "desc": "Platinum Shade Pour Homme by Anfar London balances fruity, floral, and woody accords to create a velvety and modern signature scent.",
+                "imgs": ["https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/51/7905914/1.jpg?1658"],
+                "topNotes": "An intoxicating and vibrant burst of red berries, dark berries, blackcurrant, and raspberry.",
+                "heartNotes": "A velvety, sweet floral combination of blueberry and violet.",
+                "baseNotes": "A warm, sensual, and grounded finish of dry amber and musk.",
+                "clicks": 0
+            },
+            {
+                "id": 1783431571292,
+                "type": "Perfume (EDP)",
+                "title": "SAHEB",
+                "price": 27000,
+                "vol": "70ml",
+                "desc": "Saheb by Ard Al Zaafaran is a popular, luxurious unisex Arabian fragrance known for its bold, woody, and spicy profile. Leans toward a mature scent status.",
+                "imgs": ["https://munacosmetics.com/image/cache/catalog/ArchitectDeMuna/ard-al-zaafaran-saheb-edp-500x500.jpg"],
+                "topNotes": "Fresh citrus with bold saffron spikes.",
+                "heartNotes": "Violet, Ambergris, and Patchouli",
+                "baseNotes": "Oud Wood, Musk, and Vanilla",
+                "clicks": 0
+            }
+        ];
+
+        // System Reviews Master Data Array Array Engine
+        const customerReviewsDataset = [
+            { id: 1, name: "Ugochukwu", comment: "The website is so easy to use for easy shopping, and what you ordered is exactly what you get! 100% authentic products delivered.", status: "published" },
+            { id: 2, name: "Priscilia", comment: "Perfect online fragrance store for surprise gifts! Ordered for my husband and it was delivered fast. Trustworthy brand.", status: "published" },
+            { id: 3, name: "Danjuma", comment: "Highly reliable customer interface. Fast dispatch and excellent reliability. Scent is long lasting and completely authentic.", status: "published" },
+            { id: 4, name: "Peter", comment: "I am always skeptical about buying perfumes online in Nigeria, but SIYAJZH proved their reliability. Authentic products and instant support.", status: "published" },
+            { id: 5, name: "Damilola", comment: "Super fast checkout to WhatsApp, everything was processed in seconds. Very authentic products, what you see is what you get!", status: "published" }
+        ];
     </script>
 
-    <!-- CORE FUNCTIONAL CONTROL IMPLEMENTATION PIPELINES SCRIPTS GRAPH -->
+    <!-- Core App Operations Pipeline -->
     <script>
         let cart = [];
         let activeFilterCategory = 'All';
-        let currentEditingProductId = null;
-        let activeViewingProduct = null;
-        let activeSliderIndex = 0;
+        let currentShopPage = 1;
+        const productsPerPageCount = 9;
+        let activeReviewSliderIndex = 0;
+        let currentViewingDetailProduct = null;
+        let detailActiveImageSliderIndex = 0;
+        let verticalSliderInterval = null;
 
-        // Structured master array defining standard global incremental steps values
-        const universalVolumeStepsList = [5, 8, 10, 15, 25, 30, 50, 70, 80, 100, 150, 200, 250, 300, 500];
-
-        // --- Catalog Renderer Core App ---
-        function formatCurrency(value) {
-            const n = Number(value) || 0;
-            return n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        function initializeStorefrontApp() {
+            renderFeaturedProducts();
+            handleStoreSearchFilter();
+            renderCustomerReviewsSlider();
+            renderAdminPanelReviewQueue();
+            startVerticalReviewSliderEngine();
         }
 
-        function renderStorefrontCatalog(dataset = products) {
+        function formatCurrency(value) {
+            return (Number(value) || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        }
+
+        // --- Shop Pagination Component Engine ---
+        function handleStoreSearchFilter() {
+            const query = document.getElementById('storeSearchInput').value.toLowerCase().trim();
+            const sortBy = document.getElementById('storeSortSelect').value;
+            
+            let filtered = [...products];
+
+            if (query) {
+                filtered = filtered.filter(p => p.title.toLowerCase().includes(query) || 
+                    [p.topNotes, p.heartNotes, p.baseNotes, p.desc].some(n => (n || '').toLowerCase().includes(query)));
+            }
+
+            if (activeFilterCategory !== 'All') {
+                filtered = filtered.filter(p => p.type.toLowerCase().includes(activeFilterCategory.toLowerCase()));
+            }
+
+            if (sortBy === 'volume_only') {
+                const volVal = document.getElementById('storeVolumeFilter').value;
+                if (volVal && volVal !== 'all') {
+                    filtered = filtered.filter(p => (p.vol || '').toLowerCase() === volVal.toLowerCase());
+                }
+            } else if (sortBy === 'type') {
+                const chosenType = document.getElementById('storeTypeFilter').value;
+                if (chosenType) {
+                    filtered = filtered.filter(p => p.type.toLowerCase().includes(chosenType.toLowerCase()));
+                    const conc = document.getElementById('storePerfumeConcFilter').value;
+                    if (chosenType === 'Perfume' && conc !== 'all') {
+                        filtered = filtered.filter(p => p.type.toLowerCase().includes(`(${conc.toLowerCase()})`));
+                    }
+                }
+            }
+
+            displayPaginatedProductsGrid(filtered);
+        }
+
+        function displayPaginatedProductsGrid(dataset) {
             const grid = document.getElementById('productGrid');
-            if(!grid) return;
+            const totalPages = Math.ceil(dataset.length / productsPerPageCount) || 1;
+            
+            if (currentShopPage > totalPages) currentShopPage = totalPages;
+            if (currentShopPage < 1) currentShopPage = 1;
+
+            const startIndex = (currentShopPage - 1) * productsPerPageCount;
+            const endIndex = startIndex + productsPerPageCount;
+            const pageSlice = dataset.slice(startIndex, endIndex);
+
             grid.innerHTML = '';
+            if (pageSlice.length === 0) {
+                grid.innerHTML = `<div style="grid-column: 1/-1; text-align:center; padding:40px; color:var(--text-muted);">No matching fragrances found.</div>`;
+            }
 
-            dataset.forEach(p => {
-                let basicType = 'Other';
-                if (p.type.includes('Perfume')) basicType = 'Perfume';
-                else if (p.type.includes('Body Spray')) basicType = 'Body Spray';
-                else if (p.type.includes('Oil Perfume')) basicType = 'Oil Perfume';
-                else if (p.type.includes('Air Freshener')) basicType = 'Air Freshener';
-
-                if (activeFilterCategory !== 'All' && basicType !== activeFilterCategory) return;
-
-                const primaryImage = (p.imgs && p.imgs.length > 0) ? p.imgs[0] : 'https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&q=80&w=400';
-
+            pageSlice.forEach(p => {
+                const img = (p.imgs && p.imgs.length > 0) ? p.imgs[0] : 'https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&q=80&w=400';
                 grid.innerHTML += `
                     <div class="product-card">
                         <div class="product-img-wrapper" onclick="viewProductDetails(${p.id})">
-                            <img src="${primaryImage}" alt="${p.title}" class="product-img">
+                            <img src="${img}" alt="${p.title}" class="product-img">
                         </div>
                         <div class="product-info">
                             <span class="product-category">${p.type}</span>
                             <h3 class="product-title" onclick="viewProductDetails(${p.id})" style="cursor:pointer;">${p.title}</h3>
-                            <div style="color:var(--text-muted); font-size:0.9rem; margin-bottom:8px;">${p.vol || ''}</div>
+                            <div style="color:var(--text-muted); font-size:0.9rem; margin-bottom:8px;">${p.vol || '100ml'}</div>
+                            <div class="product-footer" style="margin-top:8px;">
+                                <span class="product-price">₦${formatCurrency(p.price)}</span>
+                                <button class="add-btn" onclick="event.stopPropagation(); addToCart(${p.id}, 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            document.getElementById('paginationSummaryLabel').innerText = `Page ${currentShopPage} of ${totalPages}`;
+            document.getElementById('prevPageBtn').disabled = (currentShopPage === 1);
+            document.getElementById('nextPageBtn').disabled = (currentShopPage === totalPages);
+        }
+
+        function changeShopGridPage(delta) {
+            currentShopPage += delta;
+            handleStoreSearchFilter();
+            document.getElementById('shop').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function filterCategory(cat) {
+            activeFilterCategory = cat;
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            if(window.event) window.event.target.classList.add('active');
+            handleStoreSearchFilter();
+        }
+
+        function navigateToCatalogRoot() {
+            currentViewingDetailProduct = null;
+            document.getElementById('productDetailContainerView').style.display = 'none';
+            document.getElementById('catalogContainerView').style.display = 'block';
+            handleStoreSearchFilter();
+        }
+
+        // --- Modified Vertical Testimonial Reviews Continuous Engine ---
+        function renderCustomerReviewsSlider() {
+            const stage = document.getElementById('reviewActiveSliderStage');
+            const published = customerReviewsDataset.filter(r => r.status === 'published');
+            
+            if (published.length === 0) {
+                stage.innerHTML = `<div class="review-vertical-item-box"><p style="color:var(--text-muted); text-align:center;">No published reviews yet.</p></div>`;
+                return;
+            }
+
+            stage.innerHTML = '';
+            // Render all published items inside a continuous vertical sliding viewport architecture
+            published.forEach(r => {
+                stage.innerHTML += `
+                    <div class="review-vertical-item-box">
+                        <p style="font-size:1.05rem; font-style:italic; margin-bottom:10px; color:#fff;">"${r.comment}"</p>
+                        <h4 style="font-family:'Cinzel',serif; color:var(--gold); font-weight:600; letter-spacing:1px; font-size:0.9rem;">— ${r.name}</h4>
+                    </div>
+                `;
+            });
+        }
+
+        function startVerticalReviewSliderEngine() {
+            if (verticalSliderInterval) clearInterval(verticalSliderInterval);
+            const track = document.getElementById('reviewActiveSliderStage');
+            let offsetCounter = 0;
+
+            verticalSliderInterval = setInterval(() => {
+                const publishedCount = customerReviewsDataset.filter(r => r.status === 'published').length;
+                if (publishedCount <= 3) return; // No scrolling required if 3 or less items exist
+
+                offsetCounter++;
+                // Check if we reached the maximum index visibility threshold bounds
+                if (offsetCounter > publishedCount - 3) {
+                    offsetCounter = 0;
+                }
+                
+                const translationDistance = offsetCounter * 150; // Calibrated block element height index factor
+                track.style.transform = `translateY(-${translationDistance}px)`;
+            }, 7000); // Transitions seamlessly forward exactly every 7 seconds
+        }
+
+        // --- Drop-down Accordion Form Subroutine ---
+        function toggleReviewFormDropdown() {
+            const formCard = document.getElementById('collapsibleReviewFormCard');
+            const triggerBtn = document.getElementById('reviewDropdownTriggerBtn');
+            
+            if (formCard.style.display === 'block') {
+                formCard.style.display = 'none';
+                triggerBtn.classList.remove('active');
+            } else {
+                formCard.style.display = 'block';
+                triggerBtn.classList.add('active');
+                formCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+        }
+
+        function handleCustomerReviewPublishRequest(e) {
+            e.preventDefault();
+            const name = document.getElementById('revName').value.trim();
+            const email = document.getElementById('revEmail').value.trim();
+            const phone = document.getElementById('revPhone').value.trim();
+            const comment = document.getElementById('revComments').value.trim();
+
+            const newReview = {
+                id: Date.now(),
+                name: name,
+                email: email,
+                phone: phone,
+                comment: comment,
+                status: 'pending'
+            };
+
+            customerReviewsDataset.push(newReview);
+            document.getElementById('customerReviewSubmissionForm').reset();
+            toggleReviewFormDropdown(); // Collapse form workspace node upon completion
+            
+            showToastMessage("sent, comments would be published after review");
+            renderAdminPanelReviewQueue();
+        }
+
+        // --- Moderation Review Desk System Admin Interface ---
+        function renderAdminPanelReviewQueue() {
+            const queueStage = document.getElementById('adminReviewControlQueueStage');
+            queueStage.innerHTML = '';
+
+            const pending = customerReviewsDataset.filter(r => r.status === 'pending');
+            if (pending.length === 0) {
+                queueStage.innerHTML = `<p style="color:var(--text-muted); font-size:0.9rem;">No pending reviews awaiting authorization.</p>`;
+                return;
+            }
+
+            pending.forEach(r => {
+                queueStage.innerHTML += `
+                    <div class="admin-review-item">
+                        <div class="admin-review-meta">
+                            <span><strong>User:</strong> ${r.name} (${r.phone})</span>
+                            <span>Pending Approval</span>
+                        </div>
+                        <p style="font-size:0.9rem; color:var(--text-muted); margin:5px 0;">"${r.comment}"</p>
+                        <div class="admin-review-actions">
+                            <button class="admin-action-btn btn-edit" style="background:#28a745; color:white;" onclick="authorizeReviewPublishStatus(${r.id}, true)">Publish</button>
+                            <button class="admin-action-btn btn-danger" onclick="authorizeReviewPublishStatus(${r.id}, false)">Decline</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        function authorizeReviewPublishStatus(id, shouldPublish) {
+            const index = customerReviewsDataset.findIndex(r => r.id === id);
+            if (index !== -1) {
+                if (shouldPublish) {
+                    customerReviewsDataset[index].status = 'published';
+                    showToastMessage("REVIEW APPROVED AND PUBLISHED");
+                } else {
+                    customerReviewsDataset.splice(index, 1);
+                    showToastMessage("REVIEW DECLINED & DELETED");
+                }
+                renderCustomerReviewsSlider();
+                renderAdminPanelReviewQueue();
+                startVerticalReviewSliderEngine(); // Recalibrate active vertical index tracking loop
+            }
+        }
+
+        // --- Dynamic Product Profile Details Screen Window System ---
+        function viewProductDetails(id) {
+            const target = products.find(p => p.id === id);
+            if (!target) return;
+
+            target.clicks = (target.clicks || 0) + 1;
+            currentViewingDetailProduct = target;
+            detailActiveImageSliderIndex = 0;
+
+            document.getElementById('catalogContainerView').style.display = 'none';
+            const detailViewStage = document.getElementById('productDetailContainerView');
+            detailViewStage.style.display = 'block';
+
+            renderProductDetailPageLayout();
+            renderFeaturedProducts();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function renderProductDetailPageLayout() {
+            const p = currentViewingDetailProduct;
+            if(!p) return;
+
+            const imgs = (p.imgs && p.imgs.length > 0) ? p.imgs : ['https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&q=80&w=400'];
+            
+            let notesSectionHTML = '';
+            if (p.topNotes || p.heartNotes || p.baseNotes) {
+                notesSectionHTML = `
+                    <div class="scent-profile-box">
+                        <h4 style="font-family:'Cinzel', serif; font-size:1.1rem; margin-bottom:15px; letter-spacing:1px; border-bottom:1px solid var(--border); padding-bottom:5px;">Olfactive Profile</h4>
+                        ${p.topNotes ? `<div class="scent-note-row"><span class="scent-note-label">Top Notes:</span><span>${p.topNotes}</span></div>` : ''}
+                        ${p.heartNotes ? `<div class="scent-note-row"><span class="scent-note-label">Heart Notes:</span><span>${p.heartNotes}</span></div>` : ''}
+                        ${p.baseNotes ? `<div class="scent-note-row"><span class="scent-note-label">Base Notes:</span><span>${p.baseNotes}</span></div>` : ''}
+                    </div>
+                `;
+            }
+
+            document.getElementById('productDetailContainerView').innerHTML = `
+                <button class="btn btn-secondary" style="margin-bottom:30px; gap:8px;" onclick="navigateToCatalogRoot()">
+                    ← Back to Shop
+                </button>
+                <div class="detail-view-container">
+                    <div class="slider-container">
+                        <img id="detailMainSliderImg" src="${imgs[detailActiveImageSliderIndex]}" alt="${p.title}" class="slider-main-img">
+                        ${imgs.length > 1 ? `
+                            <button class="slider-arrow left" onclick="shiftDetailSliderImageIndex(-1)">‹</button>
+                            <button class="slider-arrow right" onclick="shiftDetailSliderImageIndex(1)">›</button>
+                        ` : ''}
+                    </div>
+                    <div class="product-info" style="padding:0;">
+                        <span class="product-category" style="font-size:0.9rem;">${p.type}</span>
+                        <h1 style="font-family:'Cinzel', serif; font-size:2.5rem; font-weight:400; margin:10px 0 20px;">${p.title}</h1>
+                        <span class="product-price" style="font-size:2rem; color:var(--gold); display:block; margin-bottom:20px;">₦${formatCurrency(p.price)}</span>
+                        <p class="product-desc" style="font-size:1.05rem; line-height:1.8; color:var(--text-muted);">${p.desc}</p>
+                        
+                        ${notesSectionHTML}
+
+                        <div style="margin-top:20px; display:flex; gap:12px; align-items:center;">
+                            <div style="display:flex; align-items:center; gap:8px;">
+                                <button class="qty-btn" style="width:36px; height:36px;" onclick="changeDetailQtyCounter(-1)">-</button>
+                                <div id="detailQtyDisplay" style="min-width:30px; text-align:center; font-weight:700;">1</div>
+                                <button class="qty-btn" style="width:36px; height:36px;" onclick="changeDetailQtyCounter(1)">+</button>
+                            </div>
+                            <button class="btn btn-primary" style="padding:12px 18px;" onclick="addToCart(${p.id}, parseInt(document.getElementById('detailQtyDisplay').innerText || '1'))">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function shiftDetailSliderImageIndex(delta) {
+            const p = currentViewingDetailProduct;
+            if(!p || !p.imgs) return;
+            detailActiveImageSliderIndex += delta;
+            if(detailActiveImageSliderIndex >= p.imgs.length) detailActiveImageSliderIndex = 0;
+            if(detailActiveImageSliderIndex < 0) detailActiveImageSliderIndex = p.imgs.length - 1;
+            document.getElementById('detailMainSliderImg').src = p.imgs[detailActiveImageSliderIndex];
+        }
+
+        function changeDetailQtyCounter(delta) {
+            const display = document.getElementById('detailQtyDisplay');
+            let val = parseInt(display.innerText) || 1;
+            val += delta;
+            if (val < 1) val = 1;
+            display.innerText = val;
+        }
+
+        function renderFeaturedProducts() {
+            const container = document.getElementById('featuredProductsGrid');
+            if (!container) return;
+            
+            let sorted = [...products].sort((a,b) => (b.clicks || 0) - (a.clicks || 0));
+            let targets = sorted.slice(0, 3);
+
+            container.innerHTML = '';
+            targets.forEach(p => {
+                const img = (p.imgs && p.imgs.length > 0) ? p.imgs[0] : '';
+                container.innerHTML += `
+                    <div class="product-card">
+                        <div class="product-img-wrapper" onclick="viewProductDetails(${p.id})">
+                            <img src="${img}" alt="${p.title}" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">${p.type}</span>
+                            <h3 class="product-title" onclick="viewProductDetails(${p.id})" style="cursor:pointer;">${p.title}</h3>
+                            <div style="color:var(--text-muted); font-size:0.9rem; margin-bottom:8px;">${p.vol || '100ml'}</div>
                             <div class="product-footer" style="margin-top:8px;">
                                 <span class="product-price">₦${formatCurrency(p.price)}</span>
                                 <button class="add-btn" onclick="event.stopPropagation(); addToCart(${p.id}, 1)">+</button>
@@ -1585,339 +1684,40 @@
             });
         }
 
-        // --- ADVANCED CASCADING DROPDOWN VISIBILITY TREE ENGINE ---
-        function evaluateStoreCascadingVisibilityRules() {
-            const sortBy = document.getElementById('storeSortSelect').value;
-            const typeFilter = document.getElementById('storeTypeFilter');
-            const perfumeConcFilter = document.getElementById('storePerfumeConcFilter');
-            const airFreshLocationFilter = document.getElementById('storeAirFreshLocationFilter');
-            const airFreshHomeTypeFilter = document.getElementById('storeAirFreshHomeTypeFilter');
-            const volumeFilter = document.getElementById('storeVolumeFilter');
-
-            // Reset Sub-dropdown visibility wrappers defaults values 
-            typeFilter.style.display = 'none';
-            perfumeConcFilter.style.display = 'none';
-            airFreshLocationFilter.style.display = 'none';
-            airFreshHomeTypeFilter.style.display = 'none';
-            volumeFilter.style.display = 'none';
-
-            if (sortBy === 'default') {
-                handleStoreSearchFilter();
-                return;
-            }
-
-            if (sortBy === 'volume_only') {
-                populateVolumetricOptionsSet(null, null, null); 
-                volumeFilter.style.display = 'inline-block';
-                handleStoreSearchFilter();
-                return;
-            }
-
-            if (sortBy === 'type') {
-                typeFilter.style.display = 'inline-block';
-                const chosenType = typeFilter.value;
-                if (!chosenType) {
-                    handleStoreSearchFilter();
-                    return; 
-                }
-
-                if (chosenType === 'Perfume') {
-                    perfumeConcFilter.style.display = 'inline-block';
-                    populateVolumetricOptionsSet('Perfume', perfumeConcFilter.value, null);
-                    volumeFilter.style.display = 'inline-block';
-                } 
-                else if (chosenType === 'Body Spray') {
-                    populateVolumetricOptionsSet('Body Spray', null, null);
-                    volumeFilter.style.display = 'inline-block';
-                } 
-                else if (chosenType === 'Oil Perfume') {
-                    populateVolumetricOptionsSet('Oil Perfume', null, null);
-                    volumeFilter.style.display = 'inline-block';
-                } 
-                else if (chosenType === 'Air Freshener') {
-                    airFreshLocationFilter.style.display = 'inline-block';
-                    const location = airFreshLocationFilter.value;
-                    
-                    if (location === 'all' || !location) {
-                        populateVolumetricOptionsSet('Air Freshener', null, null);
-                        volumeFilter.style.display = 'inline-block';
-                    } 
-                    else if (location === 'Automobile') {
-                        populateVolumetricOptionsSet('Air Freshener', null, 'Automotive Diffuser');
-                        volumeFilter.style.display = 'inline-block';
-                    } 
-                    else if (location === 'Home') {
-                        airFreshHomeTypeFilter.style.display = 'inline-block';
-                        const homeMechType = airFreshHomeTypeFilter.value;
-                        populateVolumetricOptionsSet('Air Freshener', null, homeMechType);
-                        volumeFilter.style.display = 'inline-block';
-                    }
-                }
-            }
-            handleStoreSearchFilter();
-        }
-
-        // --- MATH RECURSIVE VOLUMETRIC CAP FILTERING ENGINE DATA POPULATOR ---
-        function populateVolumetricOptionsSet(categoryContext, subConcentrationContext, explicitSubVariantMechanic) {
-            const dropdown = document.getElementById('storeVolumeFilter');
-            const previousSelectedValue = dropdown.value;
-            dropdown.innerHTML = '<option value="all">Any Volume</option>';
-
-            let minCap = 0;
-            let maxCap = 99999;
-            let useArrayFilterLimits = false;
-
-            if (categoryContext === 'Perfume' || categoryContext === 'Oil Perfume') {
-                minCap = 5;
-                maxCap = 200;
-                useArrayFilterLimits = true;
-            } else if (categoryContext === 'Body Spray') {
-                minCap = 100;
-                maxCap = 300;
-                useArrayFilterLimits = true;
-            } else if (categoryContext === 'Air Freshener') {
-                if (explicitSubVariantMechanic === 'Targeted Spray') {
-                    minCap = 300;
-                    maxCap = 500;
-                    useArrayFilterLimits = true;
-                } else if (explicitSubVariantMechanic === 'Reed Diffuser') {
-                    minCap = 30;
-                    maxCap = 500;
-                    useArrayFilterLimits = true;
-                } else if (explicitSubVariantMechanic === 'Automotive Diffuser') {
-                    minCap = 5;
-                    maxCap = 10;
-                    useArrayFilterLimits = true;
-                }
-            }
-
-            if (useArrayFilterLimits) {
-                universalVolumeStepsList.forEach(v => {
-                    if (v >= minCap && v <= maxCap) {
-                        dropdown.innerHTML += `<option value="${v}ml">${v}ml</option>`;
-                    }
-                });
-            } else {
-                universalVolumeStepsList.forEach(v => {
-                    dropdown.innerHTML += `<option value="${v}ml">${v}ml</option>`;
-                });
-            }
-
-            dropdown.value = previousSelectedValue || "all";
-            if(!dropdown.value) dropdown.value = "all";
-        }
-
-        // --- PRIMARY SEARCH AND COMPLEX HIERARCHICAL FILTER ENGINE ---
-        function handleStoreSearchFilter() {
-            const query = document.getElementById('storeSearchInput').value.toLowerCase().trim();
-            const sortBy = document.getElementById('storeSortSelect').value;
-            
-            let workspaceData = [...products];
-
-            // 1. Text Search Box matching for name or keywords for scent profile
-            if (query) {
-                workspaceData = workspaceData.filter(p => {
-                    const matchName = p.title.toLowerCase().includes(query);
-                    const matchNotes = [p.topNotes, p.heartNotes, p.baseNotes].some(n => (n || '').toLowerCase().includes(query));
-                    return matchName || matchNotes;
-                });
-            }
-
-            // 2. Cascading Select Evaluation
-            if (sortBy === 'volume_only') {
-                const volVal = document.getElementById('storeVolumeFilter').value;
-                if (volVal && volVal !== 'all') {
-                    workspaceData = workspaceData.filter(p => (p.vol || '').toLowerCase() === volVal.toLowerCase());
-                }
-            } 
-            else if (sortBy === 'type') {
-                const chosenType = document.getElementById('storeTypeFilter').value;
-                if (chosenType) {
-                    if (chosenType === 'Perfume') {
-                        const conc = document.getElementById('storePerfumeConcFilter').value;
-                        if (conc !== 'all') {
-                            workspaceData = workspaceData.filter(p => p.type.includes(`(${conc})`));
-                        } else {
-                            workspaceData = workspaceData.filter(p => p.type.includes('Perfume'));
-                        }
-                    } 
-                    else if (chosenType === 'Air Freshener') {
-                        const loc = document.getElementById('storeAirFreshLocationFilter').value;
-                        if (loc === 'Automobile') {
-                            workspaceData = workspaceData.filter(p => p.type.includes('Automotive Diffuser'));
-                        } else if (loc === 'Home') {
-                            const mech = document.getElementById('storeAirFreshHomeTypeFilter').value;
-                            if (mech !== 'all') {
-                                workspaceData = workspaceData.filter(p => p.type.includes(`Home ${mech}`));
-                            } else {
-                                workspaceData = workspaceData.filter(p => p.type.includes('Home Spray') || p.type.includes('Home Reed Diffuser'));
-                            }
-                        } else {
-                            workspaceData = workspaceData.filter(p => p.type.includes('Air Freshener'));
-                        }
-                    } 
-                    else {
-                        workspaceData = workspaceData.filter(p => p.type.includes(chosenType));
-                    }
-                }
-
-                // Volume constraints assessment on sub trees
-                const volVal = document.getElementById('storeVolumeFilter').value;
-                if (volVal && volVal !== 'all') {
-                    workspaceData = workspaceData.filter(p => (p.vol || '').toLowerCase() === volVal.toLowerCase());
-                }
-            }
-
-            renderStorefrontCatalog(workspaceData);
-            renderFeaturedProducts();
-        }
-
-        function filterCategory(cat) {
-            activeFilterCategory = cat;
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            if(window.event) window.event.target.classList.add('active');
-            handleStoreSearchFilter();
-        }
-
-        // --- Detailed Views Nav Systems ---
-        function viewProductDetails(id) {
-            const prod = products.find(p => p.id === id);
-            if(!prod) return;
-
-            // Track clicks for featured selection
-            prod.clicks = (prod.clicks || 0) + 1;
-
-            activeViewingProduct = prod;
-            activeSliderIndex = 0;
-
-            document.getElementById('catalogContainerView').style.display = 'none';
-            const detailContainer = document.getElementById('productDetailContainerView');
-            detailContainer.style.display = 'block';
-
-            renderProductDetailPage();
-            renderFeaturedProducts();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function navigateToCatalog() {
-            activeViewingProduct = null;
-            document.getElementById('productDetailContainerView').style.display = 'none';
-            document.getElementById('catalogContainerView').style.display = 'block';
-            handleStoreSearchFilter();
-        }
-
-        function renderProductDetailPage() {
-            const p = activeViewingProduct;
-            if(!p) return;
-
-            const imageArray = (p.imgs && p.imgs.length > 0) ? p.imgs : ['https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&q=80&w=400'];
-            
-            let notesSegmentHTML = '';
-            if(p.topNotes || p.heartNotes || p.baseNotes) {
-                notesSegmentHTML = `
-                    <div class="scent-profile-box">
-                        <h4 style="font-family:'Cinzel', serif; font-size:1.1rem; margin-bottom:15px; letter-spacing:1px; border-bottom:1px solid var(--border); padding-bottom:5px;">Olfactive Profile</h4>
-                        ${p.topNotes ? `<div class="scent-note-row"><span class="scent-note-label">Top Notes:</span><span>${p.topNotes}</span></div>` : ''}
-                        ${p.heartNotes ? `<div class="scent-note-row"><span class="scent-note-label">Heart Notes:</span><span>${p.heartNotes}</span></div>` : ''}
-                        ${p.baseNotes ? `<div class="scent-note-row"><span class="scent-note-label">Base Notes:</span><span>${p.baseNotes}</span></div>` : ''}
-                    </div>
-                `;
-            }
-
-            const container = document.getElementById('productDetailContainerView');
-            
-            let derivedCategoryValue = "perfume";
-            if(p.type.toLowerCase().includes("body spray")) derivedCategoryValue = "body_spray";
-            if(p.type.toLowerCase().includes("oil perfume")) derivedCategoryValue = "oil_perfume";
-            if(p.type.toLowerCase().includes("air freshener")) derivedCategoryValue = "air_freshener";
-
-            container.innerHTML = `
-                <button class="btn btn-secondary" style="margin-bottom:30px; gap:8px;" onclick="navigateToCatalog()">
-                    ← Back to Shop
-                </button>
-                <div class="detail-view-container">
-                    <div class="slider-container">
-                        <img id="detailMainSliderImg" src="${imageArray[activeSliderIndex]}" alt="${p.title}" class="slider-main-img" onclick="openLightboxOverlay()">
-                        ${imageArray.length > 1 ? `
-                            <button class="slider-arrow left" onclick="shiftSliderImage(-1)">‹</button>
-                            <button class="slider-arrow right" onclick="shiftSliderImage(1)">›</button>
-                            <div class="slider-dots">${imageArray.map((_, idx) => `<div class="slider-dot ${idx === activeSliderIndex ? 'active' : ''}" onclick="jumpToSliderIndex(${idx})"></div>`).join('')}</div>
-                        ` : ''}
-                    </div>
-                    <div class="product-info" style="padding:0;">
-                        <span class="product-category" style="font-size:0.9rem;">${p.type}</span>
-                        <h1 style="font-family:'Cinzel', serif; font-size:2.5rem; font-weight:400; margin:10px 0 20px;">${p.title}</h1>
-                        <span class="product-price" style="font-size:2rem; color:var(--gold); display:block; margin-bottom:20px;">₦${formatCurrency(p.price)}</span>
-                        <p class="product-desc" style="font-size:1.05rem; line-height:1.8; color:var(--text-muted);">${p.desc}</p>
-                        
-                        ${notesSegmentHTML}
-
-                        <!-- Simplified Add to Cart with quantity controls -->
-                        <div style="margin-top:20px; display:flex; gap:12px; align-items:center;">
-                            <div style="display:flex; align-items:center; gap:8px;">
-                                <button class="qty-btn" style="width:36px; height:36px;" onclick="changeDetailQty(-1)">-</button>
-                                <div id="detailQtyDisplay" style="min-width:30px; text-align:center; font-weight:700;">1</div>
-                                <button class="qty-btn" style="width:36px; height:36px;" onclick="changeDetailQty(1)">+</button>
-                            </div>
-                            <button class="btn btn-primary" style="padding:12px 18px;" onclick="addToCart(${p.id}, parseInt(document.getElementById('detailQtyDisplay').innerText || '1'))">Add to cart</button>
-                        </div>
-                    </div>
-                </div>
-            `;
-
-            // initialize detail qty
-            document.getElementById('detailQtyDisplay').innerText = '1';
-        }
-
-        function changeDetailQty(delta) {
-            const el = document.getElementById('detailQtyDisplay');
-            if(!el) return;
-            let v = parseInt(el.innerText || '1');
-            v += delta;
-            if (v < 1) v = 1;
-            el.innerText = v;
-        }
-
-        // Add to cart helper: merges same product+vol entries
-        function addToCart(productId, qty = 1, volOverride) {
+        // --- Core Cart & Messaging Subroutines ---
+        function addToCart(productId, qty = 1) {
             const prod = products.find(p => p.id === productId);
             if(!prod) return;
-            const vol = volOverride || prod.vol || 'N/A';
-            const itemId = `${prod.id}-${vol}`;
+            const itemId = `${prod.id}-${prod.vol || '100ml'}`;
 
             const existing = cart.find(i => i.id === itemId);
             if (existing) {
                 existing.qty += qty;
             } else {
-                cart.push({ id: itemId, baseId: prod.id, title: prod.title, price: prod.price, vol: vol, imgs: prod.imgs, qty: qty });
+                cart.push({ id: itemId, baseId: prod.id, title: prod.title, price: prod.price, vol: prod.vol || '100ml', imgs: prod.imgs, qty: qty });
             }
             updateCart();
-            // show drawer briefly
-            document.getElementById('cartDrawer').classList.add('open'); document.getElementById('cartOverlay').classList.add('open');
+            document.getElementById('cartDrawer').classList.add('open'); 
+            document.getElementById('cartOverlay').classList.add('open');
         }
 
         function updateCart() {
             const container = document.getElementById('cartItemsContainer');
-            const badge = document.getElementById('cartBadge');
-            const totalText = document.getElementById('cartTotalText');
-            if(!container) return;
-
+            let total = 0, count = 0;
             container.innerHTML = '';
-            let total = 0;
-            let count = 0;
 
             cart.forEach(item => {
                 total += item.price * item.qty;
                 count += item.qty;
-                const img = (item.imgs && item.imgs.length > 0) ? item.imgs[0] : 'https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&q=80&w=400';
+                const img = (item.imgs && item.imgs.length > 0) ? item.imgs[0] : '';
 
                 container.innerHTML += `
                     <div class="cart-item">
-                        <img src="${img}" alt="${item.title}" class="cart-item-img">
+                        <img src="${img}" class="cart-item-img">
                         <div class="cart-item-details">
                             <h4 class="cart-item-title">${item.title}</h4>
                             <span class="cart-item-price">₦${formatCurrency(item.price)}</span>
-                            <div style="color:var(--text-muted); font-size:0.85rem; margin-top:6px;">Volume: ${item.vol}</div>
+                            <div style="color:var(--text-muted); font-size:0.85rem;">Size: ${item.vol}</div>
                             <div class="cart-item-qty">
                                 <button class="qty-btn" onclick="changeQty('${item.id}', -1)">-</button>
                                 <span>${item.qty}</span>
@@ -1928,344 +1728,226 @@
                 `;
             });
 
-            badge.innerText = count;
-            totalText.innerText = `₦${formatCurrency(total)}`;
+            document.getElementById('cartBadge').innerText = count;
+            document.getElementById('cartTotalText').innerText = `₦${formatCurrency(total)}`;
         }
 
         function changeQty(itemId, delta) {
             const idx = cart.findIndex(i => i.id === itemId);
             if(idx === -1) return;
             cart[idx].qty += delta;
-            if(cart[idx].qty <= 0) {
-                cart.splice(idx, 1);
-            }
+            if(cart[idx].qty <= 0) cart.splice(idx, 1);
             updateCart();
         }
 
-        function clearCart() {
-            cart = [];
-            updateCart();
-        }
-
+        function clearCart() { cart = []; updateCart(); }
         function toggleCart() {
             document.getElementById('cartDrawer').classList.toggle('open');
-            document.getElementById('cartOverlay').classList.toggle('open');
+            document.getElementById('cartOverlay').classList.toggle('toggle');
+            const overlay = document.getElementById('cartOverlay');
+            overlay.style.display = overlay.style.display === 'block' ? 'none' : 'block';
         }
 
         function checkoutToWhatsApp(e) {
             e.preventDefault();
             if(cart.length === 0) return alert("Your cart is empty!");
-
             let msg = "Hello SIYAJZH, I'd like to place an order:\n\n";
-            let grandTotal = 0;
-
-            cart.forEach((item, idx) => {
+            let total = 0;
+            cart.forEach((item, i) => {
                 const sub = item.price * item.qty;
-                grandTotal += sub;
-                msg += `${idx + 1}. ${item.title} (${item.vol}) x${item.qty} — ₦${formatCurrency(sub)}\n`;
+                total += sub;
+                msg += `${i+1}. ${item.title} (${item.vol}) x${item.qty} — ₦${formatCurrency(sub)}\n`;
             });
-
-            msg += `\nTotal Amount: ₦${formatCurrency(grandTotal)}`;
+            msg += `\nTotal Amount: ₦${formatCurrency(total)}`;
             window.open(`https://wa.me/2348000000000?text=${encodeURIComponent(msg)}`, '_blank');
         }
 
-        // Featured products renderer: top 3 by clicks or random 3
-        function renderFeaturedProducts() {
-            const container = document.getElementById('featuredProductsGrid');
-            if(!container) return;
-            let picks = [...products];
-            const anyClicks = picks.some(p => p.clicks && p.clicks > 0);
-            if (anyClicks) {
-                picks.sort((a,b) => (b.clicks || 0) - (a.clicks || 0));
-                picks = picks.slice(0,3);
-            } else {
-                picks = picks.sort(() => 0.5 - Math.random()).slice(0,3);
+        function showToastMessage(msg) {
+            const t = document.getElementById('successToast');
+            t.innerText = msg.toUpperCase();
+            t.style.display = 'block';
+            setTimeout(() => { t.style.display = 'none'; }, 4000);
+        }
+
+        // --- Cascading Visibility Selectors ---
+        function evaluateStoreCascadingVisibilityRules() {
+            const sortBy = document.getElementById('storeSortSelect').value;
+            const typeFilter = document.getElementById('storeTypeFilter');
+            const perfumeConcFilter = document.getElementById('storePerfumeConcFilter');
+            const airFreshLocationFilter = document.getElementById('storeAirFreshLocationFilter');
+            const airFreshHomeTypeFilter = document.getElementById('storeAirFreshHomeTypeFilter');
+            const volumeFilter = document.getElementById('storeVolumeFilter');
+
+            typeFilter.style.display = 'none';
+            perfumeConcFilter.style.display = 'none';
+            airFreshLocationFilter.style.display = 'none';
+            airFreshHomeTypeFilter.style.display = 'none';
+            volumeFilter.style.display = 'none';
+
+            if (sortBy === 'type') {
+                typeFilter.style.display = 'inline-block';
+                if (typeFilter.value === 'Perfume') perfumeConcFilter.style.display = 'inline-block';
+            } else if (sortBy === 'volume_only') {
+                volumeFilter.style.display = 'inline-block';
+                const universalVolumeStepsList = [5, 8, 10, 15, 25, 30, 50, 70, 80, 100, 150, 200, 250, 300, 500];
+                volumeFilter.innerHTML = '<option value="all">Any Volume</option>';
+                universalVolumeStepsList.forEach(v => { volumeFilter.innerHTML += `<option value="${v}ml">${v}ml</option>`; });
             }
-
-            container.innerHTML = '';
-            picks.forEach(p => {
-                const img = (p.imgs && p.imgs.length > 0) ? p.imgs[0] : '';
-                container.innerHTML += `
-                    <div class="product-card">
-                        <div class="product-img-wrapper" onclick="viewProductDetails(${p.id})">
-                            <img src="${img}" alt="${p.title}" class="product-img">
-                        </div>
-                        <div class="product-info">
-                            <span class="product-category">${p.type}</span>
-                            <h3 class="product-title" onclick="viewProductDetails(${p.id})" style="cursor:pointer;">${p.title}</h3>
-                            <div style="color:var(--text-muted); font-size:0.9rem; margin-bottom:8px;">${p.vol || ''}</div>
-                            <div class="product-footer" style="margin-top:8px;">
-                                <span class="product-price">₦${formatCurrency(p.price)}</span>
-                                <button class="add-btn" onclick="event.stopPropagation(); addToCart(${p.id},1)">+</button>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
+            handleStoreSearchFilter();
         }
 
-        function updateDetailFormVolumeDropdown() {
-            const cat = document.getElementById('intCategory').value;
-            const volumeSelect = document.getElementById('intVolume');
-            if(!volumeSelect) return;
-
-            volumeSelect.innerHTML = '';
-            let minCap = 0, maxCap = 99999;
-
-            if (cat === 'perfume' || cat === 'oil_perfume') { minCap = 5; maxCap = 200; }
-            else if (cat === 'body_spray') { minCap = 100; maxCap = 3000; }
-            else if (cat === 'air_freshener') { minCap = 5; maxCap = 500; } 
-
-            universalVolumeStepsList.forEach(v => {
-                if (v >= minCap && v <= maxCap) {
-                    const opt = document.createElement('option');
-                    opt.value = `${v}ml`;
-                    opt.textContent = `${v}ml`;
-                    volumeSelect.appendChild(opt);
-                }
-            });
-        }
-
-        function handleIntegratedFormSubmit(e) {
-            e.preventDefault();
-            const cat = document.getElementById('intCategory').value;
-            const vol = document.getElementById('intVolume').value;
-            
-            if(!activeViewingProduct) return;
-
-            const customTitleName = `${activeViewingProduct.title} (${vol.toUpperCase()} ${cat.replace('_',' ').toUpperCase()})`;
-            
-            const exactItemMatch = {
-                ...activeViewingProduct,
-                id: activeViewingProduct.id + Date.now(), 
-                title: customTitleName,
-                vol: vol.toUpperCase()
-            };
-
-            cart.push({ ...exactItemMatch, qty: 1 });
-            updateCart();
-            toggleCart();
-        }
-
-        function shiftSliderImage(direction) {
-            if(!activeViewingProduct) return;
-            const images = activeViewingProduct.imgs || [];
-            if(images.length <= 1) return;
-
-            activeSliderIndex += direction;
-            if(activeSliderIndex >= images.length) activeSliderIndex = 0;
-            if(activeSliderIndex < 0) activeSliderIndex = images.length - 1;
-
-            const selectedImageSrc = images[activeSliderIndex];
-            const detailImg = document.getElementById('detailMainSliderImg');
-            if (detailImg) detailImg.src = selectedImageSrc;
-            const lightboxImg = document.getElementById('lightboxTargetImage');
-            if (lightboxImg && document.getElementById('globalLightbox').classList.contains('open')) {
-                lightboxImg.src = selectedImageSrc;
-            }
-            document.querySelectorAll('.slider-dot').forEach((d, idx) => {
-                d.classList.toggle('active', idx === activeSliderIndex);
-            });
-        }
-
-        function jumpToSliderIndex(idx) {
-            activeSliderIndex = idx;
-            const selectedImageSrc = activeViewingProduct.imgs[activeSliderIndex];
-            const detailImg = document.getElementById('detailMainSliderImg');
-            if (detailImg) detailImg.src = selectedImageSrc;
-            const lightboxImg = document.getElementById('lightboxTargetImage');
-            if (lightboxImg && document.getElementById('globalLightbox').classList.contains('open')) {
-                lightboxImg.src = selectedImageSrc;
-            }
-            document.querySelectorAll('.slider-dot').forEach((d, i) => {
-                d.classList.toggle('active', i === activeSliderIndex);
-            });
-        }
-
-        // --- Lightbox Functions ---
-        function openLightboxOverlay() {
-            if(!activeViewingProduct || !activeViewingProduct.imgs) return;
-            const lightbox = document.getElementById('globalLightbox');
-            const lightboxImg = document.getElementById('lightboxTargetImage');
-            lightboxImg.src = activeViewingProduct.imgs[activeSliderIndex];
-            lightboxImg.classList.remove('zoomed');
-            lightbox.classList.add('open');
-        }
-        function closeLightboxOverlay() {
-            document.getElementById('globalLightbox').classList.remove('open');
-        }
-        function toggleLightboxZoom(e) {
-            if(e.target.classList.contains('lightbox-close')) return;
-            const img = document.getElementById('lightboxTargetImage');
-            if(e.target === img) {
-                img.classList.toggle('zoomed');
-            } else {
-                closeLightboxOverlay();
-            }
-        }
-
-        // --- ADMIN LAYER ENGINE ---
-        function showLogin() {
-            document.getElementById('adminLoginView').style.display = 'flex';
-        }
-        function exitAdmin() {
-            document.getElementById('adminLoginView').style.display = 'none';
-            document.getElementById('adminPanelView').style.display = 'none';
+        // --- Store Access Credentials ---
+        function showLogin() { document.getElementById('adminLoginView').style.display = 'block'; }
+        function exitAdmin() { 
+            document.getElementById('adminLoginView').style.display = 'none'; 
+            document.getElementById('adminPanelView').style.display = 'none'; 
         }
         function handleLogin(e) {
             e.preventDefault();
-            // simple default dummy implementation 
-            document.getElementById('adminLoginView').style.display = 'none';
-            document.getElementById('adminPanelView').style.display = 'block';
-            renderAdminPanelInventory();
-        }
-
-        function renderAdminPanelInventory() {
-            const container = document.getElementById('adminSecondaryCatalogZone');
-            if(!container) return;
-            container.innerHTML = '<div class="grid"></div>';
-            const grid = container.querySelector('.grid');
-
-            products.forEach(p => {
-                const img = (p.imgs && p.imgs.length > 0) ? p.imgs[0] : '';
-                grid.innerHTML += `
-                    <div class="product-card">
-                        <div class="admin-actions-overlay">
-                            <button class="admin-action-btn btn-edit" onclick="startEditProductMode(${p.id})">Edit</button>
-                            <button class="admin-action-btn btn-danger" onclick="deleteProductDataRecord(${p.id})">Remove</button>
-                        </div>
-                        <div class="product-img-wrapper">
-                            <img src="${img}" alt="${p.title}" class="product-img">
-                        </div>
-                        <div class="product-info">
-                            <span class="product-category">${p.type}</span>
-                            <h3 class="product-title">${p.title}</h3>
-                            <div class="product-footer" style="margin-top:15px;">
-                                <span class="product-price">₦${formatCurrency(p.price)}</span>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            });
-        }
-
-        function startEditProductMode(id) {
-            const p = products.find(prod => prod.id === id);
-            if(!p) return;
-
-            currentEditingProductId = id;
-            document.getElementById('editProductId').value = id;
-            document.getElementById('formModeTitle').innerText = "Edit Product";
-            document.getElementById('formSubmitBtn').innerText = "Save Product Structural Details";
-            document.getElementById('cancelEditBtn').style.display = 'inline-block';
-
-            document.getElementById('prodName').value = p.title || '';
-            document.getElementById('prodDesc').value = p.desc || '';
-            document.getElementById('prodType').value = p.type || 'Perfume (EDP)';
-            document.getElementById('prodVol').value = parseInt(p.vol) || '';
-            document.getElementById('prodPrice').value = p.price || '';
-            document.getElementById('prodTopNotes').value = p.topNotes || '';
-            document.getElementById('prodHeartNotes').value = p.heartNotes || '';
-            document.getElementById('prodBaseNotes').value = p.baseNotes || '';
-            document.getElementById('prodImgLinks').value = p.imgs ? p.imgs.join(', ') : '';
+            if(document.getElementById('loginEmail').value === 'admin@siyajzh.com' && document.getElementById('loginPassword').value === '123456') {
+                document.getElementById('adminLoginView').style.display = 'none';
+                document.getElementById('adminPanelView').style.display = 'block';
+                renderAdminCatalogStatus();
+            } else {
+                const err = document.getElementById('loginError'); err.style.display = 'block'; setTimeout(() => err.style.display='none', 2000);
+            }
         }
 
         function resetProductForm() {
-            currentEditingProductId = null;
             document.getElementById('editProductId').value = '';
-            document.getElementById('formModeTitle').innerText = "Add New Product";
-            document.getElementById('formSubmitBtn').innerText = "Incorporate Product";
-            document.getElementById('cancelEditBtn').style.display = 'none';
-
             document.getElementById('prodName').value = '';
             document.getElementById('prodDesc').value = '';
-            document.getElementById('prodPrice').value = '';
+            document.getElementById('prodType').value = 'Perfume (EDP)';
             document.getElementById('prodVol').value = '';
+            document.getElementById('prodPrice').value = '';
             document.getElementById('prodTopNotes').value = '';
             document.getElementById('prodHeartNotes').value = '';
             document.getElementById('prodBaseNotes').value = '';
             document.getElementById('prodImgLinks').value = '';
+            document.getElementById('formModeTitle').innerText = 'Add New Product';
+            document.getElementById('formSubmitBtn').innerText = 'Incorporate Product';
+            document.getElementById('cancelEditBtn').style.display = 'none';
+        }
+
+        function editProduct(productId) {
+            const target = products.find(p => p.id === productId);
+            if (!target) return;
+
+            document.getElementById('editProductId').value = target.id;
+            document.getElementById('prodName').value = target.title || '';
+            document.getElementById('prodDesc').value = target.desc || '';
+            document.getElementById('prodType').value = target.type || 'Perfume (EDP)';
+            document.getElementById('prodVol').value = (target.vol || '').replace(/ml/i, '');
+            document.getElementById('prodPrice').value = target.price || '';
+            document.getElementById('prodTopNotes').value = target.topNotes || '';
+            document.getElementById('prodHeartNotes').value = target.heartNotes || '';
+            document.getElementById('prodBaseNotes').value = target.baseNotes || '';
+            document.getElementById('prodImgLinks').value = (target.imgs || []).join(', ');
+            document.getElementById('formModeTitle').innerText = 'Edit Product';
+            document.getElementById('formSubmitBtn').innerText = 'Save Changes';
+            document.getElementById('cancelEditBtn').style.display = 'inline-flex';
+            document.getElementById('adminPanelView').scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
         function saveProductForm() {
-            const title = document.getElementById('prodName').value.trim();
-            const desc = document.getElementById('prodDesc').value.trim();
+            const name = document.getElementById('prodName').value.trim();
+            const price = Number(document.getElementById('prodPrice').value);
             const type = document.getElementById('prodType').value;
-            const volNum = document.getElementById('prodVol').value.trim();
-            const price = parseFloat(document.getElementById('prodPrice').value) || 0;
-            const topNotes = document.getElementById('prodTopNotes').value.trim();
-            const heartNotes = document.getElementById('prodHeartNotes').value.trim();
-            const baseNotes = document.getElementById('prodBaseNotes').value.trim();
-            const imgsRaw = document.getElementById('prodImgLinks').value.trim();
 
-            if(!title || !price) return alert("Product Name and Price are critical fields variables required!");
+            if (!name) {
+                showToastMessage('PRODUCT NAME REQUIRED');
+                return;
+            }
+            if (!type) {
+                showToastMessage('PRODUCT TYPE REQUIRED');
+                return;
+            }
+            if (!Number.isFinite(price) || price <= 0) {
+                showToastMessage('VALID PRICE REQUIRED');
+                return;
+            }
 
-            const imgs = imgsRaw ? imgsRaw.split(',').map(s => s.trim()).filter(s => s.length > 0) : [];
-            const vol = volNum ? `${volNum}ml` : '100ml';
+            const volumeValue = document.getElementById('prodVol').value.trim();
+            const volumeText = volumeValue ? `${volumeValue}ml` : '100ml';
+            const imageLinks = document.getElementById('prodImgLinks').value
+                .split(',')
+                .map(link => link.trim())
+                .filter(Boolean);
 
-            if (currentEditingProductId) {
-                const match = products.find(p => p.id === currentEditingProductId);
-                if (match) {
-                    match.title = title; match.desc = desc; match.type = type; match.vol = vol; match.price = price;
-                    match.topNotes = topNotes; match.heartNotes = heartNotes; match.baseNotes = baseNotes; match.imgs = imgs;
+            const payload = {
+                id: Date.now(),
+                type: type,
+                title: name,
+                price: price,
+                vol: volumeText,
+                desc: document.getElementById('prodDesc').value.trim() || 'A premium fragrance added to the collection.',
+                imgs: imageLinks.length > 0 ? imageLinks : ['https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&q=80&w=400'],
+                topNotes: document.getElementById('prodTopNotes').value.trim(),
+                heartNotes: document.getElementById('prodHeartNotes').value.trim(),
+                baseNotes: document.getElementById('prodBaseNotes').value.trim(),
+                clicks: 0
+            };
+
+            const editId = document.getElementById('editProductId').value;
+            if (editId) {
+                const existing = products.findIndex(p => String(p.id) === String(editId));
+                if (existing !== -1) {
+                    payload.id = Number(editId);
+                    products[existing] = { ...products[existing], ...payload };
                 }
             } else {
-                products.push({
-                    id: Date.now(), title, desc, type, vol, price, topNotes, heartNotes, baseNotes, imgs, clicks: 0
-                });
+                products.unshift(payload);
             }
 
-            showToastNotification();
-            resetProductForm();
-            renderAdminPanelInventory();
-        }
-
-        function deleteProductDataRecord(id) {
-            if(!confirm("Are you sure you want to permanently delete this product?")) return;
-            const idx = products.findIndex(p => p.id === id);
-            if(idx !== -1) products.splice(idx,1);
-            renderAdminPanelInventory();
-        }
-
-        function showToastNotification() {
-            const toast = document.getElementById('successToast');
-            if(!toast) return;
-            toast.style.display = 'block';
-            setTimeout(() => { toast.style.display = 'none'; }, 2500);
-        }
-
-        // --- MATH RECURSIVE HTML WRITER SERIALIZATION PIPELINE ---
-        function downloadUpdatedHTML() {
-            // ALWAYS RESET CART ARRAYS AND CART RENDERS STATE TO PREVENT RETENTION ON DOWNLOAD
-            cart = [];
-            updateCart();
-            
-            // Re-sync standard client layout structures blocks components instances elements explicitly
+            renderFeaturedProducts();
             handleStoreSearchFilter();
+            renderAdminCatalogStatus();
+            resetProductForm();
+            showToastMessage(editId ? 'PRODUCT UPDATED' : 'PRODUCT CREATED');
+        }
 
-            const scriptElement = document.getElementById('catalogData');
-            if(scriptElement) {
-                scriptElement.textContent = `\n        const products = ${JSON.stringify(products, null, 4)};\n    `;
-            }
+        function renderAdminCatalogStatus() {
+            const stage = document.getElementById('adminSecondaryCatalogZone');
+            stage.innerHTML = '<div class="grid">';
+            products.forEach(p => {
+                stage.querySelector('.grid').innerHTML += `
+                    <div class="product-card" style="padding:15px;">
+                        <h4 style="font-family:'Cinzel',serif;">${p.title}</h4>
+                        <p style="font-size:0.8rem; color:var(--gold);">${p.type} - ₦${formatCurrency(p.price)}</p>
+                        <div style="display:flex; gap:8px; margin-top:12px; flex-wrap:wrap;">
+                            <button class="btn btn-secondary" style="padding:8px 12px; font-size:0.8rem;" onclick="editProduct(${p.id})">Edit</button>
+                        </div>
+                    </div>
+                `;
+            });
+        }
 
-            // Clean template injection states out of volatile storage drawers containers safely
-            document.getElementById('adminLoginView').style.display = 'none';
-            document.getElementById('adminPanelView').style.display = 'none';
+        function buildUpdatedHTMLDocument() {
+            const currentHtml = document.documentElement.outerHTML;
+            const catalogScript = `<script id="catalogData">\n        const products = ${JSON.stringify(products, null, 4)};\n        const customerReviewsDataset = ${JSON.stringify(customerReviewsDataset, null, 4)};\n    <\/script>`;
+            const resetSearchMarkup = '<input type="text" id="storeSearchInput" class="search-input" value="" placeholder="Search by name, scent profile keywords..." onkeydown="if(event.key === \'Enter\') { currentShopPage=1; handleStoreSearchFilter(); }">';
 
-            const rawOutputHTMLTextContentStream = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
-            const blob = new Blob([rawOutputHTMLTextContentStream], { type: 'text/html;charset=utf-8;' });
-            const link = document.createElement("a");
-            
-            link.href = URL.createObjectURL(blob);
-            link.setAttribute("download", "index.html");
+            let updatedHtml = currentHtml.replace(/<script id="catalogData">[\s\S]*?<\/script>/, catalogScript);
+            updatedHtml = updatedHtml.replace(/<input type="text" id="storeSearchInput"[^>]*>/, resetSearchMarkup);
+            return updatedHtml;
+        }
+
+        function downloadUpdatedHTML() {
+            document.getElementById('storeSearchInput').value = '';
+            const htmlContent = buildUpdatedHTMLDocument();
+            const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `SIYAJZH-updated-${Date.now()}.html`;
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-        }
-
-        // Start initialization sequence
-        window.addEventListener('DOMContentLoaded', () => {
+            URL.revokeObjectURL(url);
+            resetProductForm();
             handleStoreSearchFilter();
-        });
+            showToastMessage('UPDATED HTML DOWNLOADED');
+            exitAdmin();
+        }
     </script>
 </body></html>
