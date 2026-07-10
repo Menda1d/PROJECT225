@@ -34,6 +34,12 @@
             overflow-x: hidden;
         }
 
+        /* Prevent browser scroll anchoring restoring to a previous position */
+        html, body, #storefrontView, #catalogContainerView {
+            overflow-anchor: none;
+            scroll-behavior: auto;
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -674,6 +680,42 @@
             font-weight: 600;
         }
 
+        .product-meta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            align-items: center;
+            margin: 6px 0 10px;
+            color: var(--text-muted);
+            font-size: 0.86rem;
+        }
+
+        .product-meta-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 8px;
+            border-radius: 999px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.03);
+            white-space: nowrap;
+        }
+
+        .product-gender-pill.male {
+            color: #7dd3fc;
+            border-color: rgba(125, 211, 252, 0.35);
+        }
+
+        .product-gender-pill.female {
+            color: #f9a8d4;
+            border-color: rgba(249, 168, 212, 0.35);
+        }
+
+        .product-gender-pill.unisex {
+            color: var(--text-main);
+            border-color: var(--border);
+        }
+
         .add-btn {
             background: none;
             border: 1px solid var(--gold);
@@ -1117,12 +1159,28 @@
     </style>
 </head>
 <body onload="initializeStorefrontApp()">
+    <script>
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+        // Force scroll to top on DOM ready, load, pageshow (bfcache), and before unload
+        window.scrollTo(0, 0);
+        window.addEventListener('DOMContentLoaded', () => {
+            window.scrollTo(0, 0);
+            requestAnimationFrame(() => window.scrollTo(0, 0));
+            setTimeout(() => window.scrollTo(0, 0), 50);
+            setTimeout(() => window.scrollTo(0, 0), 200);
+        });
+        window.addEventListener('load', () => { window.scrollTo(0, 0); requestAnimationFrame(() => window.scrollTo(0,0)); });
+        window.addEventListener('pageshow', (e) => { if (e.persisted) window.scrollTo(0, 0); window.scrollTo(0,0); });
+        window.addEventListener('beforeunload', () => { window.scrollTo(0, 0); });
+    </script>
 
-    <div id="successToast" class="success-toast" style="display: none;">SUCCESS</div>
+    <div id="successToast" class="success-toast" style="display: none;">UPDATED HTML DOWNLOADED</div>
 
     <!-- Dynamic WhatsApp Floating Interactive Action Link -->
     <a href="https://wa.me/2348000000000?text=Hello%20SIYAJZH%2C%20I'd%20like%20to%20inquire%20about%20your%20luxury%20fragrances." target="_blank" class="whatsapp-floating-btn" id="whatsappFloatingAnchor">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.457L0 24zm6.59-4.846c1.6.95 3.498 1.451 5.411 1.453 5.487 0 9.954-4.466 9.957-9.953.002-2.657-1.02-5.155-2.877-7.015C17.28 1.78 14.785.755 12.01.755c-5.49 0-9.953 4.467-9.955 9.956-.001 1.924.501 3.804 1.454 5.407l-.979 3.575 3.667-.962zm10.742-7.143c-.29-.145-1.716-.848-1.983-.946-.266-.097-.459-.145-.653.145-.193.291-.748.946-.917 1.138-.17.193-.341.218-.632.073-.29-.145-1.229-.453-2.34-1.445-.864-.772-1.447-1.725-1.617-2.016-.17-.29-.018-.447.127-.592.13-.13.29-.34.436-.509.145-.17.193-.291.291-.485.097-.194.049-.364-.025-.509-.073-.145-.653-1.573-.894-2.155-.236-.57-.475-.492-.653-.501-.17-.008-.364-.01-.557-.01-.193 0-.509.073-.776.364-.266.291-1.018.994-1.018 2.423 0 1.43 1.042 2.809 1.187 3.003.145.194 2.051 3.132 4.969 4.39.694.3 1.236.479 1.659.614.698.221 1.334.19 1.838.115.561-.083 1.716-.702 1.958-1.381.242-.679.242-1.261.17-1.381-.073-.119-.266-.218-.557-.363z"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.513 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.713-1.457L0 24zm6.59-4.846c1.6.95 3.498 1.451 5.411 1.453 5.487 0 9.954-4.466 9.957-9.953.002-2.657-1.02-5.155-2.877-7.015C17.28 1.78 14.785.755 12.01.755c-5.49 0-9.953 4.467-9.955 9.956-.001 1.924.501 3.804 1.454 5.407l-.979 3.575 3.667-.962zm10.742-7.143c-.29-.145-1.716-.848-1.983-.946-.266-.097-.459-.145-.653.145-.193.291-.748.946-.917 1.138-.17.193-.341.218-.632.073-.29-.145-1.229-.453-2.34-1.445-.864-.772-1.447-1.725-1.617-2.016-.17-.29-.018-.447.127-.592.13-.13.29-.34.436-.509.145-.17.193-.291.291-.485.097-.194.049-.364-.025-.509-.073-.145-.653-1.573-.894-2.155-.236-.57-.475-.492-.653-.501-.17-.008-.364-.01-.557-.01-.193 0-.509.073-.776.364-.266.291-1.018.994-1.018 2.423 0 1.43 1.042 2.809 1.187 3.003.145.194 2.051 3.132 4.969 4.39.694.3 1.236.479 1.659.614.698.221 1.334.19 1.838.115.561-.083 1.716-.702 1.958-1.381.242-.679.242-1.261.17-1.381-.073-.119-.266-.218-.557-.363z"></path></svg>
         Chat with us
     </a>
 
@@ -1175,7 +1233,50 @@
                     </div>
                 </div>
                 <div id="featuredProductsGrid" class="grid">
-                    <!-- Loaded dynamically via JavaScript -->
+                    <div class="product-card">
+                        <div class="product-img-wrapper" onclick="viewProductDetails(1783514591365)">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI6lIjzLWLQGyVzA72gDF8tSo_4cB2dGJ0T30eNaL75bUVYT2Nju56T9Tx&amp;s=10" alt="JAZZAB (SILVER)" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Perfume (EDP)</span>
+                            <h3 class="product-title" onclick="viewProductDetails(1783514591365)" style="cursor:pointer;">JAZZAB (SILVER)</h3>
+                            <div class="product-meta-row"><span class="product-meta-pill">100ml</span><span class="product-meta-pill">3.4 FL.OZ.</span><span class="product-meta-pill product-gender-pill male">Male</span></div>
+                            <div class="product-footer" style="margin-top:8px;">
+                                <span class="product-price">₦17,000.00</span>
+                                <button class="add-btn" onclick="event.stopPropagation(); addToCart(1783514591365, 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="product-card">
+                        <div class="product-img-wrapper" onclick="viewProductDetails(1783514747087)">
+                            <img src="https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.88518.2x.avif" alt="MOUSUF" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Perfume (EDP)</span>
+                            <h3 class="product-title" onclick="viewProductDetails(1783514747087)" style="cursor:pointer;">MOUSUF</h3>
+                            <div class="product-meta-row"><span class="product-meta-pill">100ml</span><span class="product-meta-pill">3.4 FL.OZ.</span><span class="product-meta-pill product-gender-pill unisex">Unisex</span></div>
+                            <div class="product-footer" style="margin-top:8px;">
+                                <span class="product-price">₦17,000.00</span>
+                                <button class="add-btn" onclick="event.stopPropagation(); addToCart(1783514747087, 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="product-card">
+                        <div class="product-img-wrapper" onclick="viewProductDetails(1783514369298)">
+                            <img src="https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.124587.2x.avif" alt="JAZZAB (GOLD)" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Perfume (EDP)</span>
+                            <h3 class="product-title" onclick="viewProductDetails(1783514369298)" style="cursor:pointer;">JAZZAB (GOLD)</h3>
+                            <div class="product-meta-row"><span class="product-meta-pill">100ml</span><span class="product-meta-pill">3.4 FL.OZ.</span><span class="product-meta-pill product-gender-pill female">Female</span></div>
+                            <div class="product-footer" style="margin-top:8px;">
+                                <span class="product-price">₦17,000.00</span>
+                                <button class="add-btn" onclick="event.stopPropagation(); addToCart(1783514369298, 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -1191,9 +1292,32 @@
                         <span class="section-tag">Testimonials</span>
                         <h3 style="font-family:'Cinzel',serif; font-weight:400; font-size:1.4rem; margin-bottom:30px;">Recent Customer Reviews</h3>
                         <div class="review-box-slider-container">
-                            <div class="review-box-slider-track" id="reviewActiveSliderStage">
-                                <!-- Populated dynamically with 3 vertical blocks transitioning continuously -->
-                            </div>
+                            <div class="review-box-slider-track" id="reviewActiveSliderStage" style="transform: translateY(0px);">
+                    <div class="review-vertical-item-box">
+                        <p style="font-size:1.05rem; font-style:italic; margin-bottom:10px; color:#fff;">"The website is so easy to use for easy shopping, and what you ordered is exactly what you get! 100% authentic products delivered."</p>
+                        <h4 style="font-family:'Cinzel',serif; color:var(--gold); font-weight:600; letter-spacing:1px; font-size:0.9rem;">— Ugochukwu</h4>
+                    </div>
+                
+                    <div class="review-vertical-item-box">
+                        <p style="font-size:1.05rem; font-style:italic; margin-bottom:10px; color:#fff;">"Perfect online fragrance store for surprise gifts! Ordered for my husband and it was delivered fast. Trustworthy brand."</p>
+                        <h4 style="font-family:'Cinzel',serif; color:var(--gold); font-weight:600; letter-spacing:1px; font-size:0.9rem;">— Priscilia</h4>
+                    </div>
+                
+                    <div class="review-vertical-item-box">
+                        <p style="font-size:1.05rem; font-style:italic; margin-bottom:10px; color:#fff;">"Highly reliable customer interface. Fast dispatch and excellent reliability. Scent is long lasting and completely authentic."</p>
+                        <h4 style="font-family:'Cinzel',serif; color:var(--gold); font-weight:600; letter-spacing:1px; font-size:0.9rem;">— Danjuma</h4>
+                    </div>
+                
+                    <div class="review-vertical-item-box">
+                        <p style="font-size:1.05rem; font-style:italic; margin-bottom:10px; color:#fff;">"I am always skeptical about buying perfumes online in Nigeria, but SIYAJZH proved their reliability. Authentic products and instant support."</p>
+                        <h4 style="font-family:'Cinzel',serif; color:var(--gold); font-weight:600; letter-spacing:1px; font-size:0.9rem;">— Peter</h4>
+                    </div>
+                
+                    <div class="review-vertical-item-box">
+                        <p style="font-size:1.05rem; font-style:italic; margin-bottom:10px; color:#fff;">"Super fast checkout to WhatsApp, everything was processed in seconds. Very authentic products, what you see is what you get!"</p>
+                        <h4 style="font-family:'Cinzel',serif; color:var(--gold); font-weight:600; letter-spacing:1px; font-size:0.9rem;">— Damilola</h4>
+                    </div>
+                </div>
                         </div>
                     </div>
                 </div>
@@ -1245,7 +1369,7 @@
                 <!-- ADVANCED HIERARCHICAL CASCADING FILTERS BAR -->
                 <div class="search-sort-bar">
                     <div class="search-wrapper">
-                        <input type="text" id="storeSearchInput" class="search-input" placeholder="Search by name, scent profile keywords..." onkeydown="if(event.key === 'Enter') { currentShopPage=1; handleStoreSearchFilter(); }">
+                        <input type="text" id="storeSearchInput" class="search-input" value="" placeholder="Search by name, scent profile keywords..." onkeydown="if(event.key === 'Enter') { currentShopPage=1; handleStoreSearchFilter(); }">
                         <button type="button" class="search-action-btn" onclick="currentShopPage=1; handleStoreSearchFilter()">Search</button>
                     </div>
                     
@@ -1299,13 +1423,146 @@
 
                 <!-- Paginated Shop Product Grid -->
                 <div class="grid" id="productGrid">
-                    <!-- Populated dynamically via JS -->
+                    <div class="product-card">
+                        <div class="product-img-wrapper" onclick="viewProductDetails(1783515030495)">
+                            <img src="https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.107717.2x.avif" alt="MOUSUF RAMADI" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Perfume (EDP)</span>
+                            <h3 class="product-title" onclick="viewProductDetails(1783515030495)" style="cursor:pointer;">MOUSUF RAMADI</h3>
+                            <div class="product-meta-row"><span class="product-meta-pill">100ml</span><span class="product-meta-pill">3.4 FL.OZ.</span><span class="product-meta-pill product-gender-pill unisex">Unisex</span></div>
+                            <div class="product-footer" style="margin-top:8px;">
+                                <span class="product-price">₦17,000.00</span>
+                                <button class="add-btn" onclick="event.stopPropagation(); addToCart(1783515030495, 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="product-card">
+                        <div class="product-img-wrapper" onclick="viewProductDetails(1783514747087)">
+                            <img src="https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.88518.2x.avif" alt="MOUSUF" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Perfume (EDP)</span>
+                            <h3 class="product-title" onclick="viewProductDetails(1783514747087)" style="cursor:pointer;">MOUSUF</h3>
+                            <div class="product-meta-row"><span class="product-meta-pill">100ml</span><span class="product-meta-pill">3.4 FL.OZ.</span><span class="product-meta-pill product-gender-pill unisex">Unisex</span></div>
+                            <div class="product-footer" style="margin-top:8px;">
+                                <span class="product-price">₦17,000.00</span>
+                                <button class="add-btn" onclick="event.stopPropagation(); addToCart(1783514747087, 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="product-card">
+                        <div class="product-img-wrapper" onclick="viewProductDetails(1783514591365)">
+                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI6lIjzLWLQGyVzA72gDF8tSo_4cB2dGJ0T30eNaL75bUVYT2Nju56T9Tx&amp;s=10" alt="JAZZAB (SILVER)" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Perfume (EDP)</span>
+                            <h3 class="product-title" onclick="viewProductDetails(1783514591365)" style="cursor:pointer;">JAZZAB (SILVER)</h3>
+                            <div class="product-meta-row"><span class="product-meta-pill">100ml</span><span class="product-meta-pill">3.4 FL.OZ.</span><span class="product-meta-pill product-gender-pill male">Male</span></div>
+                            <div class="product-footer" style="margin-top:8px;">
+                                <span class="product-price">₦17,000.00</span>
+                                <button class="add-btn" onclick="event.stopPropagation(); addToCart(1783514591365, 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="product-card">
+                        <div class="product-img-wrapper" onclick="viewProductDetails(1783514369298)">
+                            <img src="https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.124587.2x.avif" alt="JAZZAB (GOLD)" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Perfume (EDP)</span>
+                            <h3 class="product-title" onclick="viewProductDetails(1783514369298)" style="cursor:pointer;">JAZZAB (GOLD)</h3>
+                            <div class="product-meta-row"><span class="product-meta-pill">100ml</span><span class="product-meta-pill">3.4 FL.OZ.</span><span class="product-meta-pill product-gender-pill female">Female</span></div>
+                            <div class="product-footer" style="margin-top:8px;">
+                                <span class="product-price">₦17,000.00</span>
+                                <button class="add-btn" onclick="event.stopPropagation(); addToCart(1783514369298, 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="product-card">
+                        <div class="product-img-wrapper" onclick="viewProductDetails(1783426887741)">
+                            <img src="https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/9PM%20REBEL.jpg" alt="9PM REBEL" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Perfume (EDP)</span>
+                            <h3 class="product-title" onclick="viewProductDetails(1783426887741)" style="cursor:pointer;">9PM REBEL</h3>
+                            <div class="product-meta-row"><span class="product-meta-pill">100ml</span><span class="product-meta-pill">3.4 FL.OZ.</span><span class="product-meta-pill product-gender-pill unisex">Unisex</span></div>
+                            <div class="product-footer" style="margin-top:8px;">
+                                <span class="product-price">₦47,000.00</span>
+                                <button class="add-btn" onclick="event.stopPropagation(); addToCart(1783426887741, 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="product-card">
+                        <div class="product-img-wrapper" onclick="viewProductDetails(1783428169962)">
+                            <img src="https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/badee%20al%20oud%20sublime2.jpg" alt="BADEE AL OUD (SUBLIME)" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Perfume (EDP)</span>
+                            <h3 class="product-title" onclick="viewProductDetails(1783428169962)" style="cursor:pointer;">BADEE AL OUD (SUBLIME)</h3>
+                            <div class="product-meta-row"><span class="product-meta-pill">100ml</span><span class="product-meta-pill">3.4 FL.OZ.</span><span class="product-meta-pill product-gender-pill unisex">Unisex</span></div>
+                            <div class="product-footer" style="margin-top:8px;">
+                                <span class="product-price">₦30,000.00</span>
+                                <button class="add-btn" onclick="event.stopPropagation(); addToCart(1783428169962, 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="product-card">
+                        <div class="product-img-wrapper" onclick="viewProductDetails(1783428674004)">
+                            <img src="https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/lattafa_khamrah_edp_100ml_1.jpg" alt="KHAMRAH" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Perfume (EDP)</span>
+                            <h3 class="product-title" onclick="viewProductDetails(1783428674004)" style="cursor:pointer;">KHAMRAH</h3>
+                            <div class="product-meta-row"><span class="product-meta-pill">100ml</span><span class="product-meta-pill">3.4 FL.OZ.</span><span class="product-meta-pill product-gender-pill unisex">Unisex</span></div>
+                            <div class="product-footer" style="margin-top:8px;">
+                                <span class="product-price">₦45,000.00</span>
+                                <button class="add-btn" onclick="event.stopPropagation(); addToCart(1783428674004, 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="product-card">
+                        <div class="product-img-wrapper" onclick="viewProductDetails(1783429088728)">
+                            <img src="https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/smoky%20wood%20Anfar%20London2.jpg" alt="SMOKY WOOD" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Perfume (Extrait)</span>
+                            <h3 class="product-title" onclick="viewProductDetails(1783429088728)" style="cursor:pointer;">SMOKY WOOD</h3>
+                            <div class="product-meta-row"><span class="product-meta-pill">100ml</span><span class="product-meta-pill">3.4 FL.OZ.</span><span class="product-meta-pill product-gender-pill male">Male</span></div>
+                            <div class="product-footer" style="margin-top:8px;">
+                                <span class="product-price">₦42,000.00</span>
+                                <button class="add-btn" onclick="event.stopPropagation(); addToCart(1783429088728, 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="product-card">
+                        <div class="product-img-wrapper" onclick="viewProductDetails(1783429290754)">
+                            <img src="https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/sudfa2.jpg" alt="SUDFA" class="product-img">
+                        </div>
+                        <div class="product-info">
+                            <span class="product-category">Perfume (EDP)</span>
+                            <h3 class="product-title" onclick="viewProductDetails(1783429290754)" style="cursor:pointer;">SUDFA</h3>
+                            <div class="product-meta-row"><span class="product-meta-pill">100ml</span><span class="product-meta-pill">3.4 FL.OZ.</span><span class="product-meta-pill product-gender-pill unisex">Unisex</span></div>
+                            <div class="product-footer" style="margin-top:8px;">
+                                <span class="product-price">₦33,000.00</span>
+                                <button class="add-btn" onclick="event.stopPropagation(); addToCart(1783429290754, 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Pagination Control Deck -->
                 <div class="pagination-container" id="shopPaginationDeck">
-                    <button class="pagination-btn" id="prevPageBtn" onclick="changeShopGridPage(-1)">Previous</button>
-                    <span class="pagination-info" id="paginationSummaryLabel">Page 1 of 1</span>
+                    <button class="pagination-btn" id="prevPageBtn" onclick="changeShopGridPage(-1)" disabled="">Previous</button>
+                    <span class="pagination-info" id="paginationSummaryLabel">Page 1 of 2</span>
                     <button class="pagination-btn" id="nextPageBtn" onclick="changeShopGridPage(1)">Next</button>
                 </div>
             </main>
@@ -1324,7 +1581,7 @@
                     <span class="chevron-icon">▾</span>
                 </button>
 
-                <div class="review-form-card" id="collapsibleReviewFormCard">
+                <div class="review-form-card" id="collapsibleReviewFormCard" style="display: none;">
                     <form id="customerReviewSubmissionForm" onsubmit="handleCustomerReviewPublishRequest(event)">
                         <div class="form-group">
                             <label>Full Name(s)</label>
@@ -1352,8 +1609,45 @@
 
         <!-- Dynamic Product Context Detail Screen -->
         <div id="productDetailContainerView" class="container" style="display: none; padding-top: 40px;">
-            <!-- Rendered dynamically -->
-        </div>
+                <button class="btn btn-secondary" style="margin-bottom:30px; gap:8px;" onclick="navigateToCatalogRoot()">
+                    ← Back to Shop
+                </button>
+                <div class="detail-view-container">
+                    <div class="slider-container">
+                        <img id="detailMainSliderImg" src="https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.124587.2x.avif" alt="JAZZAB (GOLD)" class="slider-main-img">
+                        
+                    </div>
+                    <div class="product-info" style="padding:0;">
+                        <span class="product-category" style="font-size:0.9rem;">Perfume (EDP)</span>
+                        <h1 style="font-family:'Cinzel', serif; font-size:2.5rem; font-weight:400; margin:10px 0 20px;">JAZZAB (GOLD)</h1>
+                        <div class="product-meta-row" style="margin:0 0 16px;">
+                            <span class="product-meta-pill">100ml</span>
+                            <span class="product-meta-pill">3.4 FL.OZ.</span>
+                            <span class="product-meta-pill product-gender-pill female">Female</span>
+                        </div>
+                        <span class="product-price" style="font-size:2rem; color:var(--gold); display:block; margin-bottom:20px;">₦17,000.00</span>
+                        <p class="product-desc" style="font-size:1.05rem; line-height:1.8; color:var(--text-muted);">A captivating oriental fragrance that opens with fresh citrusy notes, moving into a rich floral heart, and settling into a warm, sensual base of precious woods, amber, and musk.</p>
+                        
+                        
+                    <div class="scent-profile-box">
+                        <h4 style="font-family:'Cinzel', serif; font-size:1.1rem; margin-bottom:15px; letter-spacing:1px; border-bottom:1px solid var(--border); padding-bottom:5px;">Olfactive Profile</h4>
+                        <div class="scent-note-row"><span class="scent-note-label">Top Notes:</span><span>Citrus, Fresh Notes</span></div>
+                        <div class="scent-note-row"><span class="scent-note-label">Heart Notes:</span><span>Floral Notes, Rose</span></div>
+                        <div class="scent-note-row"><span class="scent-note-label">Base Notes:</span><span>Oud, Cedarwood, Amber, Musk</span></div>
+                    </div>
+                
+
+                        <div style="margin-top:20px; display:flex; gap:12px; align-items:center;">
+                            <div style="display:flex; align-items:center; gap:8px;">
+                                <button class="qty-btn" style="width:36px; height:36px;" onclick="changeDetailQtyCounter(-1)">-</button>
+                                <div id="detailQtyDisplay" style="min-width:30px; text-align:center; font-weight:700;">1</div>
+                                <button class="qty-btn" style="width:36px; height:36px;" onclick="changeDetailQtyCounter(1)">+</button>
+                            </div>
+                            <button class="btn btn-primary" style="padding:12px 18px;" onclick="addToCart(1783514369298, parseInt(document.getElementById('detailQtyDisplay').innerText || '1'))">Add to cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         <footer>
             <div class="container footer-container">
@@ -1437,6 +1731,21 @@
                             </div>
                         </div>
 
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Suitable For</label>
+                                <select id="prodGender" class="form-control">
+                                    <option value="Unisex">Unisex</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Bottle Marking (fl.oz.)</label>
+                                <input type="text" id="prodBottleMarking" class="form-control" placeholder="e.g. 3.4" inputmode="decimal">
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <label>Price (₦)</label>
                             <input type="number" id="prodPrice" class="form-control">
@@ -1468,7 +1777,7 @@
 
                         <div style="display:flex; gap:10px;">
                             <button id="formSubmitBtn" type="button" class="btn btn-primary" style="flex:1;" onclick="saveProductForm()">Incorporate Product</button>
-                            <button id="cancelEditBtn" type="button" class="btn btn-secondary" style="display:none;" onclick="resetProductForm()">Cancel</button>
+                            <button id="cancelEditBtn" type="button" class="btn btn-secondary" style="display: none;" onclick="resetProductForm()">Cancel</button>
                         </div>
                     </div>
                 </div>
@@ -1477,15 +1786,115 @@
                 <div>
                     <div style="background-color: var(--surface-color); border:1px solid var(--border); padding:25px; border-radius:8px; margin-bottom:30px;">
                         <h3 style="font-family:'Cinzel', serif; margin-bottom:20px; font-weight:400; color:var(--gold);">Review Moderation Queue</h3>
-                        <div id="adminReviewControlQueueStage">
-                            <!-- Realtime reviews listed here -->
-                        </div>
+                        <div id="adminReviewControlQueueStage"><p style="color:var(--text-muted); font-size:0.9rem;">No pending reviews awaiting authorization.</p></div>
                     </div>
 
                     <h3 style="font-family:'Cinzel', serif; margin-bottom:20px; font-weight:400;">Current Inventory Status</h3>
-                    <div id="adminSecondaryCatalogZone">
-                        <!-- Populated dynamic catalog elements -->
+                    <div id="adminSecondaryCatalogZone"><div class="grid">
+                    <div class="product-card" style="padding:15px;">
+                        <h4 style="font-family:'Cinzel',serif;">MOUSUF RAMADI</h4>
+                        <p style="font-size:0.8rem; color:var(--gold);">Perfume (EDP) - ₦17,000.00</p>
+                        <div style="display:flex; gap:8px; margin-top:12px; flex-wrap:wrap;">
+                            <button class="btn btn-secondary" style="padding:8px 12px; font-size:0.8rem;" onclick="editProduct(1783515030495)">Edit</button>
+                        </div>
                     </div>
+                
+                    <div class="product-card" style="padding:15px;">
+                        <h4 style="font-family:'Cinzel',serif;">MOUSUF</h4>
+                        <p style="font-size:0.8rem; color:var(--gold);">Perfume (EDP) - ₦17,000.00</p>
+                        <div style="display:flex; gap:8px; margin-top:12px; flex-wrap:wrap;">
+                            <button class="btn btn-secondary" style="padding:8px 12px; font-size:0.8rem;" onclick="editProduct(1783514747087)">Edit</button>
+                        </div>
+                    </div>
+                
+                    <div class="product-card" style="padding:15px;">
+                        <h4 style="font-family:'Cinzel',serif;">JAZZAB (SILVER)</h4>
+                        <p style="font-size:0.8rem; color:var(--gold);">Perfume (EDP) - ₦17,000.00</p>
+                        <div style="display:flex; gap:8px; margin-top:12px; flex-wrap:wrap;">
+                            <button class="btn btn-secondary" style="padding:8px 12px; font-size:0.8rem;" onclick="editProduct(1783514591365)">Edit</button>
+                        </div>
+                    </div>
+                
+                    <div class="product-card" style="padding:15px;">
+                        <h4 style="font-family:'Cinzel',serif;">JAZZAB (GOLD)</h4>
+                        <p style="font-size:0.8rem; color:var(--gold);">Perfume (EDP) - ₦17,000.00</p>
+                        <div style="display:flex; gap:8px; margin-top:12px; flex-wrap:wrap;">
+                            <button class="btn btn-secondary" style="padding:8px 12px; font-size:0.8rem;" onclick="editProduct(1783514369298)">Edit</button>
+                        </div>
+                    </div>
+                
+                    <div class="product-card" style="padding:15px;">
+                        <h4 style="font-family:'Cinzel',serif;">9PM REBEL</h4>
+                        <p style="font-size:0.8rem; color:var(--gold);">Perfume (EDP) - ₦47,000.00</p>
+                        <div style="display:flex; gap:8px; margin-top:12px; flex-wrap:wrap;">
+                            <button class="btn btn-secondary" style="padding:8px 12px; font-size:0.8rem;" onclick="editProduct(1783426887741)">Edit</button>
+                        </div>
+                    </div>
+                
+                    <div class="product-card" style="padding:15px;">
+                        <h4 style="font-family:'Cinzel',serif;">BADEE AL OUD (SUBLIME)</h4>
+                        <p style="font-size:0.8rem; color:var(--gold);">Perfume (EDP) - ₦30,000.00</p>
+                        <div style="display:flex; gap:8px; margin-top:12px; flex-wrap:wrap;">
+                            <button class="btn btn-secondary" style="padding:8px 12px; font-size:0.8rem;" onclick="editProduct(1783428169962)">Edit</button>
+                        </div>
+                    </div>
+                
+                    <div class="product-card" style="padding:15px;">
+                        <h4 style="font-family:'Cinzel',serif;">KHAMRAH</h4>
+                        <p style="font-size:0.8rem; color:var(--gold);">Perfume (EDP) - ₦45,000.00</p>
+                        <div style="display:flex; gap:8px; margin-top:12px; flex-wrap:wrap;">
+                            <button class="btn btn-secondary" style="padding:8px 12px; font-size:0.8rem;" onclick="editProduct(1783428674004)">Edit</button>
+                        </div>
+                    </div>
+                
+                    <div class="product-card" style="padding:15px;">
+                        <h4 style="font-family:'Cinzel',serif;">SMOKY WOOD</h4>
+                        <p style="font-size:0.8rem; color:var(--gold);">Perfume (Extrait) - ₦42,000.00</p>
+                        <div style="display:flex; gap:8px; margin-top:12px; flex-wrap:wrap;">
+                            <button class="btn btn-secondary" style="padding:8px 12px; font-size:0.8rem;" onclick="editProduct(1783429088728)">Edit</button>
+                        </div>
+                    </div>
+                
+                    <div class="product-card" style="padding:15px;">
+                        <h4 style="font-family:'Cinzel',serif;">SUDFA</h4>
+                        <p style="font-size:0.8rem; color:var(--gold);">Perfume (EDP) - ₦33,000.00</p>
+                        <div style="display:flex; gap:8px; margin-top:12px; flex-wrap:wrap;">
+                            <button class="btn btn-secondary" style="padding:8px 12px; font-size:0.8rem;" onclick="editProduct(1783429290754)">Edit</button>
+                        </div>
+                    </div>
+                
+                    <div class="product-card" style="padding:15px;">
+                        <h4 style="font-family:'Cinzel',serif;">QAED AL FURSAN (BLACK)</h4>
+                        <p style="font-size:0.8rem; color:var(--gold);">Perfume (EDP) - ₦32,000.00</p>
+                        <div style="display:flex; gap:8px; margin-top:12px; flex-wrap:wrap;">
+                            <button class="btn btn-secondary" style="padding:8px 12px; font-size:0.8rem;" onclick="editProduct(1783430080283)">Edit</button>
+                        </div>
+                    </div>
+                
+                    <div class="product-card" style="padding:15px;">
+                        <h4 style="font-family:'Cinzel',serif;">ASAD</h4>
+                        <p style="font-size:0.8rem; color:var(--gold);">Perfume (EDP) - ₦35,000.00</p>
+                        <div style="display:flex; gap:8px; margin-top:12px; flex-wrap:wrap;">
+                            <button class="btn btn-secondary" style="padding:8px 12px; font-size:0.8rem;" onclick="editProduct(1783430325275)">Edit</button>
+                        </div>
+                    </div>
+                
+                    <div class="product-card" style="padding:15px;">
+                        <h4 style="font-family:'Cinzel',serif;">PLATINUM SHADE (POUR HOMME)</h4>
+                        <p style="font-size:0.8rem; color:var(--gold);">Perfume (EDP) - ₦39,500.00</p>
+                        <div style="display:flex; gap:8px; margin-top:12px; flex-wrap:wrap;">
+                            <button class="btn btn-secondary" style="padding:8px 12px; font-size:0.8rem;" onclick="editProduct(1783431174749)">Edit</button>
+                        </div>
+                    </div>
+                
+                    <div class="product-card" style="padding:15px;">
+                        <h4 style="font-family:'Cinzel',serif;">SAHEB</h4>
+                        <p style="font-size:0.8rem; color:var(--gold);">Perfume (EDP) - ₦27,000.00</p>
+                        <div style="display:flex; gap:8px; margin-top:12px; flex-wrap:wrap;">
+                            <button class="btn btn-secondary" style="padding:8px 12px; font-size:0.8rem;" onclick="editProduct(1783431571292)">Edit</button>
+                        </div>
+                    </div>
+                </div></div>
                 </div>
             </div>
         </div>
@@ -1512,133 +1921,263 @@
     <!-- Global Dataset Engine Block -->
     <script id="catalogData">
         const products = [
-            {
-                "id": 1783426887741,
-                "type": "Perfume (EDP)",
-                "title": "9PM REBEL",
-                "price": 47000,
-                "vol": "100ml",
-                "desc": "Afnan's 9PM Rebel is a vibrant, aromatic-fruity unisex Eau de Parfum launched in 2024. It blends a fresh, juicy opening with a rich, sweet, and woody base, widely praised for its versatility and long-lasting performance.",
-                "imgs": ["https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/9PM%20REBEL.jpg", "https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/9PM%20REBEL1.jpg"],
-                "topNotes": "Pineapple, Mandarin, and Granny Smith Apple",
-                "heartNotes": "Oakmoss, Cedarwood, and Vanilla",
-                "baseNotes": "Caramel, Dry Wood, Ambergris, and Musk",
-                "clicks": 0
-            },
-            {
-                "id": 1783428169962,
-                "type": "Perfume (EDP)",
-                "title": "BADEE AL OUD (SUBLIME)",
-                "price": 30000,
-                "vol": "100ml",
-                "desc": "Bade'e Al Oud Sublime by Lattafa Perfumes is a luxurious woody-aromatic unisex fragrance launched in 2023. It is famous for its bright, fruity-floral opening and a creamy, deep vanilla-moss base.",
-                "imgs": ["https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/badee%20al%20oud%20sublime2.jpg", "https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/badee%20al%20oud%20sublime1.jpg"],
-                "topNotes": "Juicy Apple, exotic Litchi, and fresh Rose",
-                "heartNotes": "Sweet Plum and elegant Jasmine",
-                "baseNotes": "Creamy Vanilla, earthy Moss, and Patchouli",
-                "clicks": 0
-            },
-            {
-                "id": 1783428674004,
-                "type": "Perfume (EDP)",
-                "title": "KHAMRAH",
-                "price": 45000,
-                "vol": "100ml",
-                "desc": "Khamrah by Lattafa is a highly popular, rich, and luxurious amber-spicy unisex fragrance. Known as an incredibly rich and sweet gourmand, it blends warm spices, vanilla, and rare fruit notes.",
-                "imgs": ["https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/lattafa_khamrah_edp_100ml_1.jpg"],
-                "topNotes": "Citrus, Bergamot, Cinnamon, and Nutmeg",
-                "heartNotes": "Dates, Praline, Tuberose, and Mahonia",
-                "baseNotes": "Vanilla, Roasted Tonka Bean, Myrrh, Benzoin, Amberwood, and Akigalawood",
-                "clicks": 0
-            },
-            {
-                "id": 1783429088728,
-                "type": "Perfume (Extrait)",
-                "title": "SMOKY WOOD",
-                "price": 42000,
-                "vol": "100ml",
-                "desc": "Smoky Wood by ANFAR LONDON is a refined, masculine woody-aromatic fragrance known for balancing sweet warmth with rich, earthy depth. Perfect for evening wear and formal occasions.",
-                "imgs": ["https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/smoky%20wood%20Anfar%20London2.jpg"],
-                "topNotes": "A vibrant, fresh opening featuring aromatic notes blended with sweet, buttery caramel.",
-                "heartNotes": "A rich heart that contrasts delicate florals with the deep, resinous power of oud.",
-                "baseNotes": "A smooth, earthy foundation comprising dry woods, amber, musk, and moss.",
-                "clicks": 0
-            },
-            {
-                "id": 1783429290754,
-                "type": "Perfume (EDP)",
-                "title": "SUDFA",
-                "price": 33000,
-                "vol": "100ml",
-                "desc": "Sudfa by Ard Al Zaafaran is a luxurious gourmand profile. Widely known as a cozy coffee scent, it smells like a delicious caramel macchiato or vanilla latte.",
-                "imgs": ["https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/sudfa2.jpg"],
-                "topNotes": "Warm almond with a subtle, uplifting hint of zesty fruits.",
-                "heartNotes": "Powdery heliotrope mixed with cool, dewy lily of the valley.",
-                "baseNotes": "A rich, roasted cappuccino accord perfectly blended with silky vanilla cream.",
-                "clicks": 0
-            },
-            {
-                "id": 1783430080283,
-                "type": "Perfume (EDP)",
-                "title": "QAED AL FURSAN (BLACK)",
-                "price": 32000,
-                "vol": "100ml",
-                "desc": "Qaed Al Fursan by Lattafa Perfumes is a bold, oriental woody fragrance for both women and men. Famous for its juicy, smoky, and long-lasting profile.",
-                "imgs": ["https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/lattafa_qaed_al_fursan_edp_100ml_perfume.jpg"],
-                "topNotes": "Saffron, Pineapple",
-                "heartNotes": "Jasmine, Balsam Fir",
-                "baseNotes": "Oud Wood, Cedarwood, Amber",
-                "clicks": 0
-            },
-            {
-                "id": 1783430325275,
-                "type": "Perfume (EDP)",
-                "title": "ASAD",
-                "price": 35000,
-                "vol": "100ml",
-                "desc": "Lattafa Asad is a wildly popular, highly praised amber-spicy fragrance for men known for its warm, bold, and sophisticated scent profile with excellent longevity.",
-                "imgs": ["https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/ASAD12.jpg"],
-                "topNotes": "Black pepper, pineapple, and tobacco.",
-                "heartNotes": "Coffee, patchouli, and iris.",
-                "baseNotes": "Vanilla, amber, dry woods, benzoin, and labdanum",
-                "clicks": 0
-            },
-            {
-                "id": 1783431174749,
-                "type": "Perfume (EDP)",
-                "title": "PLATINUM SHADE (POUR HOMME)",
-                "price": 39500,
-                "vol": "100ml",
-                "desc": "Platinum Shade Pour Homme by Anfar London balances fruity, floral, and woody accords to create a velvety and modern signature scent.",
-                "imgs": ["https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/51/7905914/1.jpg?1658"],
-                "topNotes": "An intoxicating and vibrant burst of red berries, dark berries, blackcurrant, and raspberry.",
-                "heartNotes": "A velvety, sweet floral combination of blueberry and violet.",
-                "baseNotes": "A warm, sensual, and grounded finish of dry amber and musk.",
-                "clicks": 0
-            },
-            {
-                "id": 1783431571292,
-                "type": "Perfume (EDP)",
-                "title": "SAHEB",
-                "price": 27000,
-                "vol": "70ml",
-                "desc": "Saheb by Ard Al Zaafaran is a popular, luxurious unisex Arabian fragrance known for its bold, woody, and spicy profile. Leans toward a mature scent status.",
-                "imgs": ["https://munacosmetics.com/image/cache/catalog/ArchitectDeMuna/ard-al-zaafaran-saheb-edp-500x500.jpg"],
-                "topNotes": "Fresh citrus with bold saffron spikes.",
-                "heartNotes": "Violet, Ambergris, and Patchouli",
-                "baseNotes": "Oud Wood, Musk, and Vanilla",
-                "clicks": 0
-            }
-        ];
-
-        // System Reviews Master Data Array Array Engine
+    {
+        "id": 1783515030495,
+        "type": "Perfume (EDP)",
+        "title": "MOUSUF RAMADI",
+        "price": 17000,
+        "vol": "100ml",
+        "gender": "Unisex",
+        "bottleMarking": "3.4",
+        "desc": "A fresh and sophisticated oriental fragrance that introduces a bright, energetic burst of citrus before transitioning into a warm, aromatic spice core and finishing with an elegant base of earthy woods and musk.",
+        "imgs": [
+            "https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.107717.2x.avif",
+            "https://www.oriental-style.de/cdn/shop/files/jazzab-silver-ard-al-zaafaran-perfume-100ml.webp?v=1777298371&width=2500"
+        ],
+        "topNotes": "Bergamot, Orange, Lime",
+        "heartNotes": "Violet, Nutmeg, Pepper, Cardamom",
+        "baseNotes": "Amber, Oakmoss, Musk",
+        "clicks": 0
+    },
+    {
+        "id": 1783514747087,
+        "type": "Perfume (EDP)",
+        "title": "MOUSUF",
+        "price": 17000,
+        "vol": "100ml",
+        "gender": "Unisex",
+        "bottleMarking": "3.4",
+        "desc": "A deep, alluring oriental gourmand fragrance renowned for its unique combination of rich oud and sweet, velvety chocolate and grape accords wrapped in an elegant woven bag packaging.",
+        "imgs": [
+            "https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.88518.2x.avif"
+        ],
+        "topNotes": "Grape, Chocolate",
+        "heartNotes": "Musk, Oud",
+        "baseNotes": "Toffee, Tobacco, Floral Notes",
+        "clicks": 1
+    },
+    {
+        "id": 1783514591365,
+        "type": "Perfume (EDP)",
+        "title": "JAZZAB (SILVER)",
+        "price": 17000,
+        "vol": "100ml",
+        "gender": "Male",
+        "bottleMarking": "3.4",
+        "desc": "A fresh, clean, and elegant fragrance that skillfully contrasts bright citrus accords and crisp green tea leaves against a deep, sophisticated backdrop of smoky incense and aromatic woods.",
+        "imgs": [
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQI6lIjzLWLQGyVzA72gDF8tSo_4cB2dGJ0T30eNaL75bUVYT2Nju56T9Tx&s=10"
+        ],
+        "topNotes": "Citruses, Lemon, Tea Leaf",
+        "heartNotes": "Incense, Vetiver",
+        "baseNotes": "Cedarwood, Vetiver, Musk",
+        "clicks": 2
+    },
+    {
+        "id": 1783514369298,
+        "type": "Perfume (EDP)",
+        "title": "JAZZAB (GOLD)",
+        "price": 17000,
+        "vol": "100ml",
+        "gender": "Female",
+        "bottleMarking": "3.4",
+        "desc": "A captivating oriental fragrance that opens with fresh citrusy notes, moving into a rich floral heart, and settling into a warm, sensual base of precious woods, amber, and musk.",
+        "imgs": [
+            "https://fimgs.net/mdimg/perfume-thumbs/dark-375x500.124587.2x.avif"
+        ],
+        "topNotes": "Citrus, Fresh Notes",
+        "heartNotes": "Floral Notes, Rose",
+        "baseNotes": "Oud, Cedarwood, Amber, Musk",
+        "clicks": 1
+    },
+    {
+        "id": 1783426887741,
+        "type": "Perfume (EDP)",
+        "title": "9PM REBEL",
+        "price": 47000,
+        "vol": "100ml",
+        "desc": "Afnan's 9PM Rebel is a vibrant, aromatic-fruity unisex Eau de Parfum launched in 2024. It blends a fresh, juicy opening with a rich, sweet, and woody base, widely praised for its versatility and long-lasting performance.",
+        "imgs": [
+            "https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/9PM%20REBEL.jpg",
+            "https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/9PM%20REBEL1.jpg"
+        ],
+        "topNotes": "Pineapple, Mandarin, and Granny Smith Apple",
+        "heartNotes": "Oakmoss, Cedarwood, and Vanilla",
+        "baseNotes": "Caramel, Dry Wood, Ambergris, and Musk",
+        "clicks": 0,
+        "gender": "Unisex",
+        "bottleMarking": "3.4"
+    },
+    {
+        "id": 1783428169962,
+        "type": "Perfume (EDP)",
+        "title": "BADEE AL OUD (SUBLIME)",
+        "price": 30000,
+        "vol": "100ml",
+        "desc": "Bade'e Al Oud Sublime by Lattafa Perfumes is a luxurious woody-aromatic unisex fragrance launched in 2023. It is famous for its bright, fruity-floral opening and a creamy, deep vanilla-moss base.",
+        "imgs": [
+            "https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/badee%20al%20oud%20sublime2.jpg",
+            "https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/badee%20al%20oud%20sublime1.jpg"
+        ],
+        "topNotes": "Juicy Apple, exotic Litchi, and fresh Rose",
+        "heartNotes": "Sweet Plum and elegant Jasmine",
+        "baseNotes": "Creamy Vanilla, earthy Moss, and Patchouli",
+        "clicks": 0,
+        "gender": "Unisex",
+        "bottleMarking": "3.4"
+    },
+    {
+        "id": 1783428674004,
+        "type": "Perfume (EDP)",
+        "title": "KHAMRAH",
+        "price": 45000,
+        "vol": "100ml",
+        "desc": "Khamrah by Lattafa is a highly popular, rich, and luxurious amber-spicy unisex fragrance. Known as an incredibly rich and sweet gourmand, it blends warm spices, vanilla, and rare fruit notes.",
+        "imgs": [
+            "https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/lattafa_khamrah_edp_100ml_1.jpg"
+        ],
+        "topNotes": "Citrus, Bergamot, Cinnamon, and Nutmeg",
+        "heartNotes": "Dates, Praline, Tuberose, and Mahonia",
+        "baseNotes": "Vanilla, Roasted Tonka Bean, Myrrh, Benzoin, Amberwood, and Akigalawood",
+        "clicks": 0,
+        "gender": "Unisex",
+        "bottleMarking": "3.4"
+    },
+    {
+        "id": 1783429088728,
+        "type": "Perfume (Extrait)",
+        "title": "SMOKY WOOD",
+        "price": 42000,
+        "vol": "100ml",
+        "desc": "Smoky Wood by ANFAR LONDON is a refined, masculine woody-aromatic fragrance known for balancing sweet warmth with rich, earthy depth. Perfect for evening wear and formal occasions.",
+        "imgs": [
+            "https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/smoky%20wood%20Anfar%20London2.jpg"
+        ],
+        "topNotes": "A vibrant, fresh opening featuring aromatic notes blended with sweet, buttery caramel.",
+        "heartNotes": "A rich heart that contrasts delicate florals with the deep, resinous power of oud.",
+        "baseNotes": "A smooth, earthy foundation comprising dry woods, amber, musk, and moss.",
+        "clicks": 0,
+        "gender": "Male",
+        "bottleMarking": "3.4"
+    },
+    {
+        "id": 1783429290754,
+        "type": "Perfume (EDP)",
+        "title": "SUDFA",
+        "price": 33000,
+        "vol": "100ml",
+        "desc": "Sudfa by Ard Al Zaafaran is a luxurious gourmand profile. Widely known as a cozy coffee scent, it smells like a delicious caramel macchiato or vanilla latte.",
+        "imgs": [
+            "https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/sudfa2.jpg"
+        ],
+        "topNotes": "Warm almond with a subtle, uplifting hint of zesty fruits.",
+        "heartNotes": "Powdery heliotrope mixed with cool, dewy lily of the valley.",
+        "baseNotes": "A rich, roasted cappuccino accord perfectly blended with silky vanilla cream.",
+        "clicks": 0,
+        "gender": "Unisex",
+        "bottleMarking": "3.4"
+    },
+    {
+        "id": 1783430080283,
+        "type": "Perfume (EDP)",
+        "title": "QAED AL FURSAN (BLACK)",
+        "price": 32000,
+        "vol": "100ml",
+        "desc": "Qaed Al Fursan by Lattafa Perfumes is a bold, oriental woody fragrance for both women and men. Famous for its juicy, smoky, and long-lasting profile.",
+        "imgs": [
+            "https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/lattafa_qaed_al_fursan_edp_100ml_perfume.jpg"
+        ],
+        "topNotes": "Saffron, Pineapple",
+        "heartNotes": "Jasmine, Balsam Fir",
+        "baseNotes": "Oud Wood, Cedarwood, Amber",
+        "clicks": 0,
+        "gender": "Unisex",
+        "bottleMarking": "3.4"
+    },
+    {
+        "id": 1783430325275,
+        "type": "Perfume (EDP)",
+        "title": "ASAD",
+        "price": 35000,
+        "vol": "100ml",
+        "desc": "Lattafa Asad is a wildly popular, highly praised amber-spicy fragrance for men known for its warm, bold, and sophisticated scent profile with excellent longevity.",
+        "imgs": [
+            "https://6a458d1f29e4cbc974f01623.imgix.net/SIYAJZH/ASAD12.jpg"
+        ],
+        "topNotes": "Black pepper, pineapple, and tobacco.",
+        "heartNotes": "Coffee, patchouli, and iris.",
+        "baseNotes": "Vanilla, amber, dry woods, benzoin, and labdanum",
+        "clicks": 0,
+        "gender": "Male",
+        "bottleMarking": "3.4"
+    },
+    {
+        "id": 1783431174749,
+        "type": "Perfume (EDP)",
+        "title": "PLATINUM SHADE (POUR HOMME)",
+        "price": 39500,
+        "vol": "100ml",
+        "desc": "Platinum Shade Pour Homme by Anfar London balances fruity, floral, and woody accords to create a velvety and modern signature scent.",
+        "imgs": [
+            "https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/51/7905914/1.jpg?1658"
+        ],
+        "topNotes": "An intoxicating and vibrant burst of red berries, dark berries, blackcurrant, and raspberry.",
+        "heartNotes": "A velvety, sweet floral combination of blueberry and violet.",
+        "baseNotes": "A warm, sensual, and grounded finish of dry amber and musk.",
+        "clicks": 0,
+        "gender": "Male",
+        "bottleMarking": "3.4"
+    },
+    {
+        "id": 1783431571292,
+        "type": "Perfume (EDP)",
+        "title": "SAHEB",
+        "price": 27000,
+        "vol": "70ml",
+        "desc": "Saheb by Ard Al Zaafaran is a popular, luxurious unisex Arabian fragrance known for its bold, woody, and spicy profile. Leans toward a mature scent status.",
+        "imgs": [
+            "https://munacosmetics.com/image/cache/catalog/ArchitectDeMuna/ard-al-zaafaran-saheb-edp-500x500.jpg"
+        ],
+        "topNotes": "Fresh citrus with bold saffron spikes.",
+        "heartNotes": "Violet, Ambergris, and Patchouli",
+        "baseNotes": "Oud Wood, Musk, and Vanilla",
+        "clicks": 0,
+        "gender": "Unisex",
+        "bottleMarking": "2.36"
+    }
+];
         const customerReviewsDataset = [
-            { id: 1, name: "Ugochukwu", comment: "The website is so easy to use for easy shopping, and what you ordered is exactly what you get! 100% authentic products delivered.", status: "published" },
-            { id: 2, name: "Priscilia", comment: "Perfect online fragrance store for surprise gifts! Ordered for my husband and it was delivered fast. Trustworthy brand.", status: "published" },
-            { id: 3, name: "Danjuma", comment: "Highly reliable customer interface. Fast dispatch and excellent reliability. Scent is long lasting and completely authentic.", status: "published" },
-            { id: 4, name: "Peter", comment: "I am always skeptical about buying perfumes online in Nigeria, but SIYAJZH proved their reliability. Authentic products and instant support.", status: "published" },
-            { id: 5, name: "Damilola", comment: "Super fast checkout to WhatsApp, everything was processed in seconds. Very authentic products, what you see is what you get!", status: "published" }
-        ];
+    {
+        "id": 1,
+        "name": "Ugochukwu",
+        "comment": "The website is so easy to use for easy shopping, and what you ordered is exactly what you get! 100% authentic products delivered.",
+        "status": "published"
+    },
+    {
+        "id": 2,
+        "name": "Priscilia",
+        "comment": "Perfect online fragrance store for surprise gifts! Ordered for my husband and it was delivered fast. Trustworthy brand.",
+        "status": "published"
+    },
+    {
+        "id": 3,
+        "name": "Danjuma",
+        "comment": "Highly reliable customer interface. Fast dispatch and excellent reliability. Scent is long lasting and completely authentic.",
+        "status": "published"
+    },
+    {
+        "id": 4,
+        "name": "Peter",
+        "comment": "I am always skeptical about buying perfumes online in Nigeria, but SIYAJZH proved their reliability. Authentic products and instant support.",
+        "status": "published"
+    },
+    {
+        "id": 5,
+        "name": "Damilola",
+        "comment": "Super fast checkout to WhatsApp, everything was processed in seconds. Very authentic products, what you see is what you get!",
+        "status": "published"
+    }
+];
     </script>
 
     <!-- Core App Operations Pipeline -->
@@ -1653,6 +2192,8 @@
         let verticalSliderInterval = null;
 
         function initializeStorefrontApp() {
+            window.scrollTo(0, 0);
+            setTimeout(() => window.scrollTo(0, 0), 0);
             renderFeaturedProducts();
             handleStoreSearchFilter();
             renderCustomerReviewsSlider();
@@ -1738,6 +2279,12 @@
 
             pageSlice.forEach(p => {
                 const img = (p.imgs && p.imgs.length > 0) ? p.imgs[0] : 'https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&q=80&w=400';
+                const genderClass = (p.gender || 'Unisex').toLowerCase();
+                const bottleLabel = p.bottleMarking ? `${p.bottleMarking} FL.OZ.` : '';
+                const metaItems = [];
+                if (p.vol) metaItems.push(`<span class="product-meta-pill">${p.vol}</span>`);
+                if (bottleLabel) metaItems.push(`<span class="product-meta-pill">${bottleLabel}</span>`);
+                metaItems.push(`<span class="product-meta-pill product-gender-pill ${genderClass}">${p.gender || 'Unisex'}</span>`);
                 grid.innerHTML += `
                     <div class="product-card">
                         <div class="product-img-wrapper" onclick="viewProductDetails(${p.id})">
@@ -1746,7 +2293,7 @@
                         <div class="product-info">
                             <span class="product-category">${p.type}</span>
                             <h3 class="product-title" onclick="viewProductDetails(${p.id})" style="cursor:pointer;">${p.title}</h3>
-                            <div style="color:var(--text-muted); font-size:0.9rem; margin-bottom:8px;">${p.vol || '100ml'}</div>
+                            <div class="product-meta-row">${metaItems.join('')}</div>
                             <div class="product-footer" style="margin-top:8px;">
                                 <span class="product-price">₦${formatCurrency(p.price)}</span>
                                 <button class="add-btn" onclick="event.stopPropagation(); addToCart(${p.id}, 1)">+</button>
@@ -1957,6 +2504,11 @@
                     <div class="product-info" style="padding:0;">
                         <span class="product-category" style="font-size:0.9rem;">${p.type}</span>
                         <h1 style="font-family:'Cinzel', serif; font-size:2.5rem; font-weight:400; margin:10px 0 20px;">${p.title}</h1>
+                        <div class="product-meta-row" style="margin:0 0 16px;">
+                            ${p.vol ? `<span class="product-meta-pill">${p.vol}</span>` : ''}
+                            ${p.bottleMarking ? `<span class="product-meta-pill">${p.bottleMarking} FL.OZ.</span>` : ''}
+                            <span class="product-meta-pill product-gender-pill ${(p.gender || 'Unisex').toLowerCase()}">${p.gender || 'Unisex'}</span>
+                        </div>
                         <span class="product-price" style="font-size:2rem; color:var(--gold); display:block; margin-bottom:20px;">₦${formatCurrency(p.price)}</span>
                         <p class="product-desc" style="font-size:1.05rem; line-height:1.8; color:var(--text-muted);">${p.desc}</p>
                         
@@ -2002,6 +2554,12 @@
             container.innerHTML = '';
             targets.forEach(p => {
                 const img = (p.imgs && p.imgs.length > 0) ? p.imgs[0] : '';
+                const genderClass = (p.gender || 'Unisex').toLowerCase();
+                const bottleLabel = p.bottleMarking ? `${p.bottleMarking} FL.OZ.` : '';
+                const metaItems = [];
+                if (p.vol) metaItems.push(`<span class="product-meta-pill">${p.vol}</span>`);
+                if (bottleLabel) metaItems.push(`<span class="product-meta-pill">${bottleLabel}</span>`);
+                metaItems.push(`<span class="product-meta-pill product-gender-pill ${genderClass}">${p.gender || 'Unisex'}</span>`);
                 container.innerHTML += `
                     <div class="product-card">
                         <div class="product-img-wrapper" onclick="viewProductDetails(${p.id})">
@@ -2010,7 +2568,7 @@
                         <div class="product-info">
                             <span class="product-category">${p.type}</span>
                             <h3 class="product-title" onclick="viewProductDetails(${p.id})" style="cursor:pointer;">${p.title}</h3>
-                            <div style="color:var(--text-muted); font-size:0.9rem; margin-bottom:8px;">${p.vol || '100ml'}</div>
+                            <div class="product-meta-row">${metaItems.join('')}</div>
                             <div class="product-footer" style="margin-top:8px;">
                                 <span class="product-price">₦${formatCurrency(p.price)}</span>
                                 <button class="add-btn" onclick="event.stopPropagation(); addToCart(${p.id}, 1)">+</button>
@@ -2156,6 +2714,8 @@
             document.getElementById('prodDesc').value = '';
             document.getElementById('prodType').value = 'Perfume (EDP)';
             document.getElementById('prodVol').value = '';
+            document.getElementById('prodGender').value = 'Unisex';
+            document.getElementById('prodBottleMarking').value = '';
             document.getElementById('prodPrice').value = '';
             document.getElementById('prodTopNotes').value = '';
             document.getElementById('prodHeartNotes').value = '';
@@ -2175,6 +2735,8 @@
             document.getElementById('prodDesc').value = target.desc || '';
             document.getElementById('prodType').value = target.type || 'Perfume (EDP)';
             document.getElementById('prodVol').value = (target.vol || '').replace(/ml/i, '');
+            document.getElementById('prodGender').value = target.gender || 'Unisex';
+            document.getElementById('prodBottleMarking').value = target.bottleMarking || '';
             document.getElementById('prodPrice').value = target.price || '';
             document.getElementById('prodTopNotes').value = target.topNotes || '';
             document.getElementById('prodHeartNotes').value = target.heartNotes || '';
@@ -2206,6 +2768,7 @@
 
             const volumeValue = document.getElementById('prodVol').value.trim();
             const volumeText = volumeValue ? `${volumeValue}ml` : '100ml';
+            const bottleMarkingValue = document.getElementById('prodBottleMarking').value.trim();
             const imageLinks = document.getElementById('prodImgLinks').value
                 .split(',')
                 .map(link => link.trim())
@@ -2217,6 +2780,8 @@
                 title: name,
                 price: price,
                 vol: volumeText,
+                gender: document.getElementById('prodGender').value || 'Unisex',
+                bottleMarking: bottleMarkingValue,
                 desc: document.getElementById('prodDesc').value.trim() || 'A premium fragrance added to the collection.',
                 imgs: imageLinks.length > 0 ? imageLinks : ['https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&q=80&w=400'],
                 topNotes: document.getElementById('prodTopNotes').value.trim(),
@@ -2266,11 +2831,17 @@
 
             let updatedHtml = currentHtml.replace(/<script id="catalogData">[\s\S]*?<\/script>/, catalogScript);
             updatedHtml = updatedHtml.replace(/<input type="text" id="storeSearchInput"[^>]*>/, resetSearchMarkup);
+            // Ensure admin panel is hidden in the downloaded HTML regardless of current DOM state
+            try {
+                updatedHtml = updatedHtml.replace(/id="adminPanelView"[^>]*style="[^"]*"/, 'id="adminPanelView" style="display: none;"');
+            } catch (e) { /* noop */ }
             return updatedHtml;
         }
 
         function downloadUpdatedHTML() {
             document.getElementById('storeSearchInput').value = '';
+            // ensure document is at top before capturing HTML
+            window.scrollTo(0, 0);
             const htmlContent = buildUpdatedHTMLDocument();
             const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
             const url = URL.createObjectURL(blob);
